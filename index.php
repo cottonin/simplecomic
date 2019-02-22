@@ -190,6 +190,41 @@ switch($request[0]) {
             'updates' => fetch_recent_updates(true),
         ));
         break;
+    case 'image':
+        // Use a different directory to avoid mixups
+        $file = BASEDIR . config('comicpath') . '/static/' . $request[1];
+        // Basically just reuse everything from 'comic' case:
+        if(file_exists($file)) {
+            $mime = array(
+                'gif'  => 'image/gif',
+                'jpg'  => 'image/jpeg',
+                'jpe'  => 'image/jpeg',
+                'jpeg' => 'image/jpeg',
+                'png'  => 'image/png',
+            );
+            $filetime = filemtime($file);
+            $path = pathinfo($file);
+            $ext = strtolower($path['extension']);
+            $type = $mime[$ext];
+            header("Content-Type: {$type}");
+            $content_length = filesize($file);
+            if($content_length !== false) {
+                header("Content-Length: {$content_length}");
+            }
+
+            // Allow HTTP 1.1 compliant browsers to cache based on modifcation time
+            if(isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
+            $mod = strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']);
+            if ($mod !== -1 && $mod >= $filetime) {
+                header('HTTP/1.1 304 Not Modified');
+                die;
+                }
+            }
+            header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $filetime) . ' GMT');
+            readfile($file);
+            die;
+        }
+        break;
     default:
         if(template('page_'.$request[0])) {
             // This is *so* relying on side-effects. :P

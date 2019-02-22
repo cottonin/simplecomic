@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /*
 available variables:
@@ -13,7 +13,7 @@ template('frame_top');
         <div class="header-banner">
             <a href="/">
                 <figure class="image">
-                    <img src="<?php echo url('comics/header.png'); ?>" alt="<?php echo '$title'; ?>">
+                    <img src="<?php echo url('image/header.png'); ?>" alt="<?php echo '$title'; ?>">
                 </figure>
             </a>
         </div>
