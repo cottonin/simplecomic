@@ -9,13 +9,13 @@
 	    <div class="field">
 	        <label class="label">Title</label>
 	        <div class="control">
-	            <input class="input name="title" value="<?php echo isset($title) ? $title : ''; ?>" />
+	            <input class="input" name="title" value="<?php echo isset($title) ? $title : ''; ?>" />
 	        </div>
 	    </div>
 	    <div class="field">
 	        <label class="label">Slug</label>
 	        <div class="control">
-	            <input class="input name="slug" type="text" title="any non-completely-numeric string of basic letters, digits, and underscores" pattern="[\w\-]*" value="<?php echo isset($slug) ? $slug : ''; ?>" />
+	            <input class="input" name="slug" type="text" title="any non-completely-numeric string of basic letters, digits, and underscores" pattern="[\w\-]*" value="<?php echo isset($slug) ? $slug : ''; ?>" />
 	        </div>
 	    </div>
 	    <div class="field">
