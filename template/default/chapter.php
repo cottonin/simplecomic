@@ -7,19 +7,25 @@ available variables:
 */
 template('chapter_head');
 ?>
-<div class="chapter">
+<section class="chapter section content">
     <h3><?php echo $chapter['title']; ?></h3>
     <?php if($chapter['description']) { ?>
     <div class="description">
         <?php echo $chapter['description']; ?>
     </div>
     <?php } ?>
-    <ul>
+    <div class="columns is-multiline">
         <?php foreach($comics as $comic) { ?>
-        <li><a href="<?php echo url($comic); ?>"><?php echo $comic['title'] ?></a></li>
+        <div class="column is-3">
+            <a href="<?php echo url($comic); ?>" 
+               class="image" 
+               style="background-image: url(<?php echo url('comic/image/' . $comic['comicid']); ?>)"
+               title="<?php echo $comic['title'] ?>"></a>
+        </div>
         <?php } ?>
-    </ul>
-</div>
+    </div>
+</section>
 <?php
 template('chapter_foot');
 ?>
+

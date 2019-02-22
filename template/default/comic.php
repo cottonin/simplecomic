@@ -19,7 +19,7 @@ available variables:
     ?> />
     <?php if(isset($nav['next'])) { ?></a><?php } ?>
     <?php template('comicnav', $nav); ?>
-    <div class="content">
+    <section class="section content">
         <h2><?php echo $title; ?></h2>
         <h6>Posted on <span class="date"><?php echo date('F jS, Y', $pub_date); ?></span></h6>
         <?php
@@ -34,7 +34,7 @@ available variables:
             echo '</div>';
         }
         ?>
-    </div>
+    </section>
     <?php } else { ?>
     No comic.
     <?php } ?>

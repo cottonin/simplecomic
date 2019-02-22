@@ -7,11 +7,9 @@ available variables:
 */
 template('head');
 template('comic', $comic); ?>
-<hr>
 <?php template('rant', $rant); ?>
-<hr>
-<div class="recently">
-    <h5>Recently</h5>
+<section class="recently content section">
+    <h5>Latest Updates</h5>
     <ul>
         <?php foreach($updates as $update) {
             echo '<li class="recent-', $update['type'], '">';
@@ -27,5 +25,5 @@ template('comic', $comic); ?>
             echo '</li>';
         } ?>
     </ul>
-</div>
+</section>
 <?php template('foot'); ?>

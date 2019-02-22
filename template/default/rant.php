@@ -8,7 +8,7 @@ available variables:
  $text: text of rant
 */
 ?>
-<div class="rant">
+<section class="rant section">
     <div class="content">
         <?php if (isset($title)) { ?>
         <h2><?php echo $title; ?></h2>
@@ -22,4 +22,4 @@ available variables:
         No rant.
         <?php } ?>
     </div>
-</div>
+</section>

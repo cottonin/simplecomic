@@ -6,18 +6,21 @@ available variables:
 */
 template('rant_head');
 ?>
-<div class="rants">
-    <h3>Rants</h3>
-    <?php if($rants) { ?>
-    <ul>
-        <?php foreach($rants as $rant) { ?>
-        <li><a href="<?php echo url('rant/'.$rant['rantid']); ?>"><?php echo $rant['title'] ?></a></li>
+<section class="rants section">
+    <div class="content">
+        <h3>Rants</h3>
+        <p>Relevant updates and ramblings.</p>
+        <?php if($rants) { ?>
+        <ul>
+            <?php foreach($rants as $rant) { ?>
+            <li><a href="<?php echo url('rant/'.$rant['rantid']); ?>"><?php echo $rant['title'] ?></a></li>
+            <?php } ?>
+        </ul>
+        <?php } else { ?>
+        <p>No Rants</p>
         <?php } ?>
-    </ul>
-    <?php } else { ?>
-    <p>No Rants</p>
-    <?php } ?>
-</div>
+    </div>
+</section>
 <?php
 template('rant_foot');
 ?>

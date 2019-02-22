@@ -9,9 +9,10 @@ template('archive_head');
 $current_chapter = -1;
 $current_page = 1;
 ?>
-<div class="archive">
+<section class="archive section">
     <div class="content">
         <h3>Archive</h3>
+        <p>Take a look at the list of all the pages. For a detailed view, visit the chapter's page.</p>
         <?php
         foreach($comics as $comic) {
             if($comic['chapterid'] && $comic['chapterid'] != $current_chapter) {
@@ -25,7 +26,7 @@ $current_page = 1;
         <a class="button" href="<?php echo url($comic); ?>"><?php echo $current_page; $current_page++ ?></a>
         <?php } ?>
     </div>
-</div>
+</section>
 <?php
 template('archive_foot');
 ?>
