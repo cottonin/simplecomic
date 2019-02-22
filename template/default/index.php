@@ -7,8 +7,17 @@ available variables:
 */
 template('head');
 template('comic', $comic); ?>
+    </div>
+</main>
+<hr>
+<main class="main">
+    <div class="container">
+    <div class="navpage has-background-dark">
+        <div class="navpage-item">Updates</div>
+    </div>
 <?php template('rant', $rant); ?>
-<section class="recently content section">
+<hr>
+<section class="recently content">
     <h5>Latest Updates</h5>
     <ul>
         <?php foreach($updates as $update) {

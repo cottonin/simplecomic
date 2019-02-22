@@ -13,15 +13,11 @@ template('frame_top');
         <div class="header-banner">
             <a href="/">
                 <figure class="image">
-                    <img src="https://via.placeholder.com/680x120" alt="">
+                    <img src="/static/img/banner-current.png" alt="Fluffy Gang">
                 </figure>
             </a>
         </div>
-        <nav class="navbar has-background-dark">
-            <a class="navbar-item has-text-white" href="<?php echo url('archive/');?>">Archive</a>
-            <a class="navbar-item has-text-white" href="<?php echo url('chapters/');?>">Chapters</a>
-            <a class="navbar-item has-text-white" href="<?php echo url('rants/');?>">Rants</a>
-        </nav>
+        <?php template('nav') ?>
     </div>
 </header>
 <main class="main">

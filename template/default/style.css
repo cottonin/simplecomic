@@ -4855,6 +4855,12 @@ a.navbar-item,
 body {
   background: whitesmoke; }
 
+.content .title:not(:last-child) {
+  margin-bottom: 0.25rem; }
+
+.description {
+  margin-top: 0.75rem; }
+
 section.section {
   padding-top: 20px; }
 
@@ -4872,14 +4878,20 @@ header.header .container {
 
 main.main .container {
   padding-bottom: 20px;
-  background: white;
-  min-height: 65vh; }
+  background: white; }
 
 footer.footer .container {
   padding-top: 20px;
   padding-bottom: 20px;
   color: #7a7a7a;
   background: #363636; }
+
+.header-banner {
+  transition: 0.25s ease all; }
+
+.header-banner:hover {
+  opacity: 0.75;
+  transition: 0.25s ease all; }
 
 .navpage {
   font-family: "Changa One", sans-serif;

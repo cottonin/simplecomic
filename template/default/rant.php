@@ -11,8 +11,8 @@ available variables:
 <section class="rant section">
     <div class="content">
         <?php if (isset($title)) { ?>
-        <h2><?php echo $title; ?></h2>
-        <h6>Posted on <span class="date"><?php echo date('F jS, Y', $pub_date); ?></span></h6>
+        <h3 class="title"><?php echo $title; ?></h3>
+        <span class="is-italic">Posted on <span class="date"><?php echo date('F jS, Y', $pub_date); ?></span></span>
         <?php
         echo '<div class="description">';
         echo $text;

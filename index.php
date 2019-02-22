@@ -198,7 +198,7 @@ switch($request[0]) {
         }
         // 404
         header("HTTP/1.0 404 Not Found");
-        echo '404';
+        template('404');
         break;
 }
 

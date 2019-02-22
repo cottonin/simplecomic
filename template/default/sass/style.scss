@@ -16,6 +16,19 @@ body {
 	background: $white-ter;
 }
 
+// BULMA - Content Altered
+
+.content .title:not(:last-child) {
+	margin-bottom: 0.25rem;
+}
+
+// Comic Module Styles
+
+.description {
+	margin-top: 0.75rem;
+}
+
+
 // Section Style
 
 section.section {
@@ -42,7 +55,6 @@ header.header .container {
 main.main .container {
 	padding-bottom: 20px;
 	background: $white;
-	min-height: 65vh;
 }
 
 footer.footer .container {
@@ -50,6 +62,17 @@ footer.footer .container {
 	padding-bottom: 20px;
 	color: $grey;
 	background: $dark;
+}
+
+// Header Styles
+
+.header-banner {
+	transition: 0.25s ease all;
+}
+
+.header-banner:hover{
+	opacity: 0.75;
+	transition: 0.25s ease all;
 }
 
 // Next/Prev Nav Styles

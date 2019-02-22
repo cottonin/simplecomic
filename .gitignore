@@ -3,8 +3,9 @@
 comics/*.gif
 comics/*.png
 comics/*.jpg
-include/config.php
-template/sombulus/
-template/fluffygang
+static/*.png
+static/*.jpg
 node_modules/
+include/config.php
 template/default/sass
+template/fluffygang
