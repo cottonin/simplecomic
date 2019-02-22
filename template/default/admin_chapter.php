@@ -11,11 +11,11 @@
     <input name="slug" type="text" title="any non-completely-numeric string of basic letters, digits, and underscores" pattern="[\w\-]*" value="<?php echo isset($slug) ? $slug : ''; ?>" />
 
     <label>Description</label>
-    <textarea name="description" rows="8" cols="40"><?php echo htmlentities($description); ?></textarea>
+    <textarea name="description" rows="8" cols="40"><?php echo isset($description) ? htmlentities($description) : "" ; ?></textarea>
 
     <label>Closed</label>
     <input name="closed" type="checkbox" value="1"<?php
-    if($status == STATUS_CLOSED) {
+    if(isset($status) && $status == STATUS_CLOSED) {
         echo ' checked="checked"';
     }
     ?>>
