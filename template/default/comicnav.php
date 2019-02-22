@@ -15,30 +15,32 @@ if(!($first || $prev || $next || $last)) {
 }
 
 ?>
-<ul class="nav">
+<nav class="navpage has-text-white has-background-dark">
 <?php
 if($first != $current) {
-    echo '<li><a href="', url('comic/'.$first), '">First</a></li>';
+    echo '<a class="navpage-item" href="', url('comic/'.$first), '">&lt;&lt; <span class="is-hidden-touch">First</span></a>';
 } else {
-    echo '<li>First</li>';
+    echo '<div class="navpage-item">&lt;&lt; <span class="is-hidden-touch">First</span></div>';
 }
 
 if($prev) {
-    echo '<li><a href="', url('comic/'.$prev), '" rel="prev">Prev</a></li>';
+    echo '<a class="navpage-item" href="', url('comic/'.$prev), '" rel="prev">&lt; <span class="is-hidden-touch">Previous</span></a>';
 } else {
-    echo '<li>Prev</li>';
+    echo '<div class="navpage-item">&lt; <span class="is-hidden-touch">Previous</span></div>';
 }
 
+echo '<a href="/archive" class="navpage-item">Archive</a>';
+
 if($next) {
-    echo '<li><a href="', url('comic/'.$next), '" rel="next">Next</a></li>';
+    echo '<a class="navpage-item" href="', url('comic/'.$next), '" rel="next"><span class="is-hidden-touch">Next</span> &gt;</a>';
 } else {
-    echo '<li>Next</li>';
+    echo '<div class="navpage-item"><span class="is-hidden-touch">Next</span> &gt;</div>';
 }
 
 if($last && $last != $current) {
-    echo '<li><a href="', url('comic/'.$last), '">Latest</a></li>';
+    echo '<a class="navpage-item" href="', url('comic/'.$last), '"><span class="is-hidden-touch">Latest</span> &gt;&gt;</a>';
 } else {
-    echo '<li>Latest</li>';
+    echo '<div class="navpage-item"><span class="is-hidden-touch">Latest</span> &gt;&gt;</div>';
 }
 ?>
-</ul>
+</nav>

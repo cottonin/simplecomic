@@ -6,10 +6,11 @@ available variables:
  $rant: array of info about the latest rant
 */
 template('head');
-template('comic', $comic);
-template('rant', $rant);
-
-?><div class="recently">
+template('comic', $comic); ?>
+<hr>
+<?php template('rant', $rant); ?>
+<hr>
+<div class="recently">
     <h5>Recently</h5>
     <ul>
         <?php foreach($updates as $update) {
@@ -26,7 +27,5 @@ template('rant', $rant);
             echo '</li>';
         } ?>
     </ul>
-</div><?php
-
-template('foot');
-?>
+</div>
+<?php template('foot'); ?>

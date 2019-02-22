@@ -9,15 +9,17 @@ available variables:
 */
 ?>
 <div class="rant">
-    <?php if (isset($title)) { ?>
-    <h2><?php echo $title; ?></h2>
-    <span class="date"><?php echo date('Y-m-d H:i', $pub_date); ?></span>
-    <?php
-    echo '<div class="description">';
-    echo $text;
-    echo '</div>';
-    ?>
-    <?php } else { ?>
-    No rant.
-    <?php } ?>
+    <div class="content">
+        <?php if (isset($title)) { ?>
+        <h2><?php echo $title; ?></h2>
+        <h6>Posted on <span class="date"><?php echo date('F jS, Y', $pub_date); ?></span></h6>
+        <?php
+        echo '<div class="description">';
+        echo $text;
+        echo '</div>';
+        ?>
+        <?php } else { ?>
+        No rant.
+        <?php } ?>
+    </div>
 </div>

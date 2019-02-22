@@ -8,20 +8,21 @@ available variables:
 
 template('frame_top');
 ?>
-<h1>
-    <a href="<?php echo url(''); ?>"><?php echo $page->title; ?></a>
-</h1>
-<?php if($page->get_breadcrumbs()) { ?>
-<ul class="breadcrumbs"><?php foreach($page->get_breadcrumbs() as $i => $crumb) {
-    echo '<li>';
-    if(isset($crumb[1])) {
-        echo '<a href="', url($crumb[1]), '">';
-    }
-    echo $crumb[0];
-    if(isset($crumb[1])) {
-        echo '</a>';
-    }
-    echo '</li>';
-} ?></ul>
-<?php } ?>
-<div class="maincontent">
+<header class="header">
+    <div class="container has-no-padding">
+        <div class="header-banner">
+            <a href="/">
+                <figure class="image">
+                    <img src="https://via.placeholder.com/680x120" alt="">
+                </figure>
+            </a>
+        </div>
+        <nav class="navbar has-background-dark">
+            <a class="navbar-item has-text-white" href="<?php echo url('archive/');?>">Archive</a>
+            <a class="navbar-item has-text-white" href="<?php echo url('chapters/');?>">Chapters</a>
+            <a class="navbar-item has-text-white" href="<?php echo url('rants/');?>">Rants</a>
+        </nav>
+    </div>
+</header>
+<main class="main">
+    <div class="container">

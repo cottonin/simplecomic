@@ -7,27 +7,24 @@ available variables:
 */
 template('archive_head');
 $current_chapter = -1;
+$current_page = 1;
 ?>
 <div class="archive">
-    <h3>Archive</h3>
-    <ul>
+    <div class="content">
+        <h3>Archive</h3>
         <?php
         foreach($comics as $comic) {
             if($comic['chapterid'] && $comic['chapterid'] != $current_chapter) {
                 $current_chapter = $comic['chapterid'];
-                ?><li class="chapter">
+                $current_page  = 1;
+                ?><h4 class="chapter">
                     <a href="<?php echo url('chapter/'.$comic['chapter_slug']); ?>"><?php echo $comic['chapter_title']; ?></a>
-                </li><?php
+                </h4><?php
             }
         ?>
-        <li class="comic">
-            <a href="<?php echo url($comic); ?>">
-                <?php echo date('Y-m-d', $comic['pub_date']); ?>:
-                <?php echo $comic['title']; ?>
-            </a>
-        </li>
+        <a class="button" href="<?php echo url($comic); ?>"><?php echo $current_page; $current_page++ ?></a>
         <?php } ?>
-    </ul>
+    </div>
 </div>
 <?php
 template('archive_foot');

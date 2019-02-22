@@ -1,0 +1,29 @@
+{
+  "name": "simplecomic",
+  "version": "0.1.0",
+  "description": "Based on \"simplecomic\" by kemayo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "css-build": "node-sass --omit-source-map-url template/default/sass/style.scss template/default/style.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start": "npm run css-watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cottonin/simplecomic.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cottonin/simplecomic/issues"
+  },
+  "homepage": "https://github.com/cottonin/simplecomic#readme",
+  "dependencies": {
+    "npm": "^6.8.0"
+  },
+  "devDependencies": {
+    "bulma": "^0.7.4",
+    "node-sass": "^4.11.0"
+  }
+}

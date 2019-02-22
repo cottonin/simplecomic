@@ -1,0 +1,63 @@
+@charset "utf-8";
+
+@import "../../../node_modules/bulma/sass/utilities/_all";
+@import "../../../node_modules/bulma/sass/base/_all";
+@import "../../../node_modules/bulma/sass/components/navbar";
+@import "../../../node_modules/bulma/sass/components/card";
+@import "../../../node_modules/bulma/sass/elements/_all";
+
+body {
+	background: $white-ter;
+}
+
+// Container Styles
+
+.container { 
+	margin: 0 auto;
+	padding: 0 15px;
+	position: relative;
+	max-width: 680px;
+}
+
+.container.has-no-padding {
+	padding: 0;
+}
+
+header.header .container {
+	background: $white;
+}
+
+main.main .container {
+	padding-bottom: 20px;
+	background: $white;
+}
+
+footer.footer .container {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: $grey;
+	background: $dark;
+}
+
+// Navpage Styles
+
+.navpage {
+	margin-left: -15px;
+	margin-right: -15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.navpage-item {
+	min-height: 3.25rem;
+	padding: 0.75rem 0.75rem;
+
+	line-height: 1.5;
+	text-align: center;
+}
+
+figure.image img {
+	display: block;	
+}
+

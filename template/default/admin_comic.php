@@ -35,7 +35,7 @@ if(!isset($text)) {
                 continue;
             }
             echo '<option value="', $c['chapterid'], '"';
-            if($c['chapterid'] == $chapterid) {
+            if(isset($chapterid) && $c['chapterid'] == $chapterid) {
                 echo ' selected="selected"';
             }
             echo '>', $c['title'], '</option>', "\n";
@@ -44,7 +44,7 @@ if(!isset($text)) {
             echo '<option disabled="disabled">---CLOSED---</option>';
             foreach($closed as $c) {
                 echo '<option value="', $c['chapterid'], '"';
-                if($c['chapterid'] == $chapterid) {
+                if(isset($chapterid) && $c['chapterid'] == $chapterid) {
                     echo ' selected="selected"';
                 }
                 echo '>', $c['title'], '</option>', "\n";

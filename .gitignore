@@ -6,3 +6,5 @@ comics/*.jpg
 include/config.php
 template/sombulus/
 template/fluffygang
+node_modules/
+template/default/sass

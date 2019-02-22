@@ -10,8 +10,6 @@ available variables:
 ?>
 <div class="comic">
     <?php if (isset($title)) { ?>
-    <h2><?php echo $title; ?></h2>
-    <span class="date"><?php echo date('Y-m-d', $pub_date); ?></span>
     <?php template('comicnav', $nav); ?>
     <?php if(isset($nav['next'])) { ?><a href="<?php echo url('comic/'.$nav['next']); ?>"><?php } ?>
     <img src="<?php echo url('comic/image/' . $comicid); ?>" alt="comic" <?php
@@ -21,18 +19,22 @@ available variables:
     ?> />
     <?php if(isset($nav['next'])) { ?></a><?php } ?>
     <?php template('comicnav', $nav); ?>
-    <?php
-    if($text['description']) {
-        echo '<div class="description"><h4>Description</h4>';
-        echo $text['description'];
-        echo '</div>';
-    }
-    if($text['transcript']) {
-        echo '<div class="transcript"><h4>Transcript</h4>';
-        echo $text['transcript'];
-        echo '</div>';
-    }
-    ?>
+    <div class="content">
+        <h2><?php echo $title; ?></h2>
+        <h6>Posted on <span class="date"><?php echo date('F jS, Y', $pub_date); ?></span></h6>
+        <?php
+        if($text['description']) {
+            echo '<div class="description">';
+            echo $text['description'];
+            echo '</div>';
+        }
+        if($text['transcript']) {
+            echo '<div class="transcript"><h4>Transcript</h4>';
+            echo $text['transcript'];
+            echo '</div>';
+        }
+        ?>
+    </div>
     <?php } else { ?>
     No comic.
     <?php } ?>
