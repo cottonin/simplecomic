@@ -3,7 +3,7 @@
 comics/*.gif
 comics/*.png
 comics/*.jpg
-static/img
+static/
 node_modules/
 include/config.php
 template/default/sass

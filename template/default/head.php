@@ -13,7 +13,7 @@ template('frame_top');
         <div class="header-banner">
             <a href="/">
                 <figure class="image">
-                    <img src="/static/img/banner-current.png" alt="Fluffy Gang">
+                    <img src="<?php echo url('comics/header.png'); ?>" alt="<?php echo '$title'; ?>">
                 </figure>
             </a>
         </div>
