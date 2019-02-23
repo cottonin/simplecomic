@@ -3,8 +3,10 @@
 comics/*.gif
 comics/*.png
 comics/*.jpg
-static/
+comics/static/*.jpg
+comics/static/*.png
+comics/static/*.gif
 node_modules/
 include/config.php
-template/default/sass
+template/default/sass/
 template/fluffygang

@@ -30,6 +30,10 @@ figure.image img {
 	display: block;	
 }
 
+div.spacer {
+	margin: 40px 0;
+}
+
 .is-italic {
 	font-style: italic;
 }
@@ -74,7 +78,6 @@ figure.image img {
 // Button styles
 
 .button {
-	background: white;
 	font-weight: bold;
 	font-size: 1rem;
 	padding: 0.75rem 1.5rem;
@@ -217,12 +220,7 @@ a.navpage-item:hover {
 }
 
 div.navpage-item:hover {
-	cursor: no-drop;
-}
-// Comic Module Styles
-
-.comic {
-
+	cursor: default;
 }
 
 .description {

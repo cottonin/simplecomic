@@ -461,6 +461,9 @@ section.section {
 figure.image img {
   display: block; }
 
+div.spacer {
+  margin: 40px 0; }
+
 .is-italic {
   font-style: italic; }
 
@@ -492,7 +495,6 @@ figure.image img {
   line-height: 1.4; }
 
 .button {
-  background: white;
   font-weight: bold;
   font-size: 1rem;
   padding: 0.75rem 1.5rem;
@@ -600,7 +602,7 @@ a.navpage-item:hover {
   background: rgba(255, 255, 255, 0.1); }
 
 div.navpage-item:hover {
-  cursor: no-drop; }
+  cursor: default; }
 
 .description {
   margin-top: 0.75rem; }

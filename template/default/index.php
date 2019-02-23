@@ -9,7 +9,7 @@ template('head');
 template('comic', $comic); ?>
     </div>
 </main>
-<hr>
+<div class="spacer"></div>
 <main class="main">
     <div class="container">
     <div class="navpage has-background-dark">
