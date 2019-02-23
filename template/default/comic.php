@@ -19,7 +19,7 @@ available variables:
     ?> />
     <?php if(isset($nav['next'])) { ?></a><?php } ?>
     <?php template('comicnav', $nav); ?>
-    <section class="section content">
+    <section class="section content container">
         <h3 class="title"><?php echo $title; ?></h3>
         <span class="is-italic">Posted on <span class="date"><?php echo date('F jS, Y', $pub_date); ?></span></span>
         <?php

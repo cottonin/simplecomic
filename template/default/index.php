@@ -12,11 +12,9 @@ template('comic', $comic); ?>
 <div class="spacer"></div>
 <main class="main">
     <div class="container">
-    <div class="navpage has-background-dark">
-        <div class="navpage-item">Updates</div>
-    </div>
+    <h1 class="section-top">Updates</h1>
 <?php template('rant', $rant); ?>
-<hr>
+    <hr>
 <section class="recently content">
     <h5>Latest Updates</h5>
     <ul>

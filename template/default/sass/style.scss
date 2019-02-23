@@ -26,6 +26,17 @@ section.section {
 	padding-top: 20px;
 }
 
+.section-top {
+	font-family: "Changa One", sans-serif;
+	color: white;
+	text-transform: uppercase;	
+	background: $dark;
+	text-align: center;
+	padding: 15px 0;
+	margin: 0 -15px;
+
+}
+
 figure.image img {
 	display: block;	
 }
@@ -48,7 +59,6 @@ div.spacer {
 		display: block;
 	}
 }
-
 
 // Columns
 
@@ -232,9 +242,6 @@ footer.footer .container {
 
 	background: $grey-darker;
 
-	margin-left: -15px;
-	margin-right: -15px;
-
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -271,6 +278,13 @@ div.navpage-item:hover {
 
 ul.chapter-list form {
 	display: inline-block;
+}
+
+// Comic Module Styles 
+
+.comic {
+	margin-left: -15px;
+	margin-right: -15px;
 }
 
 // Chapter Page Styles 
