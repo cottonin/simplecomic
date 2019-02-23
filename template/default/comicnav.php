@@ -15,7 +15,7 @@ if(!($first || $prev || $next || $last)) {
 }
 
 ?>
-<nav class="navpage has-text-white has-background-dark">
+<nav class="navpage">
 <?php
 if($first != $current) {
     echo '<a class="navpage-item" href="', url('comic/'.$first), '">&lt;&lt; <span class="is-hidden-touch">First</span></a>';

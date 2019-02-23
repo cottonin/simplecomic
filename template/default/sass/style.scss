@@ -2,15 +2,11 @@
 @import url('https://fonts.googleapis.com/css?family=Changa+One');
 
 @import "../../../node_modules/bulma/sass/utilities/_all";
-@import "../../../node_modules/bulma/sass/base/_all";
-@import "../../../node_modules/bulma/sass/grid/columns";
-@import "../../../node_modules/bulma/sass/components/navbar";
-@import "../../../node_modules/bulma/sass/components/card";
+@import "../../../node_modules/bulma/sass/base/minireset";
+@import "../../../node_modules/bulma/sass/base/generic";
 @import "../../../node_modules/bulma/sass/elements/image";
 @import "../../../node_modules/bulma/sass/elements/content";
 @import "../../../node_modules/bulma/sass/elements/icon";
-@import "../../../node_modules/bulma/sass/elements/button";
-@import "../../../node_modules/bulma/sass/elements/form";
 
 body {
 	background: $white-ter;
@@ -22,17 +18,107 @@ body {
 	margin-bottom: 0.25rem;
 }
 
-// Comic Module Styles
-
-.description {
-	margin-top: 0.75rem;
-}
-
-
-// Section Style
+//
+/// Generic Styles
+//
 
 section.section {
 	padding-top: 20px;
+}
+
+figure.image img {
+	display: block;	
+}
+
+.is-italic {
+	font-style: italic;
+}
+
+// Columns
+
+.columns {
+	display: flex;
+} .columns.is-multiline {
+	flex-wrap: wrap;
+}
+
+.column {
+	display: block;
+	flex: none;
+	padding: 0.75rem;
+}
+
+.column.is-3 {
+	width: 25%;
+}
+
+.column.is-2 {
+	width: 50%;
+}
+
+// Normalize inputs, buttons, etc
+
+.button, .input, .textarea, .select select, .file-cta, .filename {
+	background: white;
+	color: #363636;
+	border: 1px solid #dbdbdb;
+
+	padding: 0.75em;
+	border-radius: 4px;
+
+	box-shadow: none;
+	display: inline-flex;
+	line-height: 1.4
+}
+
+// Button styles
+
+.button {
+	background: white;
+	font-weight: bold;
+	font-size: 1rem;
+	padding: 0.75rem 1.5rem;
+	text-align: center;
+	justify-content: center;
+	cursor: pointer;
+} .button.is-primary {
+	color: white;
+	background-color: $primary;
+} .button.is-danger {
+	color: white;
+	background-color: $danger;
+}
+
+// Form styles
+
+.field {
+	margin: 0.5rem 0;
+}
+
+label.label {
+	font-weight: bold;
+	display: inline-block;
+	margin-bottom: 0.5rem;
+}
+
+.input, .textarea, .file-cta, .select select  {
+	max-width: 100%;
+	width: 100%;
+}
+
+.input, .textarea {
+	box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+}
+
+.textarea {
+	min-height: 6rem;
+}
+
+.select select {
+	cursor: pointer;
+	display: block;
+	font-size: 1em;
+	outline: none;
 }
 
 // Container Styles
@@ -64,6 +150,7 @@ footer.footer .container {
 	background: $dark;
 }
 
+
 // Header Styles
 
 .header-banner {
@@ -75,11 +162,32 @@ footer.footer .container {
 	transition: 0.25s ease all;
 }
 
+// Top Nav Styles 
+
+.navbar {
+	font-family: "Changa One", sans-serif;
+	display: flex;
+	background: $grey-dark;
+	padding: 0 15px;
+}
+
+.navbar-item {
+	color: white;
+	padding: 0.7rem;
+}
+
+.navbar-item:hover{
+	color: white;
+	background: rgba(255,255,255,0.1);
+}
+
 // Next/Prev Nav Styles
 
 .navpage {
 	font-family: "Changa One", sans-serif;
 	text-transform: uppercase;
+
+	background: $grey-darker;
 
 	margin-left: -15px;
 	margin-right: -15px;
@@ -89,26 +197,36 @@ footer.footer .container {
 	align-items: center;
 }
 
-.navpage a:hover {
-	color: white !important;
-}
-
-.navpage div {
-	color: $white-ter;
-}
-
 .navpage-item {
 	min-height: 3.25rem;
 	padding: 0.75rem 0.75rem;
+	
+	color: $white-ter;
 
 	line-height: 1.5;
 	text-align: center;
 }
 
-// Image styles
+div.navpage-item {
+	color: $grey;
+}
 
-figure.image img {
-	display: block;	
+a.navpage-item:hover {
+	color: white;
+	background: rgba(255,255,255,0.1);
+}
+
+div.navpage-item:hover {
+	cursor: no-drop;
+}
+// Comic Module Styles
+
+.comic {
+
+}
+
+.description {
+	margin-top: 0.75rem;
 }
 
 // Admin Page Styles
