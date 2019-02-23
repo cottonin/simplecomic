@@ -467,6 +467,15 @@ div.spacer {
 .is-italic {
   font-style: italic; }
 
+.is-hidden-touch {
+  display: none; }
+
+@media screen and (min-width: 680px) {
+  span.is-hidden-touch {
+    display: inline-block; }
+  .is-hidden-touch {
+    display: block; } }
+
 .columns {
   display: flex; }
 
@@ -566,12 +575,37 @@ footer.footer .container {
 .navbar {
   font-family: "Changa One", sans-serif;
   display: flex;
+  justify-content: space-between;
   background: #4a4a4a;
   padding: 0 15px; }
 
+.navbar-start {
+  display: flex;
+  flex-direction: column; }
+
+@media screen and (min-width: 680px) {
+  .navbar-start {
+    flex-direction: row; } }
+
+.navbar-end {
+  display: flex; }
+
 .navbar-item {
   color: white;
-  padding: 0.7rem; }
+  display: none;
+  padding: 0.75rem; }
+
+@media screen and (min-width: 680px) {
+  .navbar-item {
+    display: block; } }
+
+.navbar-menu {
+  display: block;
+  padding: 0.75rem; }
+
+@media screen and (min-width: 680px) {
+  .navbar-menu {
+    display: none; } }
 
 .navbar-item:hover {
   color: white;

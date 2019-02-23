@@ -1,4 +1,7 @@
 (function() {
+
+    // Arrow Key Nav
+
     var link;
 
     if (!(document.body.addEventListener && document.querySelector)) {
@@ -23,4 +26,8 @@
         }
     });
 
+    // Menu Toggle 
+        $('.navbar-menu').click(function() {
+            $('.navbar-item').slideToggle();
+        })
 })();
