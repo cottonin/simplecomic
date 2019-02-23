@@ -16,7 +16,7 @@ template('chapter_head');
     <?php } ?>
     <div class="columns is-multiline">
         <?php foreach($comics as $comic) { ?>
-        <div class="column is-3">
+        <div class="column is-200">
             <a href="<?php echo url($comic); ?>" 
                class="image" 
                style="background-image: url(<?php echo url('comic/image/' . $comic['comicid']); ?>)"

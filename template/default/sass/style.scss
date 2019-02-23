@@ -1,5 +1,5 @@
 @charset "utf-8";
-@import url('https://fonts.googleapis.com/css?family=Changa+One');
+//@import url('https://fonts.googleapis.com/css?family=Londrina+Solid:300,400,900');
 
 @import "../../../node_modules/bulma/sass/utilities/_all";
 @import "../../../node_modules/bulma/sass/base/minireset";
@@ -8,14 +8,36 @@
 @import "../../../node_modules/bulma/sass/elements/content";
 @import "../../../node_modules/bulma/sass/elements/icon";
 
+$container-width: 800px;
+
+$background-color: $white-ter;
+
+//$font-title : "Londrina Solid", sans-serif;
+$font-title: $family-sans-serif;
+$font-color: $dark;
+
+//$nav-size: 1.25rem;
+$nav-size: 1rem;
+// $nav-color: $dark;
+$nav-color: $dark;
+// $navpage-color: $grey-dark;
+$navpage-color: $grey-dark;
+
 body {
-	background: $white-ter;
+	background-color: $background-color;
 }
 
 // BULMA - Content Altered
 
 .content .title:not(:last-child) {
 	margin-bottom: 0.25rem;
+}
+
+.content h1, .content h2, .content h3,
+.content h4, .content h5, .content h6,
+.navpage, .navbar, .section-top {
+	font-family: $font-title;
+	color: $font-color;
 }
 
 //
@@ -27,10 +49,9 @@ section.section {
 }
 
 .section-top {
-	font-family: "Changa One", sans-serif;
 	color: white;
+	background: $nav-color;
 	text-transform: uppercase;	
-	background: $dark;
 	text-align: center;
 	padding: 15px 0;
 	margin: 0 -15px;
@@ -51,7 +72,7 @@ div.spacer {
 
 .is-hidden-touch {
 	display: none;	
-} @media screen and (min-width: 680px) {
+} @media screen and (min-width: $container-width) {
 	span.is-hidden-touch {
 		display: inline-block;
 	}
@@ -64,22 +85,43 @@ div.spacer {
 
 .columns {
 	display: flex;
+	flex-direction: column;
 } .columns.is-multiline {
 	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: center;
+} @media screen and (min-width: $container-width) {
+	.columns {
+		flex-direction: row;
+	}
+	.columns.is-multiline {
+		justify-content: flex-start;
+	}
 }
 
 .column {
+	width: 100%;
 	display: block;
 	flex: none;
 	padding: 0.75rem;
+} @media screen and (min-width: $container-width) {
+
+	.column.is-3 {
+		max-width: 25%;
+	}
+
+	.column.is-6 {
+		max-width: 50%;
+	}
+
 }
 
-.column.is-3 {
-	width: 25%;
-}
-
-.column.is-2 {
-	width: 50%;
+.column.is-200 {
+	width: 168px !important;
+} @media screen and (min-width: 800px) {
+	.column.is-200 {
+		width: 192px;
+	}
 }
 
 // Normalize inputs, buttons, etc
@@ -152,7 +194,7 @@ label.label {
 	margin: 0 auto;
 	padding: 0 15px;
 	position: relative;
-	max-width: 680px;
+	max-width: $container-width;
 }
 
 .container.has-no-padding {
@@ -172,7 +214,7 @@ footer.footer .container {
 	padding-top: 20px;
 	padding-bottom: 20px;
 	color: $grey;
-	background: $dark;
+	background: $nav-color;
 }
 
 
@@ -190,17 +232,17 @@ footer.footer .container {
 // Top Nav Styles 
 
 .navbar {
-	font-family: "Changa One", sans-serif;
+	font-size: $nav-size;
+	background: $nav-color;
 	display: flex;
 	justify-content: space-between;
-	background: $grey-dark;
 	padding: 0 15px;
 }
 
 .navbar-start {
 	display: flex;
 	flex-direction: column;
-} @media screen and (min-width: 680px) {
+} @media screen and (min-width: $container-width) {
 	.navbar-start {
 		flex-direction: row;
 	}
@@ -214,7 +256,7 @@ footer.footer .container {
 	color: white;
 	display: none;
 	padding: 0.75rem;
-} @media screen and (min-width: 680px) {
+} @media screen and (min-width: $container-width) {
 	.navbar-item {
 		display: block;
 	}
@@ -223,7 +265,7 @@ footer.footer .container {
 .navbar-menu {
 	display: block;
 	padding: 0.75rem;
-} @media screen and (min-width: 680px) {
+} @media screen and (min-width: $container-width) {
 	.navbar-menu {
 		display: none;
 	}
@@ -237,18 +279,14 @@ footer.footer .container {
 // Next/Prev Nav Styles
 
 .navpage {
-	font-family: "Changa One", sans-serif;
-	text-transform: uppercase;
-
-	background: $grey-darker;
-
+	font-size: $nav-size;
+	background: $navpage-color;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 }
 
 .navpage-item {
-	min-height: 3.25rem;
 	padding: 0.75rem 0.75rem;
 	
 	color: $white-ter;
@@ -290,6 +328,8 @@ ul.chapter-list form {
 // Chapter Page Styles 
 
 .chapter .image {
+	border: 1px solid $grey;
+	border-radius: 2.5px;
 	height: 200px;
 	background-size: cover;
 	background-position: center;
