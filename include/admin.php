@@ -149,8 +149,8 @@ case 'chapter':
                             array($chapter['order'], $chapter['order'] + 1));
                         // now: move the selected chapter into the old one's place
                         $db->query("UPDATE chapters SET `order` = %d WHERE chapterid = %d",
-                            array($chapter['order'] + 1, $chapterid));
-                        break;
+                            array($chapter['order'] + 1, $chapterid)); 
+                        break; 
                     case 'down':
                         if($chapter['order'] == 0) {
                             continue;
@@ -168,11 +168,34 @@ case 'chapter':
             if(!empty($_POST['closed'])) {
                 $status = STATUS_CLOSED;
             }
+            // Insert  file prompt for Chapter Cover
+            if(isset($_POST['filename']) && $_POST['filename']) {
+                if(!file_exists(BASEDIR . config('comicpath') . '/' . $_POST['filename'])) {
+                    die_error("Chapter cover file does not exist");
+                }
+                $filename = $_POST['filename'];
+            } else {
+                if($_FILES['comicfile']['error'] == UPLOAD_ERR_NO_FILE) {
+                    die_error("No file uploaded");
+                }
+                $uploadpath = BASEDIR . config('comicpath') . '/' . basename($_FILES['comicfile']['name']);
+                if(file_exists($uploadpath)) {
+                    die_error("File exists");
+                }
+                if(!move_uploaded_file($_FILES['comicfile']['tmp_name'], $uploadpath)) {
+                    die_error("Couldn't move uploaded file");
+                }
+                $filename = basename($_FILES['comicfile']['name']);
+            }
+            if(!$filename) {
+                die_error("No filename");
+            }
+            // Quickly check DB
             if($db->quick("SELECT chapterid FROM chapters WHERE slug = %s AND chapterid != %d", array($_POST['slug'], $chapterid))) {
                 die_error("There is already a chapter with that slug. Please choose a different one.");
             }
-            $db->query("UPDATE chapters SET title = %s, slug = %s, status = %d WHERE chapterid = %d",
-                array($_POST['title'], $_POST['slug'], $status, $chapterid));
+            $db->query("UPDATE chapters SET title = %s, slug = %s, status = %d, cover_image = %s WHERE chapterid = %d",
+                array($_POST['title'], $_POST['slug'], $status, $filename, $chapterid));
 
             // A few sanity checks
             $count = $db->quick("SELECT COUNT(*) FROM chapters WHERE `order` = %d", $chapter['order']);
@@ -183,8 +206,8 @@ case 'chapter':
         } else {
             $order = $db->quick("SELECT MAX(`order`) + 1 FROM chapters");
             $chapterid = $db->insert_id(
-                "INSERT INTO chapters (`title`, `slug`, `order`) VALUES (%s, %s, %d)",
-                array($_POST['title'], $_POST['slug'], $order));
+                "INSERT INTO chapters (`title`, `slug`, `order`,`cover_image`) VALUES (%s, %s, %d)",
+                array($_POST['title'], $_POST['slug'], $order, $filename));
         }
         if(!$chapterid) {
             die_error("Error saving");

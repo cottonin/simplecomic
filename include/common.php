@@ -127,11 +127,11 @@ function fetch_navigation($comic) {
     $first_comic = $db->fetch_first("SELECT comicid, slug FROM comics WHERE pub_date <= UNIX_TIMESTAMP() ORDER BY pub_date ASC LIMIT 1");
     $last_comic = $db->fetch_first("SELECT comicid, slug FROM comics WHERE pub_date <= UNIX_TIMESTAMP() ORDER BY pub_date DESC LIMIT 1");
 
-    $current = $comic['slug'] ?: $comic['comicid'];
-    $prev = $prev_comic['slug'] ?: $prev_comic['comicid'];
-    $next = $next_comic['slug'] ?: $next_comic['comicid'];
-    $first = $first_comic['slug'] ?: $first_comic['comicid'];
-    $last = $last_comic['slug'] ?: $last_comic['comicid'];
+    $current = $comic['slug'] && config('uses_slug') ? $comic['slug'] : $comic['comicid'];
+    $prev = $prev_comic['slug'] && config('uses_slug') ? $prev_comic['slug'] : $prev_comic['comicid'];
+    $next = $next_comic['slug'] && config('uses_slug') ? $next_comic['slug'] : $next_comic['comicid'];
+    $first = $first_comic['slug'] && config('uses_slug') ? $first_comic['slug'] : $first_comic['comicid'];
+    $last = $last_comic['slug'] && config('uses_slug') ? $last_comic['slug'] : $last_comic['comicid'];
     return compact('current', 'prev', 'next', 'first', 'last');
 }
 

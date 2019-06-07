@@ -11,7 +11,7 @@ available variables:
 <div class="comic">
     <?php if (isset($title)) { ?>
     <?php template('comicnav', $nav); ?>
-    <?php if(isset($nav['next'])) { ?><a href="<?php echo url('comic/'.$nav['next']); ?>"><?php } ?>
+    <?php if(isset($nav['next'])) { ?><a href="<?php echo url('comic/'.$nav['next'].'#comic'); ?>"><?php } ?>
     <img src="<?php echo url('comic/image/' . $comicid); ?>" alt="comic" <?php
     if($text['alt_text']) {
         echo 'title="', htmlspecialchars($text['alt_text']), '"';

@@ -25,6 +25,19 @@
 	        </div>
 	    </div>
 	    <div class="field">
+	        <label class="label">Filename</label>
+	        <div class="control">
+	            <input class="input" name="filename" value="<?php echo isset($filename) ? $filename : ''; ?>" />
+	            <small>The name of a file in the <var><?php echo config('comicpath'); ?></var> directory.</small>
+	        </div>
+	    </div>
+	    <div class="field">
+	        <label class="label">Or: Upload file</label>
+	        <div class="control">
+	            <input class="input" name="filename" type="file" />
+	        </div>
+	    </div>
+	    <div class="field">
 	        <label class="label">Closed</label>
 	        <input class="checkbox" name="closed" type="checkbox" value="1"<?php
 	        if(isset($status) && $status == STATUS_CLOSED) {

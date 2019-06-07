@@ -18,7 +18,7 @@ if(!($first || $prev || $next || $last)) {
 <nav class="navpage">
 <?php
 if($first != $current) {
-    echo '<a class="navpage-item" href="', url('comic/'.$first), '">&lt;&lt; <span class="is-hidden-touch">First</span></a>';
+    echo '<a class="navpage-item" href="', url('comic/'.$first), '" aria-button="first">&lt;&lt; <span class="is-hidden-touch">First</span></a>';
 } else {
     echo '<div class="navpage-item">&lt;&lt; <span class="is-hidden-touch">First</span></div>';
 }
@@ -29,7 +29,7 @@ if($prev) {
     echo '<div class="navpage-item">&lt; <span class="is-hidden-touch">Previous</span></div>';
 }
 
-echo '<a href="/archive" class="navpage-item">Archive</a>';
+echo '<a href="/archive" class="navpage-item" aria-button="archive">Archive</a>';
 
 if($next) {
     echo '<a class="navpage-item" href="', url('comic/'.$next), '" rel="next"><span class="is-hidden-touch">Next</span> &gt;</a>';
@@ -38,7 +38,7 @@ if($next) {
 }
 
 if($last && $last != $current) {
-    echo '<a class="navpage-item" href="', url('comic/'.$last), '"><span class="is-hidden-touch">Latest</span> &gt;&gt;</a>';
+    echo '<a class="navpage-item" href="', url('comic/'.$last), '" aria-button="last"><span class="is-hidden-touch">Latest</span> &gt;&gt;</a>';
 } else {
     echo '<div class="navpage-item"><span class="is-hidden-touch">Latest</span> &gt;&gt;</div>';
 }

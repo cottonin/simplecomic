@@ -10,6 +10,7 @@ $config = array(
     'comicpath' => "/comics",
     'template' => "default",
     'full_feed' => true, // means that comic images and rants appear in the feed
+    'uses_slug' => false,
     'pretty_urls' => true,
     'frontpage_comic' => 'latest', // 'latest', 'first', or 'first-of-latest-day'
     'archive_order' => 'chapter', // 'date', 'chapter'

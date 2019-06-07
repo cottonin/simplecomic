@@ -1,6 +1,6 @@
 <?php template('head'); ?>
 <figure class="image">
-	<?php $n = rand(1,4) ?>
-	<img src="/static/img/404-<?php echo $n ?>.jpg" alt="">
+	<?php $n = rand(1,4); $img = 'image/404-'.$n.'.jpg'; ?>
+	<img src="<?php echo url($img); ?>" alt="">
 </figure>
 <?php template('foot'); ?>

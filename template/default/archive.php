@@ -18,12 +18,14 @@ $current_page = 1;
             if($comic['chapterid'] && $comic['chapterid'] != $current_chapter) {
                 $current_chapter = $comic['chapterid'];
                 $current_page  = 1;
-                ?><h4 class="chapter">
+                ?>
+                <div class="image image-chapter"><img src="<?php echo url('chapter/image/' . $comic['chapterid']); ?>" alt=""></div>
+                <h4 class="chapter">
                     <a href="<?php echo url('chapter/'.$comic['chapter_slug']); ?>"><?php echo $comic['chapter_title']; ?></a>
                 </h4><?php
             }
         ?>
-        <a class="button" href="<?php echo url($comic); ?>"><?php echo $current_page; $current_page++ ?></a>
+        <a class="button is-small" href="<?php echo url($comic); ?>"><?php echo $current_page; $current_page++ ?></a>
         <?php } ?>
     </div>
 </section>

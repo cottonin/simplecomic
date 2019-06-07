@@ -37,6 +37,7 @@ $request = array_values(array_filter(explode('/', $request)));
 
 $page = new Page();
 $page->title = config('title');
+$page->color = config('color');
 // $page->add_css("template/{config('template')}/style.css");
 $page->add_css(template_path('style.css'));
 // $page->add_js('https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js');
@@ -131,7 +132,7 @@ switch($request[0]) {
         break;
     case 'archive':
         // full strip listing
-        $query = "SELECT c.*, ch.title AS chapter_title, ch.slug AS chapter_slug, ct.description AS chapter_description FROM comics c LEFT JOIN chapters ch ON c.chapterid = ch.chapterid LEFT JOIN chapters_text ct ON c.chapterid = ct.chapterid WHERE c.pub_date <= UNIX_TIMESTAMP() ORDER BY ";
+        $query = "SELECT c.*, ch.title AS chapter_title, ch.slug AS chapter_slug, ch.cover_image as cover_image, ct.description AS chapter_description FROM comics c LEFT JOIN chapters ch ON c.chapterid = ch.chapterid LEFT JOIN chapters_text ct ON c.chapterid = ct.chapterid WHERE c.pub_date <= UNIX_TIMESTAMP() ORDER BY ";
         switch (config('archive_order', 'date')) {
             case 'chapter':
                 $query .= "ch.order ASC, ";
@@ -148,6 +149,48 @@ switch($request[0]) {
         template('chapter_list', array('chapters'=>$chapters));
         break;
     case 'chapter':
+        if($request[1] == 'image' && isset($request[2])) {
+            // image display!
+            $chapter = $db->fetch_first("SELECT * FROM chapters WHERE chapterid = %d", $request[2]);
+            if($chapter) {
+                $file = BASEDIR . config('comicpath') . '/' . $chapter['cover_image'];
+                if(file_exists($file)) {
+                    $mime = array(
+                        'gif'  => 'image/gif',
+                        'jpg'  => 'image/jpeg',
+                        'jpe'  => 'image/jpeg',
+                        'jpeg' => 'image/jpeg',
+                        'png'  => 'image/png',
+                    );
+                    $filetime = filemtime($file);
+                    $path = pathinfo($file);
+                    $ext = strtolower($path['extension']);
+                    $type = $mime[$ext];
+                    header("Content-Type: {$type}");
+                    $content_length = filesize($file);
+                    if($content_length !== false) {
+                        header("Content-Length: {$content_length}");
+                    }
+
+                    // Allow HTTP 1.1 compliant browsers to cache based on modifcation time
+                    if(isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
+                        $mod = strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']);
+                        if ($mod !== -1 && $mod >= $filetime) {
+                            header('HTTP/1.1 304 Not Modified');
+                            die;
+                        }
+                    }
+                    header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $filetime) . ' GMT');
+                    // Suggest default filename?
+                    // header('Content-Disposition: filename=' . urlencode($comic['filename']));
+                    readfile($file);
+                    die;
+                }
+            }
+            header('HTTP/1.1 404 Not Found');
+            echo 'No such comic file';
+            die;
+        }
         if(isset($request[1])) {
             // specific chapter
             $slug = $request[1];
@@ -192,9 +235,13 @@ switch($request[0]) {
         break;
     case 'image':
         // Use a different directory to avoid mixups
+        if (!isset($request[1])) {
+            echo "This not an image!";
+            die;
+        }
         $file = BASEDIR . config('comicpath') . '/static/' . $request[1];
         // Basically just reuse everything from 'comic' case:
-        if(file_exists($file)) {
+        if(file_exists($file) && isset($request[1])) {
             $mime = array(
                 'gif'  => 'image/gif',
                 'jpg'  => 'image/jpeg',
@@ -223,6 +270,10 @@ switch($request[0]) {
             header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $filetime) . ' GMT');
             readfile($file);
             die;
+        } else {
+            header("HTTP/1.0 404 Not Found");
+            template('404');
+            break;
         }
         break;
     default:

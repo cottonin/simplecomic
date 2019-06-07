@@ -12,7 +12,7 @@ template('frame_top');
     <div class="container has-no-padding">
         <div class="header-banner">
             <a href="/">
-                <figure class="image">
+                <figure class="image image-banner">
                     <img src="<?php echo url('image/header.png'); ?>" alt="<?php echo '$title'; ?>">
                 </figure>
             </a>

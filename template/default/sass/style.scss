@@ -1,37 +1,55 @@
-@charset "utf-8";
-//@import url('https://fonts.googleapis.com/css?family=Londrina+Solid:300,400,900');
+@charset "utf-8"; 
 
 @import "../../../node_modules/bulma/sass/utilities/_all";
 @import "../../../node_modules/bulma/sass/base/minireset";
 @import "../../../node_modules/bulma/sass/base/generic";
 @import "../../../node_modules/bulma/sass/elements/image";
 @import "../../../node_modules/bulma/sass/elements/content";
-@import "../../../node_modules/bulma/sass/elements/icon";
+
+
+$accent: blue;
+$accent-dark: darkblue;
 
 $container-width: 800px;
+$container-background: white;
 
 $background-color: $white-ter;
 
-//$font-title : "Londrina Solid", sans-serif;
 $font-title: $family-sans-serif;
-$font-color: $dark;
+$font-color: #2d2d2d;
 
-//$nav-size: 1.25rem;
 $nav-size: 1rem;
-// $nav-color: $dark;
-$nav-color: $dark;
-// $navpage-color: $grey-dark;
-$navpage-color: $grey-dark;
+$nav-color: #2d2d2d;
+$navpage-color: #1d1d1d;
 
 body {
+	color: $font-color;
 	background-color: $background-color;
 }
 
 // BULMA - Content Altered
 
+//
+// Links
+// --------------------------------------------------------------------------
+
+a {
+	color: inherit;
+}
+
+a:not([class]), {
+	color: $accent;
+} a:hover {
+	color: $accent-dark;
+}
+
 .content .title:not(:last-child) {
 	margin-bottom: 0.25rem;
 }
+
+//
+// Content formatting
+// --------------------------------------------------------------------------
 
 .content h1, .content h2, .content h3,
 .content h4, .content h5, .content h6,
@@ -40,9 +58,9 @@ body {
 	color: $font-color;
 }
 
-//
-/// Generic Styles
-//
+// ==========================================================================
+//  Generic styles
+// ==========================================================================
 
 section.section {
 	padding-top: 20px;
@@ -62,9 +80,31 @@ figure.image img {
 	display: block;	
 }
 
+figure.image-banner {
+	position: relative;
+} figure.image-banner img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+div.image-chapter {
+	margin: 0;
+	margin-top: 0;
+	margin-bottom: 0.75rem;
+	width: 200px;
+	height: 283px;
+}
+
 div.spacer {
 	margin: 40px 0;
 }
+
+//
+// Helpers
+// --------------------------------------------------------------------------
 
 .is-italic {
 	font-style: italic;
@@ -81,7 +121,9 @@ div.spacer {
 	}
 }
 
+// ==========================================================================
 // Columns
+// ==========================================================================
 
 .columns {
 	display: flex;
@@ -103,8 +145,13 @@ div.spacer {
 	width: 100%;
 	display: block;
 	flex: none;
+	flex-grow: 1;
 	padding: 0.75rem;
 } @media screen and (min-width: $container-width) {
+
+	.column {
+		width: auto;
+	}
 
 	.column.is-3 {
 		max-width: 25%;
@@ -124,7 +171,9 @@ div.spacer {
 	}
 }
 
-// Normalize inputs, buttons, etc
+// ==========================================================================
+// Form 
+// ==========================================================================
 
 .button, .input, .textarea, .select select, .file-cta, .filename {
 	background: white;
@@ -138,8 +187,6 @@ div.spacer {
 	display: inline-flex;
 	line-height: 1.4
 }
-
-// Button styles
 
 .button {
 	font-weight: bold;
@@ -155,8 +202,6 @@ div.spacer {
 	color: white;
 	background-color: $danger;
 }
-
-// Form styles
 
 .field {
 	margin: 0.5rem 0;
@@ -188,7 +233,9 @@ label.label {
 	outline: none;
 }
 
-// Container Styles
+// ==========================================================================
+// Container
+// ==========================================================================
 
 .container { 
 	margin: 0 auto;
@@ -218,7 +265,9 @@ footer.footer .container {
 }
 
 
-// Header Styles
+// ==========================================================================
+// Header
+// ==========================================================================
 
 .header-banner {
 	transition: 0.25s ease all;
@@ -276,7 +325,9 @@ footer.footer .container {
 	background: rgba(255,255,255,0.1);
 }
 
-// Next/Prev Nav Styles
+// ==========================================================================
+// Page Navigation
+// ==========================================================================
 
 .navpage {
 	font-size: $nav-size;
@@ -312,20 +363,30 @@ div.navpage-item:hover {
 	margin-top: 0.75rem;
 }
 
-// Admin Page Styles
+// ==========================================================================
+// Admin
+// ==========================================================================
 
 ul.chapter-list form {
 	display: inline-block;
 }
 
-// Comic Module Styles 
+// ==========================================================================
+// Comic Box Styles
+// ==========================================================================
 
 .comic {
 	margin-left: -15px;
 	margin-right: -15px;
 }
 
-// Chapter Page Styles 
+.comic img {
+	width: 100%;
+}
+
+// ==========================================================================
+// Chapter
+// ==========================================================================
 
 .chapter .image {
 	border: 1px solid $grey;
