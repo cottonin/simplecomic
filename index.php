@@ -101,7 +101,7 @@ switch($request[0]) {
         break;
     case 'archive':
         // full strip listing
-        $query = "SELECT c.*, ch.title AS chapter_title, ch.slug AS chapter_slug, ch.filename as filename, ct.description AS chapter_description FROM comics c LEFT JOIN chapters ch ON c.chapterid = ch.chapterid LEFT JOIN chapters_text ct ON c.chapterid = ct.chapterid WHERE c.pub_date <= UNIX_TIMESTAMP() ORDER BY ";
+        $query = "SELECT c.*, ch.title AS chapter_title, ch.slug AS chapter_slug, ch.filename as filename, ct.description AS chapter_description, ch.status as status FROM comics c LEFT JOIN chapters ch ON c.chapterid = ch.chapterid LEFT JOIN chapters_text ct ON c.chapterid = ct.chapterid WHERE c.pub_date <= UNIX_TIMESTAMP() ORDER BY ";
         switch (config('archive_order', 'date')) {
             case 'chapter':
                 $query .= "ch.order ASC, ";

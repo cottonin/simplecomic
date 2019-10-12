@@ -9,7 +9,6 @@ template('chapter_head');
 ?>
 <section class="chapter content">
     <div class="chapter-nav">
-        Now Reading:
         <select name="chapternav" onchange="document.location.href=this.value">
             <?php foreach ($list as $item): ?>
                 <option 
@@ -22,11 +21,9 @@ template('chapter_head');
     </div>
     <div class="comic">
     <?php foreach ($comics as $comic): ?>
-        <img src="<?php echo url($comic['comicid']); ?>" title="<?php echo $comic['title']; ?>" alt="<?php echo $comic['title']; ?>">
+        <img src="<?php echo url($comic['filename']); ?>" title="<?php echo $comic['title']; ?>" alt="<?php echo $comic['title']; ?>">
     <?php endforeach ?>
     </div>
 </section>
-<?php
-template('chapter_foot');
-?>
+<?php template('chapter_foot'); ?>
 

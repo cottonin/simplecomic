@@ -12,7 +12,7 @@ $current_page = 1;
 <section class="archive section">
     <div class="content">
         <h1>Archive</h1>
-        <p>Take a look at all the pages and jump right into one. To read the full chapter, click on its title.</p>
+        <p>Take a look at the chapters of the story. If you like reading everything in one go, click "Read Full Chapter". Otherwise, click "Browse Pages" to take a quick look at each chapter and pick a page to start reading one by one.</p>
         <div class="outer-dummy"><div class="inner-dummy">
         <?php
         foreach($comics as $comic) {
@@ -22,7 +22,7 @@ $current_page = 1;
                 ?>
             </div></div><div class="chapter-archive">
                 <!-- Image -->
-                <div class="image-chapter"><img src="<?php echo url('chapter/image/' . $comic['chapterid']); ?>" alt="<?php echo $comic['chapter_title'];?>"></div>
+                <div class="image-chapter"><img src="<?php echo url($comic['filename']); ?>" alt="<?php echo $comic['chapter_title'];?>"></div>
                 <!-- Start Content -->
                 <div class="chapter-content">
                     <!-- Title -->
@@ -36,7 +36,14 @@ $current_page = 1;
                     <!-- Links -->
                     <div class="columns">
                         <div class="column is-6">
-                            <a class="button full" href="<?php echo url('read/'.$comic['chapter_slug']); ?>">Read Full Chapter</a>
+                            <?php if ($comic['status'] == 1 ): ?>
+                            <a 
+                                class="button full"
+                                href="<?php echo url('read/'.$comic['chapter_slug']); ?>">Read Full Chapter</a>
+                            <?php else: ?>
+                            <p
+                                class="button full is-disabled">Ongoing</p>
+                            <?php endif ?>
                         </div>
                         <div class="column is-6">
                             <a class="button full" href="<?php echo url('chapter/'.$comic['chapter_slug']); ?>">Browse Pages</a>
@@ -45,8 +52,7 @@ $current_page = 1;
                 <?php
             }
         ?>
-        <!--<a class="button is-small" href="<?php echo url($comic); ?>"><?php echo $current_page; $current_page++ ?></a>-->
-        <?php } ?>
+    <?php } ?>
     </div>
 </section>
 <?php

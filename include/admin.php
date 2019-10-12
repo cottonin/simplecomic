@@ -39,6 +39,9 @@ if (config('adminuser') && (empty($_COOKIE['admin']) || $_COOKIE['admin'] !== $v
 
 switch(isset($request[1]) ? $request[1] : '') {
 case 'comic':
+    if (!isset($request[2])) {
+        redirect('admin/');
+    }
     // editing an individual comic
     $comic = array();
     if($request[2] != 'new') {
@@ -115,6 +118,9 @@ case 'comic':
     template('admin_comic', $comic);
 break;
 case 'chapter':
+    if (!isset($request[2])) {
+        redirect('admin/');
+    }
     $chapter = false;
     if($request[2] != 'new') {
         $chapter = $db->fetch_first("SELECT * FROM chapters WHERE chapterid = %d", $request[2]);
@@ -169,10 +175,8 @@ case 'chapter':
                 $status = STATUS_CLOSED;
             }
             // Insert  file prompt for Chapter Cover
+
             if(isset($_POST['filename']) && $_POST['filename']) {
-                if(!file_exists(BASEDIR . config('comicpath') . '/' . $_POST['filename'])) {
-                    die_error("Chapter cover file does not exist");
-                }
                 $filename = $_POST['filename'];
             } else {
                 if($_FILES['comicfile']['error'] == UPLOAD_ERR_NO_FILE) {
@@ -222,6 +226,9 @@ case 'chapter':
     template('admin_chapter', $chapter);
 break;
 case 'rant':
+    if (!isset($request[2])) {
+        redirect('admin/');
+    }
     $rant = false;
     if($request[2] != 'new') {
         $rant = $db->fetch_first("SELECT * FROM rants WHERE rantid = %d", $request[2]);
