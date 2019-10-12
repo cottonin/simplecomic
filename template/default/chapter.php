@@ -10,16 +10,15 @@ template('chapter_head');
 <section class="chapter section content">
     <h3><?php echo $chapter['title']; ?></h3>
     <?php if($chapter['description']) { ?>
-    <div class="description">
-        <?php echo $chapter['description']; ?>
-    </div>
+    <p class="description"><?php echo $chapter['description']; ?></p>
     <?php } ?>
-    <div class="columns is-multiline">
+    <p><a href="<?php echo url('archive/') ?>">← Return to Archive</a></p>
+    <div class="columns is-multiline start">
         <?php foreach($comics as $comic) { ?>
         <div class="column is-200">
             <a href="<?php echo url($comic); ?>" 
                class="image" 
-               style="background-image: url(<?php echo url('comic/image/' . $comic['comicid']); ?>)"
+               style="background-image: url(<?php echo url($comic['filename']); ?>)"
                title="<?php echo $comic['title'] ?>"></a>
         </div>
         <?php } ?>

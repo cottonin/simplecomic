@@ -24,7 +24,7 @@ INDEX `byslug` ( `slug` )
  `slug` VARCHAR( 32 ) NOT NULL ,
  `order` TINYINT NOT NULL ,
  `status` TINYINT NOT NULL DEFAULT '0',
- `cover_image` VARCHAR ( 255 ) NOT NULL,
+ `filename` VARCHAR ( 255 ) NOT NULL,
  INDEX `byslug` ( `slug` )
  ) ENGINE = MYISAM;
 

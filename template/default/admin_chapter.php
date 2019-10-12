@@ -1,6 +1,6 @@
 <?php template('admin_head'); ?>
 <section class="section content">
-	<h3>Add a new Chapter</h3>
+	<h2><?php if (!isset($chapterid)): ?>Add a new chapter<?php else: ?>Edit chapter <?php echo '"'.$title.'"' ?><?php endif; ?></h2>
 	<form action="" method="POST" enctype="multipart/form-data">
 	    <?php echo authtoken_input(); ?>
 	    <?php if(isset($chapterid) && $chapterid && $chapterid != 'new') { ?>
@@ -31,12 +31,14 @@
 	            <small>The name of a file in the <var><?php echo config('comicpath'); ?></var> directory.</small>
 	        </div>
 	    </div>
+	    <?php if(!isset($chapterid)): ?>
 	    <div class="field">
 	        <label class="label">Or: Upload file</label>
 	        <div class="control">
 	            <input class="input" name="filename" type="file" />
 	        </div>
 	    </div>
+		<?php endif ?>
 	    <div class="field">
 	        <label class="label">Closed</label>
 	        <input class="checkbox" name="closed" type="checkbox" value="1"<?php
@@ -46,9 +48,9 @@
 	        ?>>
 	    </div>
 	    <div class="submit-block">
-	        <input type="submit" name="submit" value="Save" />
+	        <input class="button is-primary" type="submit" name="submit" value="Save" />
 	        <?php if(isset($chapterid) && $chapterid && $chapterid != 'new') { ?>
-	        <button name="delete" class="delete" value="1">Delete</button>
+	        <button class="button is-danger" name="delete" class="delete" value="1">Delete</button>
 	        <?php } ?>
 	    </div>
 	</form>

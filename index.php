@@ -38,10 +38,7 @@ $request = array_values(array_filter(explode('/', $request)));
 $page = new Page();
 $page->title = config('title');
 $page->color = config('color');
-// $page->add_css("template/{config('template')}/style.css");
 $page->add_css(template_path('style.css'));
-// $page->add_js('https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js');
-$page->add_js(template_path('nav.js'));
 $page->set_start_time($start_time);
 
 switch($request[0]) {
@@ -68,53 +65,24 @@ switch($request[0]) {
             $comic['nav'] = fetch_navigation($comic);
         }
         $rant = $db->fetch_first("SELECT * FROM rants r LEFT JOIN rants_text t ON r.rantid = t.rantid WHERE pub_date <= UNIX_TIMESTAMP() ORDER BY pub_date DESC LIMIT 1");
+        $page->title.= ' - Home';
         template('index', array(
             'comic' => $comic,
             'rant' => $rant,
-            'updates' => fetch_recent_updates(),
+            'updates' => fetch_recent_updates(),    
         ));
         break;
     case 'comic':
+        // image display!
         if($request[1] == 'image') {
-            // image display!
             $comic = $db->fetch_first("SELECT * FROM comics WHERE comicid = %d AND pub_date <= UNIX_TIMESTAMP()", $request[2]);
             if($comic) {
                 $file = BASEDIR . config('comicpath') . '/' . $comic['filename'];
-                if(file_exists($file)) {
-                    $mime = array(
-                        'gif'  => 'image/gif',
-                        'jpg'  => 'image/jpeg',
-                        'jpe'  => 'image/jpeg',
-                        'jpeg' => 'image/jpeg',
-                        'png'  => 'image/png',
-                    );
-                    $filetime = filemtime($file);
-                    $path = pathinfo($file);
-                    $ext = strtolower($path['extension']);
-                    $type = $mime[$ext];
-                    header("Content-Type: {$type}");
-                    $content_length = filesize($file);
-                    if($content_length !== false) {
-                        header("Content-Length: {$content_length}");
-                    }
-
-                    // Allow HTTP 1.1 compliant browsers to cache based on modifcation time
-                    if(isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
-                        $mod = strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']);
-                        if ($mod !== -1 && $mod >= $filetime) {
-                            header('HTTP/1.1 304 Not Modified');
-                            die;
-                        }
-                    }
-                    header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $filetime) . ' GMT');
-                    // Suggest default filename?
-                    // header('Content-Disposition: filename=' . urlencode($comic['filename']));
-                    readfile($file);
-                    die;
-                }
+                ready_file($file);
             }
             header('HTTP/1.1 404 Not Found');
-            echo 'No such comic file';
+            $msg = 'Wait, this image does not exist in this site!';
+            template('404', array( 'msg' => $msg));
             die;
         }
         // comic page
@@ -126,13 +94,14 @@ switch($request[0]) {
         if(!$comic) {
             redirect("");
         }
+        $page->title.= ' - '.$comic['title'];
         $comic['text'] = fetch_text($comic['comicid']);
         $comic['nav'] = fetch_navigation($comic);
         template('comic_page', array('comic'=>$comic));
         break;
     case 'archive':
         // full strip listing
-        $query = "SELECT c.*, ch.title AS chapter_title, ch.slug AS chapter_slug, ch.cover_image as cover_image, ct.description AS chapter_description FROM comics c LEFT JOIN chapters ch ON c.chapterid = ch.chapterid LEFT JOIN chapters_text ct ON c.chapterid = ct.chapterid WHERE c.pub_date <= UNIX_TIMESTAMP() ORDER BY ";
+        $query = "SELECT c.*, ch.title AS chapter_title, ch.slug AS chapter_slug, ch.filename as filename, ct.description AS chapter_description FROM comics c LEFT JOIN chapters ch ON c.chapterid = ch.chapterid LEFT JOIN chapters_text ct ON c.chapterid = ct.chapterid WHERE c.pub_date <= UNIX_TIMESTAMP() ORDER BY ";
         switch (config('archive_order', 'date')) {
             case 'chapter':
                 $query .= "ch.order ASC, ";
@@ -140,65 +109,39 @@ switch($request[0]) {
                 $query .= "c.pub_date ASC";
                 break;
         }
+        $page->title.= ' - Archive';
         $comics = $db->fetch($query);
         template('archive', array('comics' => $comics));
         break;
     case 'chapters':
         // chapter listing
+        $page->title.= ' - Chapter List';
         $chapters = $db->fetch("SELECT * FROM chapters ORDER BY `order` ASC");
         template('chapter_list', array('chapters'=>$chapters));
         break;
     case 'chapter':
+        // image display!  
         if($request[1] == 'image' && isset($request[2])) {
-            // image display!
             $chapter = $db->fetch_first("SELECT * FROM chapters WHERE chapterid = %d", $request[2]);
             if($chapter) {
-                $file = BASEDIR . config('comicpath') . '/' . $chapter['cover_image'];
-                if(file_exists($file)) {
-                    $mime = array(
-                        'gif'  => 'image/gif',
-                        'jpg'  => 'image/jpeg',
-                        'jpe'  => 'image/jpeg',
-                        'jpeg' => 'image/jpeg',
-                        'png'  => 'image/png',
-                    );
-                    $filetime = filemtime($file);
-                    $path = pathinfo($file);
-                    $ext = strtolower($path['extension']);
-                    $type = $mime[$ext];
-                    header("Content-Type: {$type}");
-                    $content_length = filesize($file);
-                    if($content_length !== false) {
-                        header("Content-Length: {$content_length}");
-                    }
-
-                    // Allow HTTP 1.1 compliant browsers to cache based on modifcation time
-                    if(isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
-                        $mod = strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']);
-                        if ($mod !== -1 && $mod >= $filetime) {
-                            header('HTTP/1.1 304 Not Modified');
-                            die;
-                        }
-                    }
-                    header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $filetime) . ' GMT');
-                    // Suggest default filename?
-                    // header('Content-Disposition: filename=' . urlencode($comic['filename']));
-                    readfile($file);
-                    die;
-                }
+                $file = BASEDIR . config('comicpath') . '/' . $chapter['filename'];
+                ready_file($file);
             }
             header('HTTP/1.1 404 Not Found');
-            echo 'No such comic file';
+            $msg = 'This image does not exist in this site.';
+            template('404', array( 'msg' => $msg));
             die;
         }
+        // specific chapter
         if(isset($request[1])) {
-            // specific chapter
             $slug = $request[1];
             $chapter = $db->fetch_first("SELECT c.*, t.description FROM chapters c LEFT JOIN chapters_text t ON c.chapterid = t.chapterid  WHERE c.slug=%s", $slug);
             if(!$chapter) {
                 redirect("chapters");
             }
+            $page->title.= ' - '.$chapter['title'];
             $comics = $db->fetch("SELECT * FROM comics WHERE chapterid=%d AND pub_date <= UNIX_TIMESTAMP() ORDER BY pub_date ASC", $chapter['chapterid']);
+
             template('chapter', array(
                 'chapter' => $chapter,
                 'comics' => $comics,
@@ -207,14 +150,38 @@ switch($request[0]) {
             redirect("chapters");
         }
         break;
+    case 'read':
+        // specific chapter
+        if(isset($request[1])) {
+            $slug = $request[1];
+            $chapter = $db->fetch_first("SELECT c.*, t.description FROM chapters c LEFT JOIN chapters_text t ON c.chapterid = t.chapterid  WHERE c.slug=%s", $slug);
+            if(!$chapter) {
+                redirect("chapters");
+            }
+            $page->title.= ' - '.$chapter['title'];
+            $comics = $db->fetch("SELECT * FROM comics WHERE chapterid=%d AND pub_date <= UNIX_TIMESTAMP() ORDER BY pub_date ASC", $chapter['chapterid']);
+            $list = $db->fetch("SELECT * FROM chapters ORDER BY `order` ASC");
+
+            template('read', array(
+                'chapter' => $chapter,
+                'comics' => $comics,
+                'list' => $list,
+            ));
+
+        } else {
+            redirect("archive");
+        }
+        break;
     case 'rants':
         $rants = $db->fetch("SELECT * FROM rants ORDER BY pub_date DESC");
+        $page->title.= ' - Rant List';
         template('rant_list', array('rants'=>$rants));
         break;
     case 'rant':
         if(isset($request[1])) {
             // specific rant
             $rant = $db->fetch_first("SELECT * FROM rants r LEFT JOIN rants_text t ON r.rantid = t.rantid WHERE r.rantid=%d", $request[1]);
+            $page->title.= ' - Rant: '.$rant['title'];
             if(!$rant) {
                 redirect("rants");
             }
@@ -226,6 +193,7 @@ switch($request[0]) {
         }
         break;
     case 'admin':
+        $page->title.= ' - Admin';
         require 'include/admin.php';
         break;
     case 'feed':
@@ -234,57 +202,28 @@ switch($request[0]) {
         ));
         break;
     case 'image':
-        // Use a different directory to avoid mixups
+        // load a static image (not from comics dbq)
         if (!isset($request[1])) {
             echo "This not an image!";
             die;
         }
         $file = BASEDIR . config('comicpath') . '/static/' . $request[1];
-        // Basically just reuse everything from 'comic' case:
-        if(file_exists($file) && isset($request[1])) {
-            $mime = array(
-                'gif'  => 'image/gif',
-                'jpg'  => 'image/jpeg',
-                'jpe'  => 'image/jpeg',
-                'jpeg' => 'image/jpeg',
-                'png'  => 'image/png',
-            );
-            $filetime = filemtime($file);
-            $path = pathinfo($file);
-            $ext = strtolower($path['extension']);
-            $type = $mime[$ext];
-            header("Content-Type: {$type}");
-            $content_length = filesize($file);
-            if($content_length !== false) {
-                header("Content-Length: {$content_length}");
-            }
-
-            // Allow HTTP 1.1 compliant browsers to cache based on modifcation time
-            if(isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
-            $mod = strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']);
-            if ($mod !== -1 && $mod >= $filetime) {
-                header('HTTP/1.1 304 Not Modified');
-                die;
-                }
-            }
-            header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $filetime) . ' GMT');
-            readfile($file);
-            die;
-        } else {
-            header("HTTP/1.0 404 Not Found");
-            template('404');
-            break;
-        }
+        ready_file($file);
+    	header('HTTP/1.1 404 Not Found');
+    	$msg = 'We\'re sorry, this image does not exist in this site.';
+    	template('404', array( 'msg' => $msg));
         break;
     default:
+        $page->title.= ' - '.ucfirst($request[0]);
         if(template('page_'.$request[0])) {
             // This is *so* relying on side-effects. :P
             // (template returns true if a valid template was found and displayed)
             return;
         }
         // 404
-        header("HTTP/1.0 404 Not Found");
-        template('404');
+        header('HTTP/1.1 404 Not Found');
+        $msg = 'We\'re sorry, this page does not exist in this site.';
+        template('404', array( 'msg' => $msg));
         break;
 }
 

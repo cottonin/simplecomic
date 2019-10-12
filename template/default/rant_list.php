@@ -8,7 +8,7 @@ template('rant_head');
 ?>
 <section class="rants section">
     <div class="content">
-        <h3>Rants</h3>
+        <h1>Rants</h1>
         <p>Relevant updates and ramblings.</p>
         <?php if($rants) { ?>
         <ul>

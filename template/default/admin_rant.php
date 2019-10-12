@@ -15,6 +15,7 @@ if(isset($preview) && $preview) {
 
 ?>
 <section class="section content">
+    <h2><?php if (!isset($rantid)): ?>Add a new rant<?php else: ?>Edit rant <?php echo '"'.$title.'"' ?><?php endif; ?></h2>
     <form action="" method="POST" enctype="multipart/form-data">
         <?php echo authtoken_input(); ?>
         <?php if(isset($rantid) && $rantid && $rantid != 'new') { ?>
@@ -40,10 +41,10 @@ if(isset($preview) && $preview) {
             </div>
         </div>
         <div class="submit-block">
-            <button name="preview" class="preview" value="1">Preview</button>
-            <input type="submit" name="submit" value="Save" />
+            <button class="button" name="preview" class="preview" value="1">Preview</button>
+            <input class="button is-primary" type="submit" name="submit" value="Save" />
             <?php if(isset($rantid) && $rantid && $rantid != 'new') { ?>
-            <button name="delete" class="delete" value="1">Delete</button>
+            <button class="button is-danger" name="delete" class="delete" value="1">Delete</button>
             <?php } ?>
         </div>
     </form>

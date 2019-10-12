@@ -194,7 +194,7 @@ case 'chapter':
             if($db->quick("SELECT chapterid FROM chapters WHERE slug = %s AND chapterid != %d", array($_POST['slug'], $chapterid))) {
                 die_error("There is already a chapter with that slug. Please choose a different one.");
             }
-            $db->query("UPDATE chapters SET title = %s, slug = %s, status = %d, cover_image = %s WHERE chapterid = %d",
+            $db->query("UPDATE chapters SET title = %s, slug = %s, status = %d, filename = %s WHERE chapterid = %d",
                 array($_POST['title'], $_POST['slug'], $status, $filename, $chapterid));
 
             // A few sanity checks
@@ -206,7 +206,7 @@ case 'chapter':
         } else {
             $order = $db->quick("SELECT MAX(`order`) + 1 FROM chapters");
             $chapterid = $db->insert_id(
-                "INSERT INTO chapters (`title`, `slug`, `order`,`cover_image`) VALUES (%s, %s, %d)",
+                "INSERT INTO chapters (`title`, `slug`, `order`,`filename`) VALUES (%s, %s, %d, %s)",
                 array($_POST['title'], $_POST['slug'], $order, $filename));
         }
         if(!$chapterid) {

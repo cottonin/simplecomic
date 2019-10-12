@@ -11,9 +11,9 @@ template('frame_top');
 <header class="header">
     <div class="container has-no-padding">
         <div class="header-banner">
-            <a href="/">
+            <a href="/" title="Home">
                 <figure class="image image-banner">
-                    <img src="<?php echo url('image/header.png'); ?>" alt="<?php echo '$title'; ?>">
+                    <img src="<?php echo url('image/header.png'); ?>" alt="<?php echo config('title'); ?>">
                 </figure>
             </a>
         </div>

@@ -198,9 +198,9 @@ function authtoken_input($salt = '') {
 }
 
 function post_link($url, $label) {
-    ?><form action="<?php echo url($url); ?>" method="POST" enctype="multipart/form-data" class="post-link"><?php
+    ?><form class="chapter-move" action="<?php echo url($url); ?>" method="POST" enctype="multipart/form-data" class="post-link"><?php
     echo authtoken_input();
-    ?><input type="submit" name="submit" value="<?php echo $label; ?>"><?php
+    ?><input class="button" type="submit" name="submit" value="<?php echo $label; ?>"><?php
     ?></form><?php
 
 }
@@ -215,4 +215,39 @@ function config($key, $default = false) {
 
 function default_datetime() {
     return strtotime(config('default_time', '00:00:00'));
+}
+
+function ready_file($file) {
+    if(file_exists($file)) {
+        $mime = array(
+            'gif'  => 'image/gif',
+            'jpg'  => 'image/jpeg',
+            'jpe'  => 'image/jpeg',
+            'jpeg' => 'image/jpeg',
+            'png'  => 'image/png',
+        );
+        $filetime = filemtime($file);
+        $path = pathinfo($file);
+        $ext = strtolower($path['extension']);
+        $type = $mime[$ext];
+        header("Content-Type: {$type}");
+        $content_length = filesize($file);
+        if($content_length !== false) {
+            header("Content-Length: {$content_length}");
+        }
+
+        // Allow HTTP 1.1 compliant browsers to cache based on modifcation time
+        if(isset($_SERVER['HTTP_IF_MODIFIED_SINCE'])) {
+            $mod = strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE']);
+            if ($mod !== -1 && $mod >= $filetime) {
+                header('HTTP/1.1 304 Not Modified');
+                die;
+            }
+        }
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $filetime) . ' GMT');
+        // Suggest default filename?
+        // header('Content-Disposition: filename=' . urlencode($comic['filename']));
+        readfile($file);
+        die;
+    }
 }

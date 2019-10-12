@@ -1,5 +1,5 @@
 <?php
-header('Content-type: application/atom+xml');
+header('Content-type: text/atom+xml');
 header('Cache-Control: max-age=3600', true);
 header('Expires: ' . gmdate("D, d M Y H:i:s", time() + 3600) . " GMT", true);
 
@@ -17,7 +17,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 ?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
     <id><?php echo $feed_url; ?></id>
-    <title><?php echo config('title', "Simplecomic"); ?></title>
+    <title><?php echo config('title'); ?></title>
     <updated><?php echo date('c', $updated); ?></updated>
     <link rel="self" type="application/atom+xml" href="<?php echo $feed_url; ?>" />
     <?php foreach($updates as $update) {
