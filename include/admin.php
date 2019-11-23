@@ -80,7 +80,7 @@ case 'comic':
                 die_error("There is already a comic with that exact date. Please choose a different date.");
             }
             if(isset($_POST['filename']) && $_POST['filename']) {
-                if(!file_exists(BASEDIR . config('comicpath') . '/' . $_POST['filename'])) {
+                if(strpos($_POST['filename'], "http") && !file_exists(BASEDIR . config('comicpath') . '/' . $_POST['filename'])) {
                     die_error("Comic file does not exist");
                 }
                 $filename = $_POST['filename'];
