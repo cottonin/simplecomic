@@ -37,12 +37,10 @@ $current_page = 1;
                     <div class="columns">
                         <div class="column is-6">
                             <?php if ($comic['status'] == 1 ): ?>
-                            <a 
-                                class="button full"
-                                href="<?php echo url('read/'.$comic['chapter_slug']); ?>">Read Full Chapter</a>
+                            <a class="button full"
+                               href="<?php echo url('read/'.$comic['chapter_slug']); ?>">Read Full Chapter</a>
                             <?php else: ?>
-                            <p
-                                class="button full is-disabled">Ongoing</p>
+                            <p class="button full is-disabled">Ongoing</p>
                             <?php endif ?>
                         </div>
                         <div class="column is-6">
