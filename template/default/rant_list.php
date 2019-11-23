@@ -7,8 +7,8 @@ available variables:
 template('rant_head');
 ?>
 <section class="rant-list">
-    <h1>Rants</h1>
-    <p>Relevant updates and ramblings.</p>
+    <h1 class="title">Rants</h1>
+    <p class="description">Relevant updates and ramblings.</p>
     <?php if($rants) { ?>
     <ul>
         <?php foreach($rants as $rant) { ?>

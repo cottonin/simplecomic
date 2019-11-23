@@ -19,7 +19,7 @@ $current_page = 1;
             $current_chapter = $comic['chapterid'];
             $current_page  = 1;
             ?>
-        </div></div><div class="chapter-item">
+        </div></div><div class="archive-item">
             <!-- Image -->
             <div class="cover-image"><img src="<?php echo url($comic['filename']); ?>" alt="<?php echo $comic['chapter_title'];?>"></div>
             <!-- Start Content -->

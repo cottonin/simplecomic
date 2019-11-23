@@ -13,4 +13,4 @@
 	<?php $page->output_css(); ?>
 	<link rel="alternate" type="application/atom+xml" title="<?php echo config('title') ?> updates" href="<?php echo url('feed');?>" />
 </head>
-<body style="background-image: url(<?php echo url('image/background.png'); ?>)">
+<body>

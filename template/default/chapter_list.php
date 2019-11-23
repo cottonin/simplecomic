@@ -7,7 +7,7 @@ available variables:
 template('chapter_head');
 ?>
 <section class="chapter-list">
-    <h3>Chapters</h3>
+    <h1 class="title">Chapters</h1>
     <?php if($chapters) { ?>
     <ul>
         <?php foreach($chapters as $chapter) { ?>

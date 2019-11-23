@@ -8,6 +8,7 @@ available variables:
 
 template('frame_top');
 ?>
+
 <header class="header">
     <div class="container has-no-padding">
         <div class="header-banner">

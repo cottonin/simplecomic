@@ -55,5 +55,4 @@
 	    </div>
 	</form>
 </section>
-
 <?php template('admin_foot'); ?>

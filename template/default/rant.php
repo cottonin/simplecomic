@@ -10,8 +10,8 @@ available variables:
 ?>
 <section class="rant">
     <?php if (isset($title)) { ?>
-        <h3 class="title"><?php echo $title; ?></h3>
-        <span class="is-italic">Posted on <span class="date"><?php echo date('F jS, Y', $pub_date); ?></span></span>
+        <h1 class="title"><?php echo $title; ?></h1>
+        <span class="date">Posted on <span class="date"><?php echo date('F jS, Y', $pub_date); ?></span></span>
     <?php
         echo '<div class="description">';
         echo $text;

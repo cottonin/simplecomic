@@ -1,5 +1,5 @@
 <?php template('admin_head'); ?>
-<?php $page->get_breadcrumbs(); ?>
+<?php $page->get_breadcrumbs(); ?>    
 <section class="section content">
 <div>For the purpose of publishing, the date is: <b><?php echo date('F jS, Y \a\t  H:i:s'); ?></b></div>
 <h3>Comics</h3>

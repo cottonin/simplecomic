@@ -14,10 +14,10 @@ $page->add_js(template_path('nav.js'));
     <?php //template('comicnav', $nav); ?>
     <div style="position: relative;" class="comic-wrapper">
         <?php if (isset($nav['prev'])): ?>
-            <a style="width: 50%; height: 100%; position: absolute; left: 0" href="<?php echo url('comic/'.$nav['prev'].'#comic'); ?>"></a>
+            <a class="comic-link prev" href="<?php echo url('comic/'.$nav['prev'].'#comic'); ?>"></a>
         <?php endif ?>
         <?php if (isset($nav['next'])): ?>
-            <a style="width: 50%; height: 100%; position: absolute; right: 0" href="<?php echo url('comic/'.$nav['next'].'#comic'); ?>"></a>
+            <a class="comic-link next" hhref="<?php echo url('comic/'.$nav['next'].'#comic'); ?>"></a>
         <?php endif ?>
         <img src="<?php echo url($filename); ?>" alt="comic" <?php
         if($text['alt_text']) {
