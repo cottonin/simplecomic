@@ -1,4 +1,4 @@
-    </div>
+    </div> <!-- Close .container -->
 </main>
 <footer class="footer">
 	<div class="container">

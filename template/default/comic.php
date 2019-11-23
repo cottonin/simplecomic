@@ -7,21 +7,28 @@ available variables:
  $nav: navigation info for comic
  $text: array of text related to comic
 */
+$page->add_js(template_path('nav.js'));
 ?>
-<div class="comic">
+<div class="comic" id="comic">
     <?php if (isset($title)) { ?>
+    <?php //template('comicnav', $nav); ?>
+    <div style="position: relative;" class="comic-wrapper">
+        <?php if (isset($nav['prev'])): ?>
+            <a style="width: 50%; height: 100%; position: absolute; left: 0" href="<?php echo url('comic/'.$nav['prev'].'#comic'); ?>"></a>
+        <?php endif ?>
+        <?php if (isset($nav['next'])): ?>
+            <a style="width: 50%; height: 100%; position: absolute; right: 0" href="<?php echo url('comic/'.$nav['next'].'#comic'); ?>"></a>
+        <?php endif ?>
+        <img src="<?php echo url($filename); ?>" alt="comic" <?php
+        if($text['alt_text']) {
+            echo 'title="', htmlspecialchars($text['alt_text']), '"';
+        }
+        ?> />
+    </div>
     <?php template('comicnav', $nav); ?>
-    <?php if(isset($nav['next'])) { ?><a href="<?php echo url('comic/'.$nav['next'].'#comic'); ?>"><?php } ?>
-    <img src="<?php echo url('comic/image/' . $comicid); ?>" alt="comic" <?php
-    if($text['alt_text']) {
-        echo 'title="', htmlspecialchars($text['alt_text']), '"';
-    }
-    ?> />
-    <?php if(isset($nav['next'])) { ?></a><?php } ?>
-    <?php template('comicnav', $nav); ?>
-    <section class="section content container">
-        <h3 class="title"><?php echo $title; ?></h3>
-        <span class="is-italic">Posted on <span class="date"><?php echo date('F jS, Y', $pub_date); ?></span></span>
+    <section class="comic-content">
+        <h3><?php echo $title; ?></h3>
+        <span class="date">Posted on <span class="date"><?php echo date('F jS, Y', $pub_date); ?></span></span>
         <?php
         if($text['description']) {
             echo '<div class="description">';
@@ -34,6 +41,7 @@ available variables:
             echo '</div>';
         }
         ?>
+        <?php // template('disqus', array('comicid' => $comicid)) ?>
     </section>
     <?php } else { ?>
     No comic.

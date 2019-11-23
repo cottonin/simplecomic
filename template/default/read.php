@@ -3,11 +3,10 @@
 available variables:
  $chapter: array of info about the chapter
  $comics: array of comics
- $list: array of chapters
 */
 template('chapter_head');
 ?>
-<section class="chapter content">
+<section class="read">
     <div class="chapter-nav">
         <select name="chapternav" onchange="document.location.href=this.value">
             <?php foreach ($list as $item): ?>

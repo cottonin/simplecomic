@@ -8,18 +8,16 @@ available variables:
  $text: text of rant
 */
 ?>
-<section class="rant section">
-    <div class="content">
-        <?php if (isset($title)) { ?>
+<section class="rant">
+    <?php if (isset($title)) { ?>
         <h3 class="title"><?php echo $title; ?></h3>
         <span class="is-italic">Posted on <span class="date"><?php echo date('F jS, Y', $pub_date); ?></span></span>
-        <?php
+    <?php
         echo '<div class="description">';
         echo $text;
         echo '</div>';
-        ?>
-        <?php } else { ?>
+    ?>
+    <?php } else { ?>
         No rant.
-        <?php } ?>
-    </div>
+    <?php } ?>
 </section>
