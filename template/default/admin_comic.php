@@ -19,7 +19,7 @@ if(!isset($text)) {
         <div class="field">
             <label class="label">Title</label>
             <div class="control">
-                <input class="input" autocomplete="off" name="title" value="<?php echo isset($title) ? $title : ''; ?>" />
+                <input id="title_field" class="input" autocomplete="off" name="title" value="<?php echo isset($title) ? $title : ''; ?>" />
             </div>
         </div>
         <div class="field">
@@ -32,7 +32,7 @@ if(!isset($text)) {
         <div class="field">
             <label class="label">Slug</label>
             <div class="control">
-                <input class="input" autocomplete="off" name="slug" type="text" title="any non-completely-numeric string of basic letters, digits, and underscores" pattern="[\w\-]*" value="<?php echo isset($slug) ? $slug : ''; ?>" />
+                <input id="slug_field" class="input" autocomplete="off" name="slug" type="text" title="any non-completely-numeric string of basic letters, digits, and underscores" pattern="[\w\-]*" value="<?php echo isset($slug) ? $slug : ''; ?>" />
             </div>
         </div>
         <div class="field">
@@ -107,4 +107,16 @@ if(!isset($text)) {
         </div>
     </form>
 </section>
+<script>
+    var title = document.getElementById('title_field');
+    var slug = document.getElementById('slug_field')
+    title.addEventListener("focusout", function() {
+        var str = title.value;
+        str = str.toLowerCase()
+                .replace(/[^\w ]+/g,'')
+                .replace(/ +/g,'-');
+        slug.value = str;
+    })
+
+</script>
 <?php template('admin_foot'); ?>
