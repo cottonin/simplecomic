@@ -10,3 +10,11 @@ node_modules/
 include/config.php
 template/default/sass/
 template/fluffygang
+
+android-chrome*
+apple-touch-icon.png
+browserconfig.xml
+favicon*
+mstile*
+safari-pinned-tab.svg
+site.webmanifest
