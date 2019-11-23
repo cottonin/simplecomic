@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "css-build": "node-sass --omit-source-map-url template/fluffygang/sass/style.scss template/fluffygang/style.css",
+    "css-build": "node-sass --omit-source-map-url template/default/sass/style.scss template/default/style.css",
     "css-watch": "npm run css-build -- --watch",
     "start": "npm run css-watch"
   },
@@ -20,10 +20,10 @@
   },
   "homepage": "https://github.com/cottonin/simplecomic#readme",
   "dependencies": {
-    "npm": "^6.8.0"
+    "npm": "^6.13.1"
   },
   "devDependencies": {
-    "bulma": "^0.7.4",
-    "node-sass": "^4.11.0"
+    "bulma": "^0.7.5",
+    "node-sass": "^4.13.0"
   }
 }

@@ -1,65 +1,77 @@
-@charset "utf-8"; 
-
-@import "../../../node_modules/bulma/sass/utilities/_all";
-@import "../../../node_modules/bulma/sass/base/minireset";
-@import "../../../node_modules/bulma/sass/base/generic";
-@import "../../../node_modules/bulma/sass/elements/image";
-@import "../../../node_modules/bulma/sass/elements/content";
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Londrina+Solid:300,400');
 
 
-$accent: blue;
-$accent-dark: darkblue;
+$accent: #fd960f;
+$accent-dark: orangered;
+
+$grey: #ccc;
 
 $container-width: 800px;
-$container-background: white;
+$container-background: transparent;
 
-$background-color: $white-ter;
+$background-color: #1a090b;
 
-$font-title: $family-sans-serif;
-$font-color: #2d2d2d;
+$font-title : "Londrina Solid", sans-serif;
+$font-color: #fcfcfc;
+ 
+//$nav-size: 1.25rem;
+$nav-size: 1.25rem;
+$nav-color: $background-color;
+$navpage-color: transparent;
 
-$nav-size: 1rem;
-$nav-color: #2d2d2d;
-$navpage-color: #1d1d1d;
+// ==========================================================================
+// Site-wide Styles
+// ==========================================================================
 
 body {
 	color: $font-color;
 	background-color: $background-color;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+ 
+::selection {
+	background-color: $accent;
+	color: white;
 }
 
-// BULMA - Content Altered
-
-//
-// Links
-// --------------------------------------------------------------------------
+// ==========================================================================
+// Bulma 2.0
+// ==========================================================================
 
 a {
-	color: inherit;
+	color: inherit; // Prevent links from having default link color.
 }
 
+// Links without a class will be treated with the regular accent color.
 a:not([class]), {
 	color: $accent;
 } a:hover {
 	color: $accent-dark;
+} a:active {
+	color: $accent;
 }
+
 
 .content .title:not(:last-child) {
 	margin-bottom: 0.25rem;
 }
 
-//
-// Content formatting
-// --------------------------------------------------------------------------
-
+// All the headings will use the same font and weight.
+// The size is determined by the contents of bulma's content module.
 .content h1, .content h2, .content h3,
 .content h4, .content h5, .content h6,
 .navpage, .navbar, .section-top {
 	font-family: $font-title;
-	color: $font-color;
+	letter-spacing: 0.066rem;
+	color: inherit;
+	font-weight: 300;
 }
 
 // ==========================================================================
-//  Generic styles
+// Layout Styles
 // ==========================================================================
 
 section.section {
@@ -67,13 +79,19 @@ section.section {
 }
 
 .section-top {
-	color: white;
-	background: $nav-color;
+	color: $background-color;
+	background-color: $accent;
+
+	font-size: 1.75rem;
 	text-transform: uppercase;	
 	text-align: center;
+
 	padding: 15px 0;
 	margin: 0 -15px;
-
+} @media screen and (min-width: $container-width) {
+	.section-top {
+		border-radius: 5px;
+	}
 }
 
 figure.image img {
@@ -82,6 +100,7 @@ figure.image img {
 
 figure.image-banner {
 	position: relative;
+	padding-bottom: 18.75%;
 } figure.image-banner img {
 	position: absolute;
 	top: 0;
@@ -94,7 +113,8 @@ div.image-chapter {
 	margin: 0;
 	margin-top: 0;
 	margin-bottom: 0.75rem;
-	width: 200px;
+	max-width: 200px;
+	min-width: 200px;
 	height: 283px;
 }
 
@@ -102,12 +122,18 @@ div.spacer {
 	margin: 40px 0;
 }
 
-//
+// ==========================================================================
 // Helpers
-// --------------------------------------------------------------------------
+// ==========================================================================
 
 .is-italic {
 	font-style: italic;
+	font-family: "Londrina Solid";
+	font-weight: 300;
+}
+
+.is-hidden {
+  display: none !important
 }
 
 .is-hidden-touch {
@@ -122,16 +148,20 @@ div.spacer {
 }
 
 // ==========================================================================
-// Columns
+// Columns Layout
 // ==========================================================================
 
 .columns {
 	display: flex;
 	flex-direction: column;
-} .columns.is-multiline {
+} .columns.spaced {
+	margin: 30px 0
+}.columns.is-multiline {
 	flex-wrap: wrap;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: space-between;
+} .columns.is-multiline.start { 
+	justify-content: flex-start;
 } @media screen and (min-width: $container-width) {
 	.columns {
 		flex-direction: row;
@@ -145,34 +175,54 @@ div.spacer {
 	width: 100%;
 	display: block;
 	flex: none;
-	flex-grow: 1;
-	padding: 0.75rem;
 } @media screen and (min-width: $container-width) {
 
 	.column {
 		width: auto;
+		flex: 1 1 0;
 	}
 
+	.column.is-2 {
+		max-width: 16.5%;
+	}
+	
 	.column.is-3 {
 		max-width: 25%;
+	}
+
+	.column.is-4 {
+		max-width: 33%;
 	}
 
 	.column.is-6 {
 		max-width: 50%;
 	}
 
+	.column.is-8 {
+		max-width: 66%
+	}
 }
 
 .column.is-200 {
-	width: 168px !important;
+	width: 50%;
+	padding: 0.25rem;
+} @media screen and (min-width: 460px) {
+	.column.is-200 {
+		width: 33%;
+	}
+} @media screen and (min-width: 600px) {
+	.column.is-200 {
+		width: 25%;
+	}
 } @media screen and (min-width: 800px) {
 	.column.is-200 {
-		width: 192px;
+		max-width: 150px;
+		min-width: 150px;
 	}
 }
 
 // ==========================================================================
-// Form 
+// Form
 // ==========================================================================
 
 .button, .input, .textarea, .select select, .file-cta, .filename {
@@ -186,8 +236,12 @@ div.spacer {
 	box-shadow: none;
 	display: inline-flex;
 	line-height: 1.4
-}
+} 
 
+//
+// Button 
+// 
+ 
 .button {
 	font-weight: bold;
 	font-size: 1rem;
@@ -195,12 +249,40 @@ div.spacer {
 	text-align: center;
 	justify-content: center;
 	cursor: pointer;
+	transition: 0.25s ease all;
 } .button.is-primary {
 	color: white;
-	background-color: $primary;
+	background-color: $accent;
 } .button.is-danger {
 	color: white;
-	background-color: $danger;
+	background-color: $accent-dark;
+} .button.is-small {
+	padding: 0.5rem 1rem;
+	margin-bottom: 0.75rem;
+} .button:visited {
+	background-color: whitesmoke;
+} .button.is-primary:visited {
+	background-color: $accent;
+}.button:focus {
+	border: 1px solid $accent;
+} .button:hover {
+	background-color: $accent;
+	color: white;
+} .button.is-disabled {
+	background: lightgray;
+	cursor: not-allowed;
+} .button.is-disabled:hover{
+	background: lightgray;
+	color: black;
+}
+
+.button.full {
+	width: 100%;
+	margin-bottom: 0.75rem
+} @media screen and (min-width: $container-width) {
+	.button.full {
+		width: 95%;
+	}
 }
 
 .field {
@@ -237,33 +319,36 @@ label.label {
 // Container
 // ==========================================================================
 
-.container { 
+.container {
 	margin: 0 auto;
 	padding: 0 15px;
 	position: relative;
 	max-width: $container-width;
-}
-
-.container.has-no-padding {
+}.container.has-no-padding {
 	padding: 0;
+} main.main .container.has-no-background {
+	background: transparent;
+	color: white !important;
 }
 
 header.header .container {
-	background: $white;
+	background: $container-background;
 }
 
 main.main .container {
 	padding-bottom: 20px;
-	background: $white;
+	color: $background-color;
+	background: $font-color;
+} main.main .container h3 {
+	color: inherit;
 }
 
 footer.footer .container {
 	padding-top: 20px;
 	padding-bottom: 20px;
 	color: $grey;
-	background: $nav-color;
+	background: $container-background;
 }
-
 
 // ==========================================================================
 // Header
@@ -278,85 +363,122 @@ footer.footer .container {
 	transition: 0.25s ease all;
 }
 
-// Top Nav Styles 
+//
+// Navbar 
+//
 
 .navbar {
+	color: white;
 	font-size: $nav-size;
 	background: $nav-color;
 	display: flex;
 	justify-content: space-between;
-	padding: 0 15px;
+} @media screen and (min-width: $container-width) {
+	.navbar {
+		border-radius: 5px 5px 0 0;
+	}
 }
+
 
 .navbar-start {
 	display: flex;
-	flex-direction: column;
-} @media screen and (min-width: $container-width) {
-	.navbar-start {
-		flex-direction: row;
-	}
-}
-
-.navbar-end	{
-	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex: 1 1 0;
 }
 
 .navbar-item {
-	color: white;
-	display: none;
-	padding: 0.75rem;
-} @media screen and (min-width: $container-width) {
-	.navbar-item {
-		display: block;
-	}
-}
-
-.navbar-menu {
+	font-weight: 400;
 	display: block;
 	padding: 0.75rem;
-} @media screen and (min-width: $container-width) {
-	.navbar-menu {
-		display: none;
-	}
+	border-bottom: 3px solid transparent;
+} .navbar-item.active {
+	color: $accent;
+	border-bottom: 3px solid $accent;
 }
 
 .navbar-item:hover{
-	color: white;
-	background: rgba(255,255,255,0.1);
+	color: $accent;
+	background: #3a0007;
 }
 
 // ==========================================================================
-// Page Navigation
+// Next/Prev Nav
 // ==========================================================================
 
 .navpage {
-	font-size: $nav-size;
-	background: $navpage-color;
+	color: white;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-content: center;	
+
+	margin: 1.25rem 0.75rem 0;
+} @media screen and (min-width: $container-width) {
+	.navpage {
+		color: transparent;
+		font-size: $nav-size;
+		font-weight: 400;
+	}
 }
 
 .navpage-item {
-	padding: 0.75rem 0.75rem;
-	
-	color: $white-ter;
-
-	line-height: 1.5;
+	padding: 28px;
+	height: 64px ;
+	width: 64px;
+	user-select: none;
+	height: initial !important;
 	text-align: center;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+} 
+
+.navpage-item:hover {
+	user-select: none;
+	color: transparent;
 }
+
+.navpage-item[rel=prev] {
+	background-image: url("../../../image/nav_adjacent.png");
+}
+
+.navpage-item[rel=next] {
+	background-image: url("../../../image/nav_adjacent.png");
+	transform: scaleX(-1);
+}
+
+.navpage-item[aria-button=first] {
+	background-image: url("../../../image/nav_far.png");
+}
+
+.navpage-item[aria-button=last] {
+	background-image: url("../../../image/nav_far.png");
+	transform: scaleX(-1);
+}
+
+.navpage-item[aria-button=archive] {
+	background-image: url("../../../image/nav_archive.png");
+}
+
+@media screen and (min-width: $container-width) {
+
+	.navpage-item {
+		height: 96px !important;
+		width: 96px !important;
+	}
+}
+
 
 div.navpage-item {
-	color: $grey;
+	opacity: 0.15;
 }
 
-a.navpage-item:hover {
-	color: white;
-	background: rgba(255,255,255,0.1);
+a.navpage-item:hover{
+	filter: brightness(125%);
 }
 
-div.navpage-item:hover {
-	cursor: default;
+a.navpage-item:active{
+	filter: brightness(200%);
 }
 
 .description {
@@ -371,8 +493,17 @@ ul.chapter-list form {
 	display: inline-block;
 }
 
+.chapter-move {
+	margin: 0;
+}
+
+.chapter-move > .button {
+	font-size: 0.75rem;
+	padding: 0.25rem 0.5rem;
+}
+
 // ==========================================================================
-// Comic Box Styles
+// Comic Module
 // ==========================================================================
 
 .comic {
@@ -385,14 +516,66 @@ ul.chapter-list form {
 }
 
 // ==========================================================================
-// Chapter
+// Archive
 // ==========================================================================
 
 .chapter .image {
+	display: inline-block;
 	border: 1px solid $grey;
 	border-radius: 2.5px;
 	height: 200px;
+	width: 100%;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
+}
+
+.chapter-archive {
+	display: flex;
+	flex-direction: column;
+	margin: 0.75rem 0;
+} .chapter-archive:last-child {
+	margin-bottom: -0.25rem;
+} @media screen and (min-width: 500px) {
+	.chapter-archive {
+		flex-direction: row;
+	}
+}
+
+.chapter-content {
+} @media screen and (min-width: 500px) {
+	.chapter-content {
+		padding-left: 20px;
+	}
+}
+
+.chapter-nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	position: sticky;
+	top: 0;
+	
+	padding: 1rem 0 1rem;
+}.chapter-nav select {
+	flex: 1 0 0;
+	
+	max-width: 100%;
+	padding: 0.75rem;
+	border-radius: 4px;
+
+	font-weight: bold;
+}
+// ==========================================================================
+// Social Media
+// ==========================================================================
+
+.socialmedia {
+	display: flex;
+	justify-content: center;
+}
+
+.socialmedia div {
+	padding: 15px 10px 20px;
 }
