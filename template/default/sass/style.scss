@@ -1,22 +1,25 @@
 @charset "utf-8";
+
+// Font
 @import url('https://fonts.googleapis.com/css?family=Londrina+Solid:300,400');
 
+@import "../../../node_modules/bulma/sass/base/minireset";
 
-$accent: #fd960f;
-$accent-dark: orangered;
+// Define some variables
 
-$grey: #ccc;
+$accent: #3273dc;
+$accent-dark: darkblue;
+
+$grey: #111;
 
 $container-width: 800px;
 $container-background: transparent;
 
-$background-color: #1a090b;
+$background-color: #efefef;
 
-$font-title : "Londrina Solid", sans-serif;
+$font-title : "Segoe UI", sans-serif;
 $font-color: #fcfcfc;
- 
-//$nav-size: 1.25rem;
-$nav-size: 1.25rem;
+
 $nav-color: $background-color;
 $navpage-color: transparent;
 
@@ -25,11 +28,13 @@ $navpage-color: transparent;
 // ==========================================================================
 
 body {
-	color: $font-color;
-	background-color: $background-color;
+	color: #2d2d2d;
+	background-color: #efefef;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 0 0;
+
+    font-family: 'Segoe UI', sans-serif;
 }
  
 ::selection {
@@ -37,62 +42,31 @@ body {
 	color: white;
 }
 
-// ==========================================================================
-// Bulma 2.0
-// ==========================================================================
-
 a {
 	color: inherit; // Prevent links from having default link color.
+	text-decoration: none;
+
+	&:not([class]) {
+		color: $accent;
+	}
+
+	&:hover {
+		color: $accent-dark;
+	}
+
+	&:active {
+		color: $accent;
+	}
 }
 
-// Links without a class will be treated with the regular accent color.
-a:not([class]), {
-	color: $accent;
-} a:hover {
-	color: $accent-dark;
-} a:active {
-	color: $accent;
+section {
+	padding: 20px 0;
 }
 
-
-.content .title:not(:last-child) {
-	margin-bottom: 0.25rem;
-}
-
-// All the headings will use the same font and weight.
-// The size is determined by the contents of bulma's content module.
-.content h1, .content h2, .content h3,
-.content h4, .content h5, .content h6,
-.navpage, .navbar, .section-top {
-	font-family: $font-title;
-	letter-spacing: 0.066rem;
-	color: inherit;
-	font-weight: 300;
-}
 
 // ==========================================================================
 // Layout Styles
 // ==========================================================================
-
-section.section {
-	padding-top: 20px;
-}
-
-.section-top {
-	color: $background-color;
-	background-color: $accent;
-
-	font-size: 1.75rem;
-	text-transform: uppercase;	
-	text-align: center;
-
-	padding: 15px 0;
-	margin: 0 -15px;
-} @media screen and (min-width: $container-width) {
-	.section-top {
-		border-radius: 5px;
-	}
-}
 
 figure.image img {
 	display: block;	
@@ -101,36 +75,19 @@ figure.image img {
 figure.image-banner {
 	position: relative;
 	padding-bottom: 18.75%;
-} figure.image-banner img {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
 
-div.image-chapter {
-	margin: 0;
-	margin-top: 0;
-	margin-bottom: 0.75rem;
-	max-width: 200px;
-	min-width: 200px;
-	height: 283px;
-}
-
-div.spacer {
-	margin: 40px 0;
-}
+	img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+} 
 
 // ==========================================================================
 // Helpers
 // ==========================================================================
-
-.is-italic {
-	font-style: italic;
-	font-family: "Londrina Solid";
-	font-weight: 300;
-}
 
 .is-hidden {
   display: none !important
@@ -147,79 +104,6 @@ div.spacer {
 	}
 }
 
-// ==========================================================================
-// Columns Layout
-// ==========================================================================
-
-.columns {
-	display: flex;
-	flex-direction: column;
-} .columns.spaced {
-	margin: 30px 0
-}.columns.is-multiline {
-	flex-wrap: wrap;
-	flex-direction: row;
-	justify-content: space-between;
-} .columns.is-multiline.start { 
-	justify-content: flex-start;
-} @media screen and (min-width: $container-width) {
-	.columns {
-		flex-direction: row;
-	}
-	.columns.is-multiline {
-		justify-content: flex-start;
-	}
-}
-
-.column {
-	width: 100%;
-	display: block;
-	flex: none;
-} @media screen and (min-width: $container-width) {
-
-	.column {
-		width: auto;
-		flex: 1 1 0;
-	}
-
-	.column.is-2 {
-		max-width: 16.5%;
-	}
-	
-	.column.is-3 {
-		max-width: 25%;
-	}
-
-	.column.is-4 {
-		max-width: 33%;
-	}
-
-	.column.is-6 {
-		max-width: 50%;
-	}
-
-	.column.is-8 {
-		max-width: 66%
-	}
-}
-
-.column.is-200 {
-	width: 50%;
-	padding: 0.25rem;
-} @media screen and (min-width: 460px) {
-	.column.is-200 {
-		width: 33%;
-	}
-} @media screen and (min-width: 600px) {
-	.column.is-200 {
-		width: 25%;
-	}
-} @media screen and (min-width: 800px) {
-	.column.is-200 {
-		max-width: 150px;
-		min-width: 150px;
-	}
-}
 
 // ==========================================================================
 // Form
@@ -250,40 +134,50 @@ div.spacer {
 	justify-content: center;
 	cursor: pointer;
 	transition: 0.25s ease all;
-} .button.is-primary {
-	color: white;
-	background-color: $accent;
-} .button.is-danger {
-	color: white;
-	background-color: $accent-dark;
-} .button.is-small {
-	padding: 0.5rem 1rem;
-	margin-bottom: 0.75rem;
-} .button:visited {
-	background-color: whitesmoke;
-} .button.is-primary:visited {
-	background-color: $accent;
-}.button:focus {
-	border: 1px solid $accent;
-} .button:hover {
-	background-color: $accent;
-	color: white;
-} .button.is-disabled {
-	background: lightgray;
-	cursor: not-allowed;
-} .button.is-disabled:hover{
-	background: lightgray;
-	color: black;
-}
 
-.button.full {
-	width: 100%;
-	margin-bottom: 0.75rem
-} @media screen and (min-width: $container-width) {
-	.button.full {
-		width: 95%;
+	&.is-primary {
+		color: white;
+		background-color: $accent;
 	}
-}
+
+	&.is-danger {
+		color: white;
+		background-color: $accent-dark;
+	}
+
+	&.is-small {
+		padding: 0.5rem 1rem;
+		margin-bottom: 0.75rem;
+	}
+
+	&:visited {
+		background-color: whitesmoke;
+	}
+
+	&.is-primary:visited {
+		background-color: $accent;
+	}
+
+	&:focus {
+		border: 1px solid $accent;
+	}
+
+	&.is-disabled {
+		background: lightgray;
+		cursor: not-allowed;
+	}
+
+	&.is-disabled:hover {
+		background: lightgray;
+		color: black;
+	}
+
+	&.full{
+		width: 100%;
+		margin-bottom: 0.75rem
+	}
+
+} 
 
 .field {
 	margin: 0.5rem 0;
@@ -324,35 +218,41 @@ label.label {
 	padding: 0 15px;
 	position: relative;
 	max-width: $container-width;
-}.container.has-no-padding {
-	padding: 0;
-} main.main .container.has-no-background {
-	background: transparent;
-	color: white !important;
+
+	background-color: white;
+
+	&.has-no-padding {
+		padding: 0;
+	}
+
+	&.has-no-background {
+		background-color: transparent;
+		color: white;
+	}
 }
 
-header.header .container {
-	background: $container-background;
-}
+// main.main .container {
+// 	padding-bottom: 20px;
+// 	color: $background-color;
+// 	background: $font-color;
+// } main.main .container h3 {
+// 	color: inherit;
+// }
 
-main.main .container {
-	padding-bottom: 20px;
-	color: $background-color;
-	background: $font-color;
-} main.main .container h3 {
-	color: inherit;
-}
-
-footer.footer .container {
-	padding-top: 20px;
-	padding-bottom: 20px;
-	color: $grey;
-	background: $container-background;
-}
+// footer.footer .container {
+// 	padding-top: 20px;
+// 	padding-bottom: 20px;
+// 	color: $grey;
+// 	background: $container-background;
+// }
 
 // ==========================================================================
 // Header
 // ==========================================================================
+
+.header .container {
+	background-color: transparent;
+}
 
 .header-banner {
 	transition: 0.25s ease all;
@@ -369,8 +269,12 @@ footer.footer .container {
 
 .navbar {
 	color: white;
-	font-size: $nav-size;
-	background: $nav-color;
+	background: #2d2d2d;
+
+	font-family: $font-title;
+	font-size: 1.25rem;
+	font-weight: 400;
+	
 	display: flex;
 	justify-content: space-between;
 } @media screen and (min-width: $container-width) {
@@ -399,7 +303,16 @@ footer.footer .container {
 
 .navbar-item:hover{
 	color: $accent;
-	background: #3a0007;
+	background: #0d0d0d;
+}
+
+// ==========================================================================
+// Footer
+// ==========================================================================
+
+footer.footer .container {
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 // ==========================================================================
@@ -416,7 +329,7 @@ footer.footer .container {
 } @media screen and (min-width: $container-width) {
 	.navpage {
 		color: transparent;
-		font-size: $nav-size;
+		font-size: 1.25rem;
 		font-weight: 400;
 	}
 }
@@ -502,52 +415,236 @@ ul.chapter-list form {
 	padding: 0.25rem 0.5rem;
 }
 
+
 // ==========================================================================
-// Comic Module
+// Updates
+// ==========================================================================
+
+section.updates {
+
+	padding: 0;
+
+	.container	{
+		background: white;		
+	}
+	
+	.updates-header {
+		color: #efefef;
+		background-color: #2d2d2d;
+
+		font-size: 1.75rem;
+		font-family: $font-title;
+		text-transform: uppercase;	
+		text-align: center;
+
+		padding: 15px 0;
+		margin: 0 -15px;
+
+		border-radius: 3px;
+	}
+
+	.updates-content {
+
+		display: flex;
+
+		color: #2d2d2d;
+
+		div.rant {
+			min-width: 50%;
+		}
+
+		div.recently {
+
+			min-width: 50%;
+			padding-top: 20px;
+
+			h2 {
+				font-size: 18px;
+				font-family: $font-title;
+			}
+
+			ul {
+				list-style: circle;
+				padding: 20px;
+			}
+
+			li+li {
+				margin-top: 10px;
+			}
+		}
+	}
+
+}
+
+
+// ==========================================================================
+// Comic
 // ==========================================================================
 
 .comic {
 	margin-left: -15px;
 	margin-right: -15px;
+
+	.comic-link {
+		width: 50%;
+		height: 100%;
+		position: absolute;
+	}
+
+	.prev {
+		left: 0;
+	}
+	.next {
+		right: 0;
+	}
 }
 
 .comic img {
 	width: 100%;
 }
 
+section.comic-content {
+
+	background: transparent;
+
+	padding: 20px;
+
+	h3 {
+		font-family: $font-title;
+		font-size: 24px;
+	}
+
+	.date {
+		font-family: $font-title;
+		font-style: italic;
+		font-weight: 300;
+	}
+
+	.description {
+
+	}
+
+	.transcript {
+		display: none;
+	}
+
+}
+
 // ==========================================================================
 // Archive
 // ==========================================================================
 
-.chapter .image {
-	display: inline-block;
-	border: 1px solid $grey;
-	border-radius: 2.5px;
-	height: 200px;
-	width: 100%;
-	background-size: cover;
-	background-position: center;
-	background-repeat: no-repeat;
+section.archive {
+	.title {
+		font-size: 36px;
+		font-family: $font-title;
+	}
+
+	.description {
+
+	}
 }
 
-.chapter-archive {
+.archive-item {
+
 	display: flex;
 	flex-direction: column;
 	margin: 0.75rem 0;
-} .chapter-archive:last-child {
-	margin-bottom: -0.25rem;
-} @media screen and (min-width: 500px) {
-	.chapter-archive {
+
+	&:last-child {
+		margin-bottom: -0.25rem;
+	}
+
+	@media screen and (min-width: 500px) {
 		flex-direction: row;
+	}
+
+	.cover-image {
+		margin: 0;
+		margin-top: 0;
+		margin-bottom: 0.75rem;
+		max-width: 200px;
+		min-width: 200px;
+		height: 283px;
+	}
+
+	.content {
+
+		.title {
+			font-size: 24px;
+		}
+
+		.description {
+			padding-bottom: 20px;
+		}
+
+		.buttons {
+			display: flex;
+
+			.button-wrapper {
+				min-width: 50%;
+			}
+
+			.button-wrapper+.button-wrapper {
+				padding-left: 10px
+			}
+		}
+
+		@media screen and (min-width: 500px) {
+			padding-left: 20px;
+		}
 	}
 }
 
-.chapter-content {
-} @media screen and (min-width: 500px) {
-	.chapter-content {
-		padding-left: 20px;
+// ==========================================================================
+// Chapter
+// ==========================================================================
+
+section.chapter {
+
+	.title {
+		font-size: 30px;
+		font-family: $font-title;
+
+		margin-bottom: -15px;
+	}
+
+	.description {
+		margin-bottom: 20px;
+	}
+
+	.return {
+		margin-bottom: 20px;
+	}
+
+	ul {
+
+		display: flex;
+		flex-wrap: wrap;
+
+		li {
+
+			min-width: 150px;
+			flex: 1 1 0;
+
+			a {
+				display: inline-block;
+				border: 1px solid $grey;
+				border-radius: 2.5px;
+				height: 200px;
+				width: 100%;
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;				
+			}
+		}
 	}
 }
+
+
+// ==========================================================================
+// Read Module
+// ==========================================================================
 
 .chapter-nav {
 	display: flex;
@@ -558,15 +655,79 @@ ul.chapter-list form {
 	top: 0;
 	
 	padding: 1rem 0 1rem;
-}.chapter-nav select {
-	flex: 1 0 0;
-	
-	max-width: 100%;
-	padding: 0.75rem;
-	border-radius: 4px;
 
-	font-weight: bold;
+	select {
+		flex: 1 0 0;
+		
+		max-width: 100%;
+		padding: 0.75rem;
+		border-radius: 4px;
+
+		font-weight: bold;
+	}
 }
+
+// ==========================================================================
+// Chapter List
+// ==========================================================================
+
+section.chapter-list{
+
+	.title {
+
+	}
+
+	.description {
+
+	}
+
+	ul {
+		li {
+
+		}
+	}
+}
+
+// ==========================================================================
+// Rant
+// ==========================================================================
+
+section.rant {
+	.title {
+		font-size: 24px;
+		font-family: $font-title
+	}
+
+	.date {
+
+	}
+
+	.description {
+
+	}
+}
+
+
+// ==========================================================================
+// Rants List
+// ==========================================================================
+
+section.rant-list {
+	.title {
+
+	}
+
+	.description {
+		
+	}
+
+	ul {
+		li {
+
+		}
+	}
+}
+
 // ==========================================================================
 // Social Media
 // ==========================================================================
