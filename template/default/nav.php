@@ -9,7 +9,4 @@
         	    <a class="navbar-item <?php if ($active == 'rants'){ echo 'active';} ?>" href="<?php echo url('rants/');?>">Rants</a>
         	    <a class="navbar-item <?php if ($active == 'feed'){ echo 'active';} ?>" href="<?php echo url('feed/');?>">RSS</a>
             </div>
-            <div class="navbar-end">
-            	<a href="#" class="navbar-menu">Menu</a>
-            </div>
         </nav>

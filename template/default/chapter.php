@@ -8,7 +8,7 @@ available variables:
 template('chapter_head');
 ?>
 <section class="chapter">
-    <h1 class="title"><?php echo $chapter['title']; ?></h1>
+    <h2 class="title"><?php echo $chapter['title']; ?></h2>
     <?php if($chapter['description']) { ?>
     <p class="description"><?php echo $chapter['description']; ?></p>
     <?php } ?>

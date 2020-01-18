@@ -2,7 +2,6 @@
 
 // Font
 @import url('https://fonts.googleapis.com/css?family=Londrina+Solid:300,400');
-
 @import "../../../node_modules/bulma/sass/base/minireset";
 
 // Define some variables
@@ -63,6 +62,15 @@ section {
 	padding: 20px 0;
 }
 
+.title {
+	font-weight: bold;
+}
+
+.description {
+	line-height: 1.5;
+	margin-top: 0.75rem;
+}
+
 
 // ==========================================================================
 // Layout Styles
@@ -95,6 +103,7 @@ figure.image-banner {
 
 .is-hidden-touch {
 	display: none;	
+
 } @media screen and (min-width: $container-width) {
 	span.is-hidden-touch {
 		display: inline-block;
@@ -231,36 +240,25 @@ label.label {
 	}
 }
 
-// main.main .container {
-// 	padding-bottom: 20px;
-// 	color: $background-color;
-// 	background: $font-color;
-// } main.main .container h3 {
-// 	color: inherit;
-// }
-
-// footer.footer .container {
-// 	padding-top: 20px;
-// 	padding-bottom: 20px;
-// 	color: $grey;
-// 	background: $container-background;
-// }
-
 // ==========================================================================
 // Header
 // ==========================================================================
 
-.header .container {
-	background-color: transparent;
-}
+.header {
 
-.header-banner {
-	transition: 0.25s ease all;
-}
+	.container {
+		background-color: transparent;
+	}
 
-.header-banner:hover{
-	opacity: 0.75;
-	transition: 0.25s ease all;
+	&-banner {
+		transition: 0.25s ease all;
+
+		&:hover {
+			opacity: 0.75;
+			transition: 0.25s ease all;
+		}
+	}
+
 }
 
 //
@@ -273,7 +271,7 @@ label.label {
 
 	font-family: $font-title;
 	font-size: 1.25rem;
-	font-weight: 400;
+	font-weight: bold;
 	
 	display: flex;
 	justify-content: space-between;
@@ -282,7 +280,6 @@ label.label {
 		border-radius: 5px 5px 0 0;
 	}
 }
-
 
 .navbar-start {
 	display: flex;
@@ -394,10 +391,6 @@ a.navpage-item:active{
 	filter: brightness(200%);
 }
 
-.description {
-	margin-top: 0.75rem;
-}
-
 // ==========================================================================
 // Admin
 // ==========================================================================
@@ -446,11 +439,18 @@ section.updates {
 	.updates-content {
 
 		display: flex;
+		flex-direction: column;
 
 		color: #2d2d2d;
 
+		@media screen and (min-width:  $container-width) {
+			flex-direction: row
+		}
+
 		div.rant {
-			min-width: 50%;
+			@media screen and (min-width: $container-width) {
+				padding-right: 15px;
+			}
 		}
 
 		div.recently {
@@ -461,6 +461,7 @@ section.updates {
 			h2 {
 				font-size: 18px;
 				font-family: $font-title;
+				font-weight: bold;
 			}
 
 			ul {
@@ -489,13 +490,13 @@ section.updates {
 		width: 50%;
 		height: 100%;
 		position: absolute;
-	}
 
-	.prev {
-		left: 0;
-	}
-	.next {
-		right: 0;
+		.prev {
+			left: 0;
+		}
+		.next {
+			right: 0;
+		}
 	}
 }
 
@@ -509,7 +510,7 @@ section.comic-content {
 
 	padding: 20px;
 
-	h3 {
+	h2.title {
 		font-family: $font-title;
 		font-size: 24px;
 	}
@@ -521,10 +522,28 @@ section.comic-content {
 	}
 
 	.description {
-
+		
 	}
 
 	.transcript {
+		display: none;
+		border: 1px dotted #ccc;
+		border-radius: 5px;
+		padding: 20px;
+
+		margin: 30px 0 0;
+
+		h3.title {
+			font-weight: bold
+		}
+
+		&.active {
+			display: block;
+		}
+
+	}
+
+	#transcript-toggle {
 		display: none;
 	}
 
@@ -548,30 +567,37 @@ section.archive {
 .archive-item {
 
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	margin: 0.75rem 0;
 
 	&:last-child {
 		margin-bottom: -0.25rem;
 	}
 
-	@media screen and (min-width: 500px) {
-		flex-direction: row;
-	}
-
 	.cover-image {
+		max-width: 33%;
+
 		margin: 0;
 		margin-top: 0;
 		margin-bottom: 0.75rem;
-		max-width: 200px;
-		min-width: 200px;
-		height: 283px;
+		
+		@media screen and (min-width: $container-width) {
+			max-width: 200px;
+			min-width: 200px;
+			height: 283px;			
+		}
 	}
 
 	.content {
 
+		padding-left: 20px;
+
 		.title {
-			font-size: 24px;
+			font-size: 18px;
+
+			@media screen and (min-width: $container-width) {
+				font-size: 24px;
+			}
 		}
 
 		.description {
@@ -580,19 +606,23 @@ section.archive {
 
 		.buttons {
 			display: flex;
+			flex-direction: column;
+
+			@media screen and (min-width: $container-width) {
+				flex-direction: row;
+			}
 
 			.button-wrapper {
 				min-width: 50%;
 			}
 
 			.button-wrapper+.button-wrapper {
-				padding-left: 10px
+				@media screen and (min-width: $container-width) {
+					padding-left: 10px
+				}
 			}
 		}
 
-		@media screen and (min-width: 500px) {
-			padding-left: 20px;
-		}
 	}
 }
 
@@ -674,7 +704,8 @@ section.chapter {
 section.chapter-list{
 
 	.title {
-
+		font-size: 30px;
+		font-family: $font-title;
 	}
 
 	.description {
@@ -682,7 +713,31 @@ section.chapter-list{
 	}
 
 	ul {
+
+		margin-top: 30px;
+
+		display: flex;
+		flex-wrap: wrap;
+
 		li {
+			flex: 0 1 50%;
+			margin-bottom: 10px;
+
+			@media screen and (min-width: $container-width) {
+				flex: 0 1 20%;
+			}
+
+			.chapter-cover {
+				max-width: 100%;
+				padding-right: 7px;
+			}
+
+			.chapter-title h3 {
+				font-size: 18px;
+				font-weight: bold;
+				font-family: $font-title;
+				margin: 5px 0;
+			}
 
 		}
 	}
@@ -714,7 +769,8 @@ section.rant {
 
 section.rant-list {
 	.title {
-
+		font-size: 30px;
+		font-family: $font-title
 	}
 
 	.description {
@@ -722,10 +778,47 @@ section.rant-list {
 	}
 
 	ul {
-		li {
+		margin-top: 20px;
 
+		li {
+			border: 1px dotted #ccc;
+			border-radius: 5px;
+			padding: 20px;
+			margin: 5px 0;
+
+			.rant-title {
+				font-size: 24px;
+				font-weight: bold;
+				font-family: $font-title;
+			}
+
+			.rant-date {
+				font-style: italic;
+			}
 		}
 	}
+}
+
+// ==========================================================================
+// Admin
+// ==========================================================================
+
+section.admin {
+
+	h2 {
+		font-size: 24px;
+		font-weight: bold;
+		font-family: $font-title;
+	}
+
+	ul.list {
+		li {
+			padding: 5px;
+			border: 1px solid #ccc;
+			margin: 2px 0;
+		}
+	}
+
 }
 
 // ==========================================================================

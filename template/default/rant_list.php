@@ -7,12 +7,15 @@ available variables:
 template('rant_head');
 ?>
 <section class="rant-list">
-    <h1 class="title">Rants</h1>
+    <h2 class="title">Rants</h2>
     <p class="description">Relevant updates and ramblings.</p>
     <?php if($rants) { ?>
     <ul>
         <?php foreach($rants as $rant) { ?>
-        <li><a href="<?php echo url('rant/'.$rant['rantid']); ?>"><?php echo $rant['title'] ?></a></li>
+        <li>
+            <h3 class="rant-title"><a href="<?php echo url('rant/'.$rant['rantid']); ?>"><?php echo $rant['title'] ?></a></h3>
+            <span class="rant-date"><?php echo date('F jS, Y', $rant['pub_date']); ?></span>
+        </li>
         <?php } ?>
     </ul>
     <?php } else { ?>

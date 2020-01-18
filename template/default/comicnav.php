@@ -18,29 +18,29 @@ if(!($first || $prev || $next || $last)) {
 <nav class="navpage">
 <?php
 if($first != $current) {
-    echo '<a class="navpage-item" href="', url('comic/'.$first), '" aria-button="first">&lt;&lt; <span class="is-hidden-touch">First</span></a>';
+    echo '<a class="navpage-item image is-96x96" href="', url('comic/'.$first.'#comic'), '" aria-button="first" title="Go to First Page"><span class="is-hidden">First</span></a>';
 } else {
-    echo '<div class="navpage-item">&lt;&lt; <span class="is-hidden-touch">First</span></div>';
+    echo '<div class="navpage-item image is-96x96" aria-button="first" title="You are already on the first page!"><span class="is-hidden">First</span></div>';
 }
 
 if($prev) {
-    echo '<a class="navpage-item" href="', url('comic/'.$prev), '" rel="prev">&lt; <span class="is-hidden-touch">Previous</span></a>';
+    echo '<a class="navpage-item image is-96x96" href="', url('comic/'.$prev.'#comic'), '" rel="prev" title="Go to Previous Page"><span class="is-hidden">Previous</span></a>';
 } else {
-    echo '<div class="navpage-item">&lt; <span class="is-hidden-touch">Previous</span></div>';
+    echo '<div class="navpage-item image is-96x96" rel="prev" title="No more pages before."><span class="is-hidden">Previous</span></div>';
 }
 
-echo '<a href="/archive" class="navpage-item" aria-button="archive">Archive</a>';
+echo '<a href="/archive" class="navpage-item image is-96x96" aria-button="archive" title="Go to Archive"><span class="is-hidden">Archive</span></a>';
 
 if($next) {
-    echo '<a class="navpage-item" href="', url('comic/'.$next), '" rel="next"><span class="is-hidden-touch">Next</span> &gt;</a>';
+    echo '<a class="navpage-item image is-96x96" href="', url('comic/'.$next.'#comic'), '" rel="next" title="Go to Next Page"><span class="is-hidden">Next</span></a>';
 } else {
-    echo '<div class="navpage-item"><span class="is-hidden-touch">Next</span> &gt;</div>';
+    echo '<div class="navpage-item image is-96x96" rel="next" title="No more pages after."><span class="is-hidden">Next</span></div>';
 }
 
 if($last && $last != $current) {
-    echo '<a class="navpage-item" href="', url('comic/'.$last), '" aria-button="last"><span class="is-hidden-touch">Latest</span> &gt;&gt;</a>';
+    echo '<a class="navpage-item image is-96x96" href="', url('comic/'.$last.'#comic'), '" aria-button="last" title="Go to Last Page"><span class="is-hidden">Latest</span></a>';
 } else {
-    echo '<div class="navpage-item"><span class="is-hidden-touch">Latest</span> &gt;&gt;</div>';
+    echo '<div class="navpage-item image is-96x96" aria-button="last" title="You are already on the last page!"><span class="is-hidden">Latest</span></div>';
 }
 ?>
 </nav>

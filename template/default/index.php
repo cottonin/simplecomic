@@ -12,7 +12,7 @@ template('comic', $comic); ?>
 </main>
 <section class="updates">
     <div class="container">
-        <h1 class="updates-header">Updates</h1>
+        <h2 class="updates-header">Updates</h2>
         <div class="updates-content">
             <div class="rant">
                 <?php template('rant', $rant); ?>

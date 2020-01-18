@@ -27,7 +27,7 @@ $page->add_js(template_path('nav.js'));
     </div>
     <?php template('comicnav', $nav); ?>
     <section class="comic-content">
-        <h3><?php echo $title; ?></h3>
+        <h2 class="title"><?php echo $title; ?></h2>
         <span class="date">Posted on <span class="date"><?php echo date('F jS, Y', $pub_date); ?></span></span>
         <?php
         if($text['description']) {
@@ -36,7 +36,8 @@ $page->add_js(template_path('nav.js'));
             echo '</div>';
         }
         if($text['transcript']) {
-            echo '<div class="transcript"><h4>Transcript</h4>';
+            echo '<div id="transcript-toggle">Show Transcript</div>';
+            echo '<div class="transcript"><h3 class="title">Transcript</h3>';
             echo $text['transcript'];
             echo '</div>';
         }

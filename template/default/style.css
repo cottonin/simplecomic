@@ -100,6 +100,13 @@ a {
 section {
   padding: 20px 0; }
 
+.title {
+  font-weight: bold; }
+
+.description {
+  line-height: 1.5;
+  margin-top: 0.75rem; }
+
 figure.image img {
   display: block; }
 
@@ -209,17 +216,16 @@ label.label {
 
 .header-banner {
   transition: 0.25s ease all; }
-
-.header-banner:hover {
-  opacity: 0.75;
-  transition: 0.25s ease all; }
+  .header-banner:hover {
+    opacity: 0.75;
+    transition: 0.25s ease all; }
 
 .navbar {
   color: white;
   background: #2d2d2d;
   font-family: "Segoe UI", sans-serif;
   font-size: 1.25rem;
-  font-weight: 400;
+  font-weight: bold;
   display: flex;
   justify-content: space-between; }
 
@@ -310,9 +316,6 @@ a.navpage-item:hover {
 a.navpage-item:active {
   filter: brightness(200%); }
 
-.description {
-  margin-top: 0.75rem; }
-
 ul.chapter-list form {
   display: inline-block; }
 
@@ -339,15 +342,21 @@ section.updates {
     border-radius: 3px; }
   section.updates .updates-content {
     display: flex;
+    flex-direction: column;
     color: #2d2d2d; }
-    section.updates .updates-content div.rant {
-      min-width: 50%; }
+    @media screen and (min-width: 800px) {
+      section.updates .updates-content {
+        flex-direction: row; } }
+    @media screen and (min-width: 800px) {
+      section.updates .updates-content div.rant {
+        padding-right: 15px; } }
     section.updates .updates-content div.recently {
       min-width: 50%;
       padding-top: 20px; }
       section.updates .updates-content div.recently h2 {
         font-size: 18px;
-        font-family: "Segoe UI", sans-serif; }
+        font-family: "Segoe UI", sans-serif;
+        font-weight: bold; }
       section.updates .updates-content div.recently ul {
         list-style: circle;
         padding: 20px; }
@@ -361,10 +370,10 @@ section.updates {
     width: 50%;
     height: 100%;
     position: absolute; }
-  .comic .prev {
-    left: 0; }
-  .comic .next {
-    right: 0; }
+    .comic .comic-link .prev {
+      left: 0; }
+    .comic .comic-link .next {
+      right: 0; }
 
 .comic img {
   width: 100%; }
@@ -372,7 +381,7 @@ section.updates {
 section.comic-content {
   background: transparent;
   padding: 20px; }
-  section.comic-content h3 {
+  section.comic-content h2.title {
     font-family: "Segoe UI", sans-serif;
     font-size: 24px; }
   section.comic-content .date {
@@ -380,6 +389,16 @@ section.comic-content {
     font-style: italic;
     font-weight: 300; }
   section.comic-content .transcript {
+    display: none;
+    border: 1px dotted #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 30px 0 0; }
+    section.comic-content .transcript h3.title {
+      font-weight: bold; }
+    section.comic-content .transcript.active {
+      display: block; }
+  section.comic-content #transcript-toggle {
     display: none; }
 
 section.archive .title {
@@ -388,33 +407,40 @@ section.archive .title {
 
 .archive-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin: 0.75rem 0; }
   .archive-item:last-child {
     margin-bottom: -0.25rem; }
-  @media screen and (min-width: 500px) {
-    .archive-item {
-      flex-direction: row; } }
   .archive-item .cover-image {
+    max-width: 33%;
     margin: 0;
     margin-top: 0;
-    margin-bottom: 0.75rem;
-    max-width: 200px;
-    min-width: 200px;
-    height: 283px; }
-  .archive-item .content .title {
-    font-size: 24px; }
-  .archive-item .content .description {
-    padding-bottom: 20px; }
-  .archive-item .content .buttons {
-    display: flex; }
-    .archive-item .content .buttons .button-wrapper {
-      min-width: 50%; }
-    .archive-item .content .buttons .button-wrapper + .button-wrapper {
-      padding-left: 10px; }
-  @media screen and (min-width: 500px) {
-    .archive-item .content {
-      padding-left: 20px; } }
+    margin-bottom: 0.75rem; }
+    @media screen and (min-width: 800px) {
+      .archive-item .cover-image {
+        max-width: 200px;
+        min-width: 200px;
+        height: 283px; } }
+  .archive-item .content {
+    padding-left: 20px; }
+    .archive-item .content .title {
+      font-size: 18px; }
+      @media screen and (min-width: 800px) {
+        .archive-item .content .title {
+          font-size: 24px; } }
+    .archive-item .content .description {
+      padding-bottom: 20px; }
+    .archive-item .content .buttons {
+      display: flex;
+      flex-direction: column; }
+      @media screen and (min-width: 800px) {
+        .archive-item .content .buttons {
+          flex-direction: row; } }
+      .archive-item .content .buttons .button-wrapper {
+        min-width: 50%; }
+      @media screen and (min-width: 800px) {
+        .archive-item .content .buttons .button-wrapper + .button-wrapper {
+          padding-left: 10px; } }
 
 section.chapter .title {
   font-size: 30px;
@@ -457,9 +483,60 @@ section.chapter ul {
     border-radius: 4px;
     font-weight: bold; }
 
+section.chapter-list .title {
+  font-size: 30px;
+  font-family: "Segoe UI", sans-serif; }
+
+section.chapter-list ul {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap; }
+  section.chapter-list ul li {
+    flex: 0 1 50%;
+    margin-bottom: 10px; }
+    @media screen and (min-width: 800px) {
+      section.chapter-list ul li {
+        flex: 0 1 20%; } }
+    section.chapter-list ul li .chapter-cover {
+      max-width: 100%;
+      padding-right: 7px; }
+    section.chapter-list ul li .chapter-title h3 {
+      font-size: 18px;
+      font-weight: bold;
+      font-family: "Segoe UI", sans-serif;
+      margin: 5px 0; }
+
 section.rant .title {
   font-size: 24px;
   font-family: "Segoe UI", sans-serif; }
+
+section.rant-list .title {
+  font-size: 30px;
+  font-family: "Segoe UI", sans-serif; }
+
+section.rant-list ul {
+  margin-top: 20px; }
+  section.rant-list ul li {
+    border: 1px dotted #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 5px 0; }
+    section.rant-list ul li .rant-title {
+      font-size: 24px;
+      font-weight: bold;
+      font-family: "Segoe UI", sans-serif; }
+    section.rant-list ul li .rant-date {
+      font-style: italic; }
+
+section.admin h2 {
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "Segoe UI", sans-serif; }
+
+section.admin ul.list li {
+  padding: 5px;
+  border: 1px solid #ccc;
+  margin: 2px 0; }
 
 .socialmedia {
   display: flex;

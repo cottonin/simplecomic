@@ -10,7 +10,7 @@ available variables:
 ?>
 <section class="rant">
     <?php if (isset($title)) { ?>
-        <h1 class="title"><?php echo $title; ?></h1>
+        <h2 class="title"><?php echo $title; ?></h2>
         <span class="date">Posted on <span class="date"><?php echo date('F jS, Y', $pub_date); ?></span></span>
     <?php
         echo '<div class="description">';

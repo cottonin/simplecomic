@@ -7,12 +7,17 @@ available variables:
 template('chapter_head');
 ?>
 <section class="chapter-list">
-    <h1 class="title">Chapters</h1>
+    <h2 class="title">Chapters</h2>
+    <p class="description">Take a look at the chapters of the story. If you like reading everything in one go, click "Read Full Chapter". Otherwise, click "Browse Pages" to take a quick look at each chapter and pick a page to start reading one by one.</p>
     <?php if($chapters) { ?>
     <ul>
         <?php foreach($chapters as $chapter) { ?>
         <li>
-            <a href="<?php echo url('chapter/' . $chapter['slug']); ?>"><?php echo $chapter['title'] ?></a>
+            
+            <a class="chapter-title" href="<?php echo url('chapter/' . $chapter['slug']); ?>">
+                <img class="chapter-cover" src="<?php echo url($chapter['filename']); ?>" alt="">
+                <h3><?php echo $chapter['title'] ?></h3>
+            </a>
         </li>
         <?php } ?>
     </ul>

@@ -1,5 +1,5 @@
 <?php template('admin_head'); ?>
-<section class="section content">
+<section class="admin">
 	<h2><?php if (!isset($chapterid)): ?>Add a new chapter<?php else: ?>Edit chapter <?php echo '"'.$title.'"' ?><?php endif; ?></h2>
 	<form action="" method="POST" enctype="multipart/form-data">
 	    <?php echo authtoken_input(); ?>

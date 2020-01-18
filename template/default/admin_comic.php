@@ -9,7 +9,7 @@ if(!isset($text)) {
     );
 }
 ?>
-<section class="section content">
+<section class="admin">
     <h2><?php if (!isset($comicid)): ?>Add a new page<?php else: ?>Edit page <?php echo '"'.$title.'"' ?><?php endif; ?></h2>
     <form action="" method="POST" enctype="multipart/form-data">
         <?php echo authtoken_input(); ?>

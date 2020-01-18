@@ -1,10 +1,14 @@
 (function() {
 
-    // Menu Toggle 
-        $('.navbar-menu').click(function() {
-            $('.navbar-item').slideToggle();
-        })
+    // Toggle Transcript
+    var transcript_toggle = document.getElementById('transcript-toggle');
+    var transcript = document.querySelector('.transcript');
 
+    transcript_toggle.addEventListener("click", function(e) {
+        e.preventDefault();
+        transcript.classList.toggle('active');
+    })
+    
     // Arrow Key Nav
 
     var link;
