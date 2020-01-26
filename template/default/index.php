@@ -6,8 +6,8 @@ available variables:
  $rant: array of info about the latest rant
 */
 
-template('head');
-template('comic', $comic); ?>
+template('head'); ?>
+<?php template('comic', $comic); ?>
     </div>
 </main>
 <section class="updates">
@@ -34,8 +34,16 @@ template('comic', $comic); ?>
                         echo '</li>';
                     } ?>
                 </ul>
+                <div class="socialmedia">
+                    <div><a href="http://www.instagram.com/gangfluffy/" target="_blank"><img src="<?php echo url('image/icon_instagram.svg'); ?>" alt="Instagram"></a></div>
+                    <div><a href="http://www.fluffygang.tumblr.com/" target="_blank"><img src="<?php echo url('image/icon_tumblr.svg'); ?>" alt="Tumblr"></a></div>
+                    <div><a href="http://www.twitter.com/fluffygang" target="_blank"><img src="<?php echo url('image/icon_twitter.svg'); ?>" alt="Twitter"></a></div>
+                    <div><a href="<?php echo url('feed/');?>" target="_blank"><img src="<?php echo url('image/icon_rss.svg'); ?>" alt="RSS"></a></div>
+                </div>
             </div>
+
         </div>
+
     </div>
 </section>
 <?php template('foot'); ?>

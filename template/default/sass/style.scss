@@ -349,25 +349,25 @@ footer.footer .container {
 }
 
 .navpage-item[rel=prev] {
-	background-image: url("../../../image/nav_adjacent.png");
+	background-image: url("../../../image/nav_adjacent.svg");
 }
 
 .navpage-item[rel=next] {
-	background-image: url("../../../image/nav_adjacent.png");
+	background-image: url("../../../image/nav_adjacent.svg");
 	transform: scaleX(-1);
 }
 
 .navpage-item[aria-button=first] {
-	background-image: url("../../../image/nav_far.png");
+	background-image: url("../../../image/nav_far.svg");
 }
 
 .navpage-item[aria-button=last] {
-	background-image: url("../../../image/nav_far.png");
+	background-image: url("../../../image/nav_far.svg");
 	transform: scaleX(-1);
 }
 
 .navpage-item[aria-button=archive] {
-	background-image: url("../../../image/nav_archive.png");
+	background-image: url("../../../image/nav_archive.svg");
 }
 
 @media screen and (min-width: $container-width) {

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "css-build": "node-sass --omit-source-map-url template/default/sass/style.scss template/default/style.css",
+    "css-build": "node-sass --omit-source-map-url template/fluffygang/sass/style.scss template/fluffygang/style.css",
     "css-watch": "npm run css-build -- --watch",
     "start": "npm run css-watch"
   },

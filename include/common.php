@@ -225,6 +225,7 @@ function ready_file($file) {
             'jpe'  => 'image/jpeg',
             'jpeg' => 'image/jpeg',
             'png'  => 'image/png',
+            'svg'  => 'image/svg+xml'
         );
         $filetime = filemtime($file);
         $path = pathinfo($file);
