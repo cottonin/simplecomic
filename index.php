@@ -42,11 +42,21 @@ $page->add_css(template_path('style.css'));
 $page->set_start_time($start_time);
 
 switch($request[0]) {
+    case 'api':
+        require_once 'include/api.php';
+        break;
     case 'index':
         // frontpage
         $selection_style = config('frontpage_comic', 'latest');
         $page->debug('selection_style', $selection_style);
         switch($selection_style) {
+            case 'issue':
+                $latest = $db->quick("SELECT pub_date FROM comics WHERE pub_date <= UNIX_TIMESTAMP() ORDER BY pub_date DESC LIMIT 1");
+                $midnight = strtotime(date('Y-m-d', $latest));
+                $comics = $db->fetch("SELECT comicid, title, slug FROM comics WHERE pub_date >= %d AND pub_date <= UNIX_TIMESTAMP() ORDER BY pub_date ASC LIMIT 5", $midnight);
+
+                $chapters = $db->fetch("SELECT * FROM chapters ORDER BY `order` DESC");
+                break;
             case 'first':
                 $comic = $db->fetch_first("SELECT * FROM comics WHERE pub_date <= UNIX_TIMESTAMP() ORDER BY pub_date ASC LIMIT 1");
                 break;
@@ -60,24 +70,36 @@ switch($request[0]) {
                 $comic = $db->fetch_first("SELECT * FROM comics WHERE pub_date <= UNIX_TIMESTAMP() ORDER BY pub_date DESC LIMIT 1");
                 break;
         }
-        if($comic) {
+        if(isset($comic) && $comic) {
             $comic['text'] = fetch_text($comic['comicid']);
             $comic['nav'] = fetch_navigation($comic);
         }
         $rant = $db->fetch_first("SELECT * FROM rants r LEFT JOIN rants_text t ON r.rantid = t.rantid WHERE pub_date <= UNIX_TIMESTAMP() ORDER BY pub_date DESC LIMIT 1");
         $page->title.= ' - Home';
-        template('index', array(
-            'comic' => $comic,
-            'rant' => $rant,
-            'updates' => fetch_recent_updates(),    
-        ));
+
+        if (config('frontpage_comic') == 'issue') {
+            template('index', array(
+                'comics' => $comics,
+                'chapters' => $chapters,
+                'rant' => $rant,
+                'updates' => fetch_recent_updates(),
+            ));
+        } else {
+            template('index', array(
+                'comic' => $comic,
+                'chapters' => $chapters,
+                'rant' => $rant,
+                'updates' => fetch_recent_updates(),
+            ));
+        }
         break;
     case 'comic':
         // image display!
         if($request[1] == 'image') {
             $comic = $db->fetch_first("SELECT * FROM comics WHERE comicid = %d AND pub_date <= UNIX_TIMESTAMP()", $request[2]);
-            if($comic) {
-                $file = BASEDIR . config('comicpath') . '/' . $comic['filename'];
+            if($comic && config('comicpath')) {
+                $filename = $comic['filename'];
+                $file = BASEDIR . '/assets/comics/' . $filename;
                 ready_file($file);
             }
             header('HTTP/1.1 404 Not Found');
@@ -123,8 +145,8 @@ switch($request[0]) {
         // image display!  
         if($request[1] == 'image' && isset($request[2])) {
             $chapter = $db->fetch_first("SELECT * FROM chapters WHERE chapterid = %d", $request[2]);
-            if($chapter) {
-                $file = BASEDIR . config('comicpath') . '/' . $chapter['filename'];
+            if($chapter && config('comicpath')) {
+                $file = BASEDIR . '/assets/comics/' . $chapter['filename'];
                 ready_file($file);
             }
             header('HTTP/1.1 404 Not Found');
@@ -148,28 +170,6 @@ switch($request[0]) {
             ));
         } else {
             redirect("chapters");
-        }
-        break;
-    case 'read':
-        // specific chapter
-        if(isset($request[1])) {
-            $slug = $request[1];
-            $chapter = $db->fetch_first("SELECT c.*, t.description FROM chapters c LEFT JOIN chapters_text t ON c.chapterid = t.chapterid  WHERE c.slug=%s", $slug);
-            if(!$chapter) {
-                redirect("chapters");
-            }
-            $page->title.= ' - '.$chapter['title'];
-            $comics = $db->fetch("SELECT * FROM comics WHERE chapterid=%d AND pub_date <= UNIX_TIMESTAMP() ORDER BY pub_date ASC", $chapter['chapterid']);
-            $list = $db->fetch("SELECT * FROM chapters ORDER BY `order` ASC");
-
-            template('read', array(
-                'chapter' => $chapter,
-                'comics' => $comics,
-                'list' => $list,
-            ));
-
-        } else {
-            redirect("archive");
         }
         break;
     case 'rants':
@@ -207,7 +207,7 @@ switch($request[0]) {
             echo "This not an image!";
             die;
         }
-        $file = BASEDIR . config('comicpath') . '/static/' . $request[1];
+        $file = BASEDIR . '/assets/' . $request[1];
         ready_file($file);
     	header('HTTP/1.1 404 Not Found');
     	$msg = 'We\'re sorry, this image does not exist in this site.';
