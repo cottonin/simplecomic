@@ -88,6 +88,16 @@ function url($url, $absolute = false, $always_pretty = false) {
     return $beginning . "/index.php?q=" . $url;
 }
 
+function comic_url($comicid) {
+    global $db;
+    if (config('comicpath')) {
+        return url('comic/image/'.$comicid, true);
+    }
+
+    $filename = $db->quick("SELECT filename FROM comics WHERE comicid = %d ORDER BY pub_date DESC LIMIT 1", array($comicid));
+    return url($filename);
+}
+
 function redirect($where, $message = false) {
     $where = url($where);
     ob_end_clean();
@@ -214,7 +224,10 @@ function config($key, $default = false) {
 }
 
 function default_datetime() {
-    return strtotime(config('default_time', '00:00:00'));
+    if (config('default_time')) {
+        return strtotime(config('default_time', '00:00:00'));
+    } 
+    return time();
 }
 
 function ready_file($file) {
