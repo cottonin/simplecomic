@@ -13,9 +13,9 @@ if (
 }
 
 $page->add_js('https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js');
+$page->add_js('https://unpkg.com/pell');
 $page->add_js(template_path('admin.js'));
-$page->add_css(template_path('cal.css'));
-$page->add_breadcrumb("Admin", "admin/");
+$page->add_css('https://unpkg.com/pell@1.0.6/dist/pell.min.css');
 
 $valid_auth = sha1(config('adminuser').config('adminpass'));
 if (config('adminuser') && (empty($_COOKIE['admin']) || $_COOKIE['admin'] !== $valid_auth)) {
@@ -79,23 +79,41 @@ case 'comic':
             if($db->quick("SELECT comicid FROM comics WHERE pub_date = %d", $pub_date)) {
                 die_error("There is already a comic with that exact date. Please choose a different date.");
             }
-            if(isset($_POST['filename']) && $_POST['filename']) {
-                if(strpos($_POST['filename'], "http") && !file_exists(BASEDIR . config('comicpath') . '/' . $_POST['filename'])) {
-                    die_error("Comic file does not exist");
+            ////////////////
+            if (config('comicpath')) {
+                // User is using a folder for his comics
+                if (isset($_POST['filename']) && $_POST['filename']) {
+                    // Check if they're changing the name from a FTP Upload
+                    if(!file_exists(BASEDIR .'/assets/comics/' . $_POST['filename'])) {
+                        die_error("Comic file does not exist.");
+                    }
+
+                    $filename = $_POST['filename'];
+
+                } else {
+                    if ($_FILES['comicfile']['error'] == UPLOAD_ERR_NO_FILE) {
+                        die_error('No file uploaded. Did you forget?');
+                    }
+
+                    $uploadpath = BASEDIR . '/assets/comics/' . basename($_FILES['comicfile']['name']);
+                    if (file_exists($uploadpath)) {
+                        die_error('File already exists. Try changing the filename.');
+                    }
+                    if (!move_uploaded_file($_FILES['comicfile']['tmp_name'], $uploadpath)) {
+                        die_error("Couldn't move uploaded file.");
+                    }
+
+                    $filename = basename($_FILES['comicfile']['name']);
                 }
-                $filename = $_POST['filename'];
+
             } else {
-                if($_FILES['comicfile']['error'] == UPLOAD_ERR_NO_FILE) {
-                    die_error("No file uploaded");
+                // User is using an external folder for his files
+                if (isset($_POST['filename']) && $_POST['filename']) {
+                    if (strpos($_POST['filename'], "http")) {
+                        die_error("Invalid URL for your file. Check that it's a valid URL starting on 'http://' or 'https://' " );
+                    }
+                    $filename = $_POST['filename'];
                 }
-                $uploadpath = BASEDIR . config('comicpath') . '/' . basename($_FILES['comicfile']['name']);
-                if(file_exists($uploadpath)) {
-                    die_error("File exists");
-                }
-                if(!move_uploaded_file($_FILES['comicfile']['tmp_name'], $uploadpath)) {
-                    die_error("Couldn't move uploaded file");
-                }
-                $filename = basename($_FILES['comicfile']['name']);
             }
             if(!$filename) {
                 die_error("No filename");
@@ -182,7 +200,7 @@ case 'chapter':
                 if($_FILES['comicfile']['error'] == UPLOAD_ERR_NO_FILE) {
                     die_error("No file uploaded");
                 }
-                $uploadpath = BASEDIR . config('comicpath') . '/' . basename($_FILES['comicfile']['name']);
+                $uploadpath = BASEDIR . '/assets/comics/' . basename($_FILES['comicfile']['name']);
                 if(file_exists($uploadpath)) {
                     die_error("File exists");
                 }
