@@ -1,0 +1,43 @@
+.navbar {
+	color: $white;
+	background: $brown;
+
+	font-family: $font-title;
+	font-size: 1.25rem;
+	letter-spacing: 1px;
+
+	display: flex;
+	justify-content: space-between;
+
+	@media screen and (min-width: $breakpoint-container) {
+		border-radius: 5px 5px 0 0;
+	}
+}
+
+.navbar-start {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex: 1 1 0;
+}
+
+.navbar-item {
+	display: block;
+	padding: 0.85rem;
+	border-bottom: 3px solid $transparent;
+
+	&.active {
+		color: $accent;
+		border-bottom: 3px solid $accent;
+	}
+
+	&:hover {
+		color: $accent;
+		background-color: darken($brown, 5%);
+	}
+
+	&:active {
+		color: $accent;
+		background-color: darken($brown, 15%);
+	}
+}

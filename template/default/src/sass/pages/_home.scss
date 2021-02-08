@@ -1,0 +1,305 @@
+// ==========================================================================
+// Home
+// ==========================================================================
+
+section.home {
+
+	.home-wrapper {
+		@include section-margin;
+
+		@media screen and (min-width: $breakpoint-tablet + 1px) {
+			display: grid;
+			grid-template-columns: 40% 60%;
+
+			.column-updates {
+				grid-row: 1;
+			}
+
+			.column-newreader {
+				margin-left: 36px;
+			}
+		}
+	}
+
+	.column-newreader {
+
+		@media screen and (min-width: $breakpoint-container + 1px) {
+			font-size: 18px;
+		}
+
+		@media screen and (max-width: $breakpoint-tablet) {
+			padding: 0 1rem;
+		}
+
+		.updates-text {
+			margin: 1rem 0;
+
+			.updates-badge {
+				border: 1px solid $orange;
+				border-radius: 5rem;
+
+				margin-right: 1rem;
+				
+				font-weight: bold;
+				font-size: 14px;
+
+				padding: 5px 15px;
+
+				@media screen and (max-width: $breakpoint-mobile) {
+					font-size: 12px
+				}
+			}
+		}
+
+		.summary-text {
+			margin: 1rem 0;
+			line-height: 1.5;
+		}
+
+		.button.is-primary {
+			padding-top: 14px;
+			padding-bottom: 14px;
+			width: 100%;
+
+			@media screen and (min-width: $breakpoint-container + 1px) {
+				font-size: 18px;
+				width: 75%;
+			}
+
+		}
+	}
+
+	.column-updates {
+
+		@media screen and (max-width: $breakpoint-tablet) {
+			margin-top: 1rem;
+			margin-right: -1rem;
+			margin-left: -1rem;
+		}
+
+		.updates-box {
+			background-color: $brown;
+			padding: 2rem;
+
+			@media screen and (min-width: $breakpoint-container + 1px) {
+				border: 1px solid $orange;
+				border-radius: 5px;
+			}
+
+			.title {
+				font-size: 24px;
+				font-family: $font-title;
+				margin-bottom: 0.5rem;
+			}
+
+			.button.is-primary {
+				margin-top: 1rem;
+				padding-top: 14px;
+				padding-bottom: 14px;
+				width: 100%;
+
+				@media screen and (min-width: $breakpoint-container + 1px) {
+					font-size: 18px;
+				}
+			}
+		}
+
+		.chapters-list {
+			margin: 1rem 0;
+
+
+
+			.chapter-item {
+				display: flex;
+				background-color: $brown;
+				border-top: 1px solid $orange;
+
+				&:nth-child(odd) {
+					background-color: $light-brown;
+				}
+
+				&:last-child {
+					border-bottom: 1px solid $orange;
+				}
+
+				&:hover {
+					color: $orange!important;
+				}
+
+				.chapter-cover img {
+					display: block;
+					max-width: 72px;
+
+					@media screen and (min-width: $breakpoint-mobile) and (max-width: $breakpoint-tablet + 1px) {
+						max-width: 96px;
+					}
+				}
+
+				.chapter-info {
+					padding: 0 2rem;
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+
+					.ongoing {
+						font-weight: bold;
+						color: $orange;
+					}
+
+					.count, .title {
+						font-family: $font-title;
+					}
+
+					.count {
+						display: block;
+						@media screen and (min-width: $breakpoint-tablet) {
+							font-size: 18px;
+						}
+
+					}
+
+					.title {
+						font-size: 18px;
+
+						@media screen and (min-width: $breakpoint-tablet) {
+							font-size: 22px;
+						}
+					}
+				}
+			}
+		}
+
+		.chapters-pagination {
+			display: flex;
+
+			@media screen and (max-width: $breakpoint-tablet) {
+				display: none;
+			}
+
+			a {
+				display: flex;
+				align-items: center;
+				margin-right: 1rem;
+
+				span {
+					display: inline-block;
+					background: $brown;
+
+					border: 1px solid $orange;
+					border-radius: 50%;
+					color: $orange;
+
+					font-size: 1rem;
+					font-weight: bold;
+
+					line-height: 3rem;
+					text-align: center;
+					width: 3rem; 
+				}
+
+				&.active {
+					span {
+						background: $orange;
+						color: $brown;
+					}
+				}
+
+			}
+		}
+	}
+}
+// ==========================================================================
+// Updates
+// ==========================================================================
+
+.updates-top {
+	background-image: url('../../../image/background_updates.png');
+	margin-bottom: -2px;
+	height: 120px;
+}
+
+section.updates {
+	padding: 3rem 0 1rem;
+	background-image: linear-gradient($light-brown, $brown);
+
+	.container	{
+		background: transparent;		
+	}
+	
+	.updates-header {
+
+		font-size: 36px;
+		font-family: $font-title;
+		margin-bottom: 2rem;
+
+	}
+
+	.updates-content {
+
+		display: flex;
+		flex-direction: column;
+
+		color: white;
+
+		@media screen and (min-width:  $breakpoint-container) {
+			flex-direction: row
+		}
+
+		div.rant {
+
+			@media screen and (min-width:  $breakpoint-container) {
+				width: 60%;
+			}
+			
+			.title {
+				margin-bottom: 5px;
+			}
+
+			.date {
+				font-family: $font-title;
+				font-style: italic;
+				font-weight: 300;
+			}
+
+			.description {
+				@media screen and (min-width: $breakpoint-container) {
+					padding-right: 25px;
+				}
+			}
+
+		}
+
+		div.recently {
+			@media screen and (min-width:  $breakpoint-container) {
+				width: 40%;
+			}
+
+			h2 {
+				font-size: 18px;
+				font-family: $font-title;
+			}
+
+			ul {
+				padding: 20px 0;
+			}
+
+			li.recent-comic, li.recent-rant {
+				padding: 10px 0;
+				border-bottom: 1px solid #444;
+
+				a {
+					display: inline-block;
+				}
+
+				.date {
+					font-style: italic;
+				}
+			}
+
+			li:last-child {
+				border: none;
+			}
+		}
+	}
+
+}

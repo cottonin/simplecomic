@@ -1,0 +1,89 @@
+// ==========================================================================
+// Archive
+// ==========================================================================
+
+section.archive {
+	@include section-margin;
+
+	.title {
+		font-size: 36px;
+		font-family: $font-title;
+	}
+
+	.description {
+		@include content;
+	}
+}
+
+.archive-list {
+	margin-top: 1rem;
+}
+
+.archive-item {
+
+	display: flex;
+	flex-direction: row;
+	margin: 0.75rem 0;
+
+	@media screen and (max-width: $breakpoint-tablet) {
+		border-top: 1px solid $orange;
+		margin: 0 -1rem;
+
+		&:last-child {
+			border-bottom: 1px solid $orange;
+		}
+	}
+
+	.cover-image {
+		max-width: 96px;
+		border-radius: 2px;
+
+		img {
+			display: block;
+		}
+
+		@media screen and (min-width: $breakpoint-tablet) {
+			max-width: 145px;
+		}
+	}
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding-left: 20px;
+
+		.title {
+			font-size: 22px;
+
+			@media screen and (min-width: $breakpoint-tablet) {
+				font-size: 28px;
+				margin-bottom: 1rem;
+			}
+
+			span {
+				font-size: 16px;
+				display: block;
+
+				@media screen and (min-width: $breakpoint-tablet) {
+					font-size: 20px;
+				}
+			}
+		}
+
+		.description {
+			padding-bottom: 20px;
+			@media screen and (max-width: $breakpoint-tablet) {
+				display: none;
+			}
+		}
+
+		.buttons {
+			@media screen and (max-width: $breakpoint-mobile) {
+				display: none;
+			}
+		}
+
+
+	}
+}

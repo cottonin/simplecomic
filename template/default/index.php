@@ -7,12 +7,50 @@ available variables:
 */
 
 template('head'); ?>
-<?php template('comic', $comic); ?>
+    <section class="home">
+        <div class="home-wrapper">
+            <div class="column column-newreader">
+                <img src="<?php echo url('image/fluffygang.png') ?>" alt="">
+                <div class="updates-text"><span class="updates-badge">Updates</span>Thursdays and Saturdays</div>
+                <div class="summary-text">When Nate, an eager and adventurous boy who offers to help Marissa, a girl he just met to rescue her friend Nita lost in the depths of the mountains, surrounded by a thick, dense fog. Also Vincent, a grumpy guild assistant gets dragged in the middle of this mess. </div>
+                <a href="#" class="button is-primary">First Chapter</a>
+            </div>
+            <div class="column column-updates">
+                <div class="updates-box">
+                    <p class="title">Latest Update</p>
+                    <?php foreach ($comics as $comic): ?>
+                        <p class="comic"><?php echo $comic['title'] ?></p>
+                    <?php endforeach ?>
+                    <a href="<?php echo url('comic/'.$comics[0]['slug']); ?>" class="button is-primary">Latest Update</a>
+                </div>
+                <div id="chapters-list">
+                    <ul class="chapters-list list">
+                        <?php foreach($chapters as $chapter) { ?>
+                            <a href="<?php echo url('chapter/' . $chapter['slug']); ?>" class="chapter-item">
+                                <div class="chapter-cover">
+                                    <?php if ($chapter['filename'] == ''): ?>
+                                    <img src="https://placehold.it/144x204?text=?" alt="">
+                                    <?php else: ?>
+                                    <img src="<?php echo url($chapter['filename']); ?>" alt="">
+                                    <?php endif ?>
+                                </div>
+                                <div class="chapter-info">
+                                    <div class="title"><span class="count">Entry No. <?php echo str_pad($chapter['order'], 3, "0", STR_PAD_LEFT); ?></span><?php echo $chapter['title'] ?></div>
+                                </div>
+                            </a>
+                        <?php } ?>
+                    </ul>
+                    <ul class="chapters-pagination pagination"></ul>
+                </div>
+            </div>
+        </div>
+    </section>
     </div>
 </main>
+<div class="updates-top"></div>
 <section class="updates">
     <div class="container">
-        <h2 class="updates-header">Updates</h2>
+        <h2 class="updates-header">Site Updates</h2>
         <div class="updates-content">
             <div class="rant">
                 <?php template('rant', $rant); ?>
@@ -34,16 +72,22 @@ template('head'); ?>
                         echo '</li>';
                     } ?>
                 </ul>
-                <div class="socialmedia">
-                    <div><a href="http://www.instagram.com/gangfluffy/" target="_blank"><img src="<?php echo url('image/icon_instagram.svg'); ?>" alt="Instagram"></a></div>
-                    <div><a href="http://www.fluffygang.tumblr.com/" target="_blank"><img src="<?php echo url('image/icon_tumblr.svg'); ?>" alt="Tumblr"></a></div>
-                    <div><a href="http://www.twitter.com/fluffygang" target="_blank"><img src="<?php echo url('image/icon_twitter.svg'); ?>" alt="Twitter"></a></div>
-                    <div><a href="<?php echo url('feed/');?>" target="_blank"><img src="<?php echo url('image/icon_rss.svg'); ?>" alt="RSS"></a></div>
-                </div>
+                <img src="https://placehold.it/388x96" alt="">
+                <img src="https://placehold.it/388x96" alt="">
+                <img src="https://placehold.it/388x96" alt="">
+
             </div>
 
         </div>
 
     </div>
 </section>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script>
+    var chaptersList = new List('chapters-list', {
+      valueNames: ['chapter-item'],
+      page: 5,
+      pagination: true
+    });
+</script>
 <?php template('foot'); ?>

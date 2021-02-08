@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Londrina+Solid:300,400");
 /*! minireset.css v0.0.4 | MIT License | github.com/jgthms/minireset.css */
+@import url("https://fonts.googleapis.com/css?family=Londrina+Solid:300&display=swap");
 html,
 body,
 p,
@@ -76,162 +76,67 @@ th {
     text-align: left; }
 
 body {
-  color: #2d2d2d;
-  background-color: #efefef;
+  color: #ffffff;
+  background-color: #1a090b;
   background-size: contain;
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  font-family: 'Segoe UI', sans-serif; }
+  background-repeat: repeat-x;
+  background-position: center 0;
+  font-family: "Segoe UI", sans-serif; }
+  @media screen and (min-width: 960px) {
+    body {
+      background-size: 960px;
+      background-attachment: fixed; } }
 
 ::selection {
-  background-color: #3273dc;
-  color: white; }
+  background-color: #fd960f;
+  color: #ffffff; }
 
 a {
   color: inherit;
   text-decoration: none; }
   a:not([class]) {
-    color: #3273dc; }
+    color: #fd960f; }
   a:hover {
-    color: darkblue; }
+    color: orangered; }
   a:active {
-    color: #3273dc; }
-
-section {
-  padding: 20px 0; }
-
-.title {
-  font-weight: bold; }
-
-.description {
-  line-height: 1.5;
-  margin-top: 0.75rem; }
-
-figure.image img {
-  display: block; }
-
-figure.image-banner {
-  position: relative;
-  padding-bottom: 18.75%; }
-  figure.image-banner img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; }
-
-.is-hidden {
-  display: none !important; }
-
-.is-hidden-touch {
-  display: none; }
-
-@media screen and (min-width: 800px) {
-  span.is-hidden-touch {
-    display: inline-block; }
-  .is-hidden-touch {
-    display: block; } }
-
-.button, .input, .textarea, .select select, .file-cta, .filename {
-  background: white;
-  color: #363636;
-  border: 1px solid #dbdbdb;
-  padding: 0.75em;
-  border-radius: 4px;
-  box-shadow: none;
-  display: inline-flex;
-  line-height: 1.4; }
-
-.button {
-  font-weight: bold;
-  font-size: 1rem;
-  padding: 0.75rem 1.5rem;
-  text-align: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: 0.25s ease all; }
-  .button.is-primary {
-    color: white;
-    background-color: #3273dc; }
-  .button.is-danger {
-    color: white;
-    background-color: darkblue; }
-  .button.is-small {
-    padding: 0.5rem 1rem;
-    margin-bottom: 0.75rem; }
-  .button:visited {
-    background-color: whitesmoke; }
-  .button.is-primary:visited {
-    background-color: #3273dc; }
-  .button:focus {
-    border: 1px solid #3273dc; }
-  .button.is-disabled {
-    background: lightgray;
-    cursor: not-allowed; }
-  .button.is-disabled:hover {
-    background: lightgray;
-    color: black; }
-  .button.full {
-    width: 100%;
-    margin-bottom: 0.75rem; }
-
-.field {
-  margin: 0.5rem 0; }
-
-label.label {
-  font-weight: bold;
-  display: inline-block;
-  margin-bottom: 0.5rem; }
-
-.input, .textarea, .file-cta, .select select {
-  max-width: 100%;
-  width: 100%; }
-
-.input, .textarea {
-  box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1); }
-
-.textarea {
-  min-height: 6rem; }
-
-.select select {
-  cursor: pointer;
-  display: block;
-  font-size: 1em;
-  outline: none; }
+    color: white; }
 
 .container {
   margin: 0 auto;
-  padding: 0 15px;
   position: relative;
-  max-width: 800px;
-  background-color: white; }
-  .container.has-no-padding {
-    padding: 0; }
-  .container.has-no-background {
-    background-color: transparent;
-    color: white; }
-
-.header .container {
+  max-width: 960px;
   background-color: transparent; }
+  @media screen and (max-width: 960px) {
+    .container {
+      padding: 0 1rem; } }
+
+@media screen and (max-width: 960px) {
+  .header .container {
+    padding: 0 !important; } }
 
 .header-banner {
-  transition: 0.25s ease all; }
+  transition: 0.25s ease filter; }
   .header-banner:hover {
-    opacity: 0.75;
-    transition: 0.25s ease all; }
+    filter: brightness(110%);
+    transition: 0.25s ease filter; }
+  .header-banner:active {
+    filter: brightness(115%); }
+  .header-banner figure.image-banner img {
+    display: block;
+    width: 720px;
+    margin: 0 auto; }
 
 .navbar {
-  color: white;
-  background: #2d2d2d;
-  font-family: "Segoe UI", sans-serif;
+  color: #ffffff;
+  background: #1a090b;
+  font-family: "Londrina Solid", sans-serif;
   font-size: 1.25rem;
-  font-weight: bold;
+  letter-spacing: 1px;
   display: flex;
   justify-content: space-between; }
-
-@media screen and (min-width: 800px) {
-  .navbar {
-    border-radius: 5px 5px 0 0; } }
+  @media screen and (min-width: 960px) {
+    .navbar {
+      border-radius: 5px 5px 0 0; } }
 
 .navbar-start {
   display: flex;
@@ -240,252 +145,353 @@ label.label {
   flex: 1 1 0; }
 
 .navbar-item {
-  font-weight: 400;
   display: block;
-  padding: 0.75rem;
+  padding: 0.85rem;
   border-bottom: 3px solid transparent; }
-
-.navbar-item.active {
-  color: #3273dc;
-  border-bottom: 3px solid #3273dc; }
-
-.navbar-item:hover {
-  color: #3273dc;
-  background: #0d0d0d; }
-
-footer.footer .container {
-  padding-top: 20px;
-  padding-bottom: 20px; }
+  .navbar-item.active {
+    color: #fd960f;
+    border-bottom: 3px solid #fd960f; }
+  .navbar-item:hover {
+    color: #fd960f;
+    background-color: #070203; }
+  .navbar-item:active {
+    color: #fd960f;
+    background-color: black; }
 
 .navpage {
-  color: white;
+  color: #ffffff;
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   margin: 1.25rem 0.75rem 0; }
-
-@media screen and (min-width: 800px) {
-  .navpage {
-    color: transparent;
-    font-size: 1.25rem;
-    font-weight: 400; } }
+  @media screen and (min-width: 960px) {
+    .navpage {
+      color: transparent;
+      font-size: 1.25rem; } }
 
 .navpage-item {
   padding: 28px;
   height: 64px;
   width: 64px;
   user-select: none;
-  height: initial !important;
   text-align: center;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain; }
-
-.navpage-item:hover {
-  user-select: none;
-  color: transparent; }
-
-.navpage-item[rel=prev] {
-  background-image: url("../../../image/nav_adjacent.png"); }
-
-.navpage-item[rel=next] {
-  background-image: url("../../../image/nav_adjacent.png");
-  transform: scaleX(-1); }
-
-.navpage-item[aria-button=first] {
-  background-image: url("../../../image/nav_far.png"); }
-
-.navpage-item[aria-button=last] {
-  background-image: url("../../../image/nav_far.png");
-  transform: scaleX(-1); }
-
-.navpage-item[aria-button=archive] {
-  background-image: url("../../../image/nav_archive.png"); }
-
-@media screen and (min-width: 800px) {
-  .navpage-item {
-    height: 96px !important;
-    width: 96px !important; } }
+  .navpage-item[data-navpage="prev"], .navpage-item[data-navpage="next"] {
+    background-image: url("../../../image/nav_adjacent.svg"); }
+  .navpage-item[data-navpage="first"], .navpage-item[data-navpage="last"] {
+    background-image: url("../../../image/nav_far.svg"); }
+  .navpage-item[data-navpage="next"], .navpage-item[data-navpage="last"] {
+    transform: scaleX(-1); }
+  .navpage-item[data-navpage="archive"] {
+    background-image: url("../../../image/nav_archive.svg"); }
+  .navpage-item span {
+    display: none; }
+  @media screen and (min-width: 960px) {
+    .navpage-item {
+      height: 96px !important;
+      width: 96px !important; } }
 
 div.navpage-item {
   opacity: 0.15; }
 
 a.navpage-item:hover {
-  filter: brightness(125%); }
+  filter: brightness(135%); }
 
 a.navpage-item:active {
   filter: brightness(200%); }
 
-ul.chapter-list form {
-  display: inline-block; }
+.footer {
+  padding: 2rem 0;
+  color: #919191; }
 
-.chapter-move {
-  margin: 0; }
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  color: #1a090b;
+  background-color: #fd960f;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5rem; }
+  .button:hover {
+    background-color: #d77b02; }
+  .button:active {
+    background-color: #8b5001; }
+  .button.is-primary {
+    color: #1a090b;
+    background-color: #fd960f; }
+    .button.is-primary:hover {
+      background-color: #d77b02; }
+    .button.is-primary:active {
+      background-color: #8b5001; }
+  .button.is-secondary {
+    color: #fd960f;
+    background-color: #1a090b;
+    border: 1px solid #fd960f; }
+    .button.is-secondary:hover {
+      background-color: black; }
+    .button.is-secondary:active {
+      background-color: black; }
+  .button.is-danger {
+    color: #ffffff;
+    background-color: orangered; }
+    .button.is-danger:hover {
+      background-color: #cc3700; }
+    .button.is-danger:active {
+      background-color: #802300; }
+  .button.is-fullwidth {
+    width: 100%; }
 
-.chapter-move > .button {
-  font-size: 0.75rem;
-  padding: 0.25rem 0.5rem; }
+.field {
+  margin: 0.5rem 0; }
 
-section.updates {
-  padding: 0; }
-  section.updates .container {
-    background: white; }
-  section.updates .updates-header {
-    color: #efefef;
-    background-color: #2d2d2d;
-    font-size: 1.75rem;
-    font-family: "Segoe UI", sans-serif;
-    text-transform: uppercase;
-    text-align: center;
-    padding: 15px 0;
-    margin: 0 -15px;
-    border-radius: 3px; }
-  section.updates .updates-content {
-    display: flex;
-    flex-direction: column;
-    color: #2d2d2d; }
-    @media screen and (min-width: 800px) {
-      section.updates .updates-content {
-        flex-direction: row; } }
-    @media screen and (min-width: 800px) {
-      section.updates .updates-content div.rant {
-        padding-right: 15px; } }
-    section.updates .updates-content div.recently {
-      min-width: 50%;
-      padding-top: 20px; }
-      section.updates .updates-content div.recently h2 {
-        font-size: 18px;
-        font-family: "Segoe UI", sans-serif;
-        font-weight: bold; }
-      section.updates .updates-content div.recently ul {
-        list-style: circle;
-        padding: 20px; }
-      section.updates .updates-content div.recently li + li {
-        margin-top: 10px; }
+.label {
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 0.5rem; }
 
-.comic {
-  margin-left: -15px;
-  margin-right: -15px; }
-  .comic .comic-link {
-    width: 50%;
-    height: 100%;
-    position: absolute; }
-    .comic .comic-link .prev {
-      left: 0; }
-    .comic .comic-link .next {
-      right: 0; }
+.input,
+.textarea,
+.select,
+.filename,
+.file {
+  width: 100%;
+  padding: 0.75rem;
+  background: #ffffff;
+  color: #363636;
+  border: none;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 5px; }
 
-.comic img {
-  width: 100%; }
+.textarea {
+  min-height: 6rem; }
 
-section.comic-content {
-  background: transparent;
-  padding: 20px; }
-  section.comic-content h2.title {
-    font-family: "Segoe UI", sans-serif;
+.select {
+  display: block;
+  font-size: 1em;
+  cursor: pointer;
+  outline: none; }
+
+.pell-content {
+  background-color: #ffffff;
+  color: #1a090b; }
+  .pell-content div,
+  .pell-content p,
+  .pell-content ol,
+  .pell-content ul,
+  .pell-content pre,
+  .pell-content blockquote {
+    line-height: 1.5; }
+    .pell-content div:not(:last-child),
+    .pell-content p:not(:last-child),
+    .pell-content ol:not(:last-child),
+    .pell-content ul:not(:last-child),
+    .pell-content pre:not(:last-child),
+    .pell-content blockquote:not(:last-child) {
+      margin-bottom: 1rem; }
+  .pell-content h1 {
+    font-size: 42px; }
+  .pell-content h2 {
+    font-size: 36px; }
+  .pell-content h3 {
+    font-size: 30px; }
+  .pell-content h4 {
     font-size: 24px; }
-  section.comic-content .date {
-    font-family: "Segoe UI", sans-serif;
-    font-style: italic;
-    font-weight: 300; }
-  section.comic-content .transcript {
-    display: none;
-    border: 1px dotted #ccc;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 30px 0 0; }
-    section.comic-content .transcript h3.title {
-      font-weight: bold; }
-    section.comic-content .transcript.active {
-      display: block; }
-  section.comic-content #transcript-toggle {
-    display: none; }
+  .pell-content h5 {
+    font-size: 18px; }
+  .pell-content h1, .pell-content h2, .pell-content h3, .pell-content h4, .pell-content h5, .pell-content h6 {
+    font-family: "Londrina Solid", sans-serif;
+    margin-bottom: 1rem; }
+    .pell-content h1:not(:first-child), .pell-content h2:not(:first-child), .pell-content h3:not(:first-child), .pell-content h4:not(:first-child), .pell-content h5:not(:first-child), .pell-content h6:not(:first-child) {
+      margin-top: 1rem; }
+  .pell-content ul {
+    padding-left: 30px;
+    list-style-type: disc; }
+  .pell-content ol {
+    padding-left: 30px;
+    list-style-type: decimal; }
 
-section.archive .title {
-  font-size: 36px;
-  font-family: "Segoe UI", sans-serif; }
+section.admin {
+  margin-top: 1rem;
+  margin-bottom: 5rem; }
+  section.admin h2 {
+    margin: 24px 0 12px;
+    font-size: 24px;
+    font-family: "Londrina Solid", sans-serif; }
+  section.admin ul.list li {
+    display: flex;
+    padding: 8px 12px;
+    margin: 4px 0;
+    background-color: #1a090b; }
+    section.admin ul.list li:nth-child(odd) {
+      background-color: #2d1013; }
+  section.admin ul.list span.name {
+    flex-grow: 1; }
+  section.admin ul.list span.date {
+    color: #ddd; }
+  section.admin ul.list span.view, section.admin ul.list span.edit {
+    order: -1; }
+  section.admin ul.list span.view, section.admin ul.list span.date, section.admin ul.list span.edit, section.admin ul.list span.name {
+    padding: 0 10px; }
+  section.admin ul.chapter-list form {
+    display: inline-block; }
+  section.admin .chapter-move {
+    margin: 0; }
+    section.admin .chapter-move .button {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem; }
+
+section.archive {
+  margin-top: 1rem;
+  margin-bottom: 5rem; }
+  section.archive .title {
+    font-size: 36px;
+    font-family: "Londrina Solid", sans-serif; }
+  section.archive .description div,
+  section.archive .description p,
+  section.archive .description ol,
+  section.archive .description ul,
+  section.archive .description pre,
+  section.archive .description blockquote {
+    line-height: 1.5; }
+    section.archive .description div:not(:last-child),
+    section.archive .description p:not(:last-child),
+    section.archive .description ol:not(:last-child),
+    section.archive .description ul:not(:last-child),
+    section.archive .description pre:not(:last-child),
+    section.archive .description blockquote:not(:last-child) {
+      margin-bottom: 1rem; }
+  section.archive .description h1 {
+    font-size: 42px; }
+  section.archive .description h2 {
+    font-size: 36px; }
+  section.archive .description h3 {
+    font-size: 30px; }
+  section.archive .description h4 {
+    font-size: 24px; }
+  section.archive .description h5 {
+    font-size: 18px; }
+  section.archive .description h1, section.archive .description h2, section.archive .description h3, section.archive .description h4, section.archive .description h5, section.archive .description h6 {
+    font-family: "Londrina Solid", sans-serif;
+    margin-bottom: 1rem; }
+    section.archive .description h1:not(:first-child), section.archive .description h2:not(:first-child), section.archive .description h3:not(:first-child), section.archive .description h4:not(:first-child), section.archive .description h5:not(:first-child), section.archive .description h6:not(:first-child) {
+      margin-top: 1rem; }
+  section.archive .description ul {
+    padding-left: 30px;
+    list-style-type: disc; }
+  section.archive .description ol {
+    padding-left: 30px;
+    list-style-type: decimal; }
+
+.archive-list {
+  margin-top: 1rem; }
 
 .archive-item {
   display: flex;
   flex-direction: row;
   margin: 0.75rem 0; }
-  .archive-item:last-child {
-    margin-bottom: -0.25rem; }
+  @media screen and (max-width: 768px) {
+    .archive-item {
+      border-top: 1px solid #fd960f;
+      margin: 0 -1rem; }
+      .archive-item:last-child {
+        border-bottom: 1px solid #fd960f; } }
   .archive-item .cover-image {
-    max-width: 33%;
-    margin: 0;
-    margin-top: 0;
-    margin-bottom: 0.75rem; }
-    @media screen and (min-width: 800px) {
+    max-width: 96px;
+    border-radius: 2px; }
+    .archive-item .cover-image img {
+      display: block; }
+    @media screen and (min-width: 768px) {
       .archive-item .cover-image {
-        max-width: 200px;
-        min-width: 200px;
-        height: 283px; } }
+        max-width: 145px; } }
   .archive-item .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding-left: 20px; }
     .archive-item .content .title {
-      font-size: 18px; }
-      @media screen and (min-width: 800px) {
+      font-size: 22px; }
+      @media screen and (min-width: 768px) {
         .archive-item .content .title {
-          font-size: 24px; } }
+          font-size: 28px;
+          margin-bottom: 1rem; } }
+      .archive-item .content .title span {
+        font-size: 16px;
+        display: block; }
+        @media screen and (min-width: 768px) {
+          .archive-item .content .title span {
+            font-size: 20px; } }
     .archive-item .content .description {
       padding-bottom: 20px; }
-    .archive-item .content .buttons {
-      display: flex;
-      flex-direction: column; }
-      @media screen and (min-width: 800px) {
-        .archive-item .content .buttons {
-          flex-direction: row; } }
-      .archive-item .content .buttons .button-wrapper {
-        min-width: 50%; }
-      @media screen and (min-width: 800px) {
-        .archive-item .content .buttons .button-wrapper + .button-wrapper {
-          padding-left: 10px; } }
+      @media screen and (max-width: 768px) {
+        .archive-item .content .description {
+          display: none; } }
+    @media screen and (max-width: 480px) {
+      .archive-item .content .buttons {
+        display: none; } }
 
-section.chapter .title {
-  font-size: 30px;
-  font-family: "Segoe UI", sans-serif;
-  margin-bottom: -15px; }
-
-section.chapter .description {
-  margin-bottom: 20px; }
-
-section.chapter .return {
-  margin-bottom: 20px; }
-
-section.chapter ul {
-  display: flex;
-  flex-wrap: wrap; }
-  section.chapter ul li {
-    min-width: 150px;
-    flex: 1 1 0; }
-    section.chapter ul li a {
+section.chapter {
+  margin-top: 1rem;
+  margin-bottom: 5rem; }
+  @media screen and (max-width: 480px) {
+    section.chapter div.chapter-info .info-text {
+      padding: 2rem 1rem; }
+    section.chapter div.chapter-info .button.is-primary {
+      width: 100%; } }
+  @media screen and (min-width: 480px) {
+    section.chapter div.chapter-info {
+      display: grid;
+      grid-template-columns: 192px 1fr; }
+      section.chapter div.chapter-info .info-text {
+        margin-left: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; } }
+  section.chapter div.chapter-info .title {
+    font-size: 30px;
+    font-family: "Londrina Solid", sans-serif; }
+    @media screen and (min-width: 768px) {
+      section.chapter div.chapter-info .title {
+        font-size: 42px; } }
+    section.chapter div.chapter-info .title span {
+      font-size: 24px;
+      display: block; }
+  section.chapter div.chapter-info .description {
+    margin-bottom: 20px; }
+    @media screen and (min-width: 768px) {
+      section.chapter div.chapter-info .description {
+        font-size: 18px; } }
+  section.chapter div.chapter-info .return {
+    margin-bottom: 0.5rem; }
+  section.chapter ul.chapter-list {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr; }
+    @media screen and (min-width: 470px) {
+      section.chapter ul.chapter-list {
+        grid-template-columns: 1fr 1fr 1fr; } }
+    @media screen and (min-width: 570px) {
+      section.chapter ul.chapter-list {
+        grid-template-columns: 1fr 1fr 1fr 1fr; } }
+    @media screen and (min-width: 960px) {
+      section.chapter ul.chapter-list {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr; } }
+    section.chapter ul.chapter-list li a {
       display: inline-block;
-      border: 1px solid #111;
+      border: 1px solid #111111;
       border-radius: 2.5px;
-      height: 200px;
+      height: 220px;
       width: 100%;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat; }
 
-.chapter-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  padding: 1rem 0 1rem; }
-  .chapter-nav select {
-    flex: 1 0 0;
-    max-width: 100%;
-    padding: 0.75rem;
-    border-radius: 4px;
-    font-weight: bold; }
-
 section.chapter-list .title {
   font-size: 30px;
-  font-family: "Segoe UI", sans-serif; }
+  font-family: "Londrina Solid", sans-serif; }
 
 section.chapter-list ul {
   margin-top: 30px;
@@ -494,7 +500,7 @@ section.chapter-list ul {
   section.chapter-list ul li {
     flex: 0 1 50%;
     margin-bottom: 10px; }
-    @media screen and (min-width: 800px) {
+    @media screen and (min-width: 480px) {
       section.chapter-list ul li {
         flex: 0 1 20%; } }
     section.chapter-list ul li .chapter-cover {
@@ -502,17 +508,392 @@ section.chapter-list ul {
       padding-right: 7px; }
     section.chapter-list ul li .chapter-title h3 {
       font-size: 18px;
-      font-weight: bold;
-      font-family: "Segoe UI", sans-serif;
+      font-family: "Londrina Solid", sans-serif;
       margin: 5px 0; }
 
-section.rant .title {
-  font-size: 24px;
-  font-family: "Segoe UI", sans-serif; }
+.comic .comic-wrapper {
+  position: relative;
+  min-height: 50vh;
+  background-color: #eee;
+  background-position: center;
+  background-size: 36px;
+  background-repeat: no-repeat;
+  background-image: url("../../../image/loader.gif"); }
+
+.comic .comic-link {
+  width: 50%;
+  height: 100%;
+  position: absolute; }
+  .comic .comic-link:focus {
+    background-color: rgba(0, 0, 0, 0.15); }
+  .comic .comic-link.prev {
+    left: 0; }
+  .comic .comic-link.next {
+    right: 0; }
+
+.comic img {
+  display: block;
+  width: 100%;
+  border: 1px solid #111; }
+
+section.comic-content {
+  padding: 20px 20px 50px; }
+  section.comic-content h2.title {
+    font-family: "Londrina Solid", sans-serif;
+    font-size: 24px;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem; }
+  section.comic-content .date {
+    font-family: "Londrina Solid", sans-serif;
+    font-style: italic; }
+  section.comic-content .description div,
+  section.comic-content .description p,
+  section.comic-content .description ol,
+  section.comic-content .description ul,
+  section.comic-content .description pre,
+  section.comic-content .description blockquote {
+    line-height: 1.5; }
+    section.comic-content .description div:not(:last-child),
+    section.comic-content .description p:not(:last-child),
+    section.comic-content .description ol:not(:last-child),
+    section.comic-content .description ul:not(:last-child),
+    section.comic-content .description pre:not(:last-child),
+    section.comic-content .description blockquote:not(:last-child) {
+      margin-bottom: 1rem; }
+  section.comic-content .description h1 {
+    font-size: 42px; }
+  section.comic-content .description h2 {
+    font-size: 36px; }
+  section.comic-content .description h3 {
+    font-size: 30px; }
+  section.comic-content .description h4 {
+    font-size: 24px; }
+  section.comic-content .description h5 {
+    font-size: 18px; }
+  section.comic-content .description h1, section.comic-content .description h2, section.comic-content .description h3, section.comic-content .description h4, section.comic-content .description h5, section.comic-content .description h6 {
+    font-family: "Londrina Solid", sans-serif;
+    margin-bottom: 1rem; }
+    section.comic-content .description h1:not(:first-child), section.comic-content .description h2:not(:first-child), section.comic-content .description h3:not(:first-child), section.comic-content .description h4:not(:first-child), section.comic-content .description h5:not(:first-child), section.comic-content .description h6:not(:first-child) {
+      margin-top: 1rem; }
+  section.comic-content .description ul {
+    padding-left: 30px;
+    list-style-type: disc; }
+  section.comic-content .description ol {
+    padding-left: 30px;
+    list-style-type: decimal; }
+  section.comic-content .transcript {
+    display: none;
+    bottom: 1px dotted #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 30px 0 0; }
+    section.comic-content .transcript.active {
+      display: block; }
+
+section.home .home-wrapper {
+  margin-top: 1rem;
+  margin-bottom: 5rem; }
+  @media screen and (min-width: 769px) {
+    section.home .home-wrapper {
+      display: grid;
+      grid-template-columns: 40% 60%; }
+      section.home .home-wrapper .column-updates {
+        grid-row: 1; }
+      section.home .home-wrapper .column-newreader {
+        margin-left: 36px; } }
+
+@media screen and (min-width: 961px) {
+  section.home .column-newreader {
+    font-size: 18px; } }
+
+@media screen and (max-width: 768px) {
+  section.home .column-newreader {
+    padding: 0 1rem; } }
+
+section.home .column-newreader .updates-text {
+  margin: 1rem 0; }
+  section.home .column-newreader .updates-text .updates-badge {
+    border: 1px solid #fd960f;
+    border-radius: 5rem;
+    margin-right: 1rem;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px 15px; }
+    @media screen and (max-width: 480px) {
+      section.home .column-newreader .updates-text .updates-badge {
+        font-size: 12px; } }
+
+section.home .column-newreader .summary-text {
+  margin: 1rem 0;
+  line-height: 1.5; }
+
+section.home .column-newreader .button.is-primary {
+  padding-top: 14px;
+  padding-bottom: 14px;
+  width: 100%; }
+  @media screen and (min-width: 961px) {
+    section.home .column-newreader .button.is-primary {
+      font-size: 18px;
+      width: 75%; } }
+
+@media screen and (max-width: 768px) {
+  section.home .column-updates {
+    margin-top: 1rem;
+    margin-right: -1rem;
+    margin-left: -1rem; } }
+
+section.home .column-updates .updates-box {
+  background-color: #1a090b;
+  padding: 2rem; }
+  @media screen and (min-width: 961px) {
+    section.home .column-updates .updates-box {
+      border: 1px solid #fd960f;
+      border-radius: 5px; } }
+  section.home .column-updates .updates-box .title {
+    font-size: 24px;
+    font-family: "Londrina Solid", sans-serif;
+    margin-bottom: 0.5rem; }
+  section.home .column-updates .updates-box .button.is-primary {
+    margin-top: 1rem;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    width: 100%; }
+    @media screen and (min-width: 961px) {
+      section.home .column-updates .updates-box .button.is-primary {
+        font-size: 18px; } }
+
+section.home .column-updates .chapters-list {
+  margin: 1rem 0; }
+  section.home .column-updates .chapters-list .chapter-item {
+    display: flex;
+    background-color: #1a090b;
+    border-top: 1px solid #fd960f; }
+    section.home .column-updates .chapters-list .chapter-item:nth-child(odd) {
+      background-color: #201214; }
+    section.home .column-updates .chapters-list .chapter-item:last-child {
+      border-bottom: 1px solid #fd960f; }
+    section.home .column-updates .chapters-list .chapter-item:hover {
+      color: #fd960f !important; }
+    section.home .column-updates .chapters-list .chapter-item .chapter-cover img {
+      display: block;
+      max-width: 72px; }
+      @media screen and (min-width: 480px) and (max-width: 769px) {
+        section.home .column-updates .chapters-list .chapter-item .chapter-cover img {
+          max-width: 96px; } }
+    section.home .column-updates .chapters-list .chapter-item .chapter-info {
+      padding: 0 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; }
+      section.home .column-updates .chapters-list .chapter-item .chapter-info .ongoing {
+        font-weight: bold;
+        color: #fd960f; }
+      section.home .column-updates .chapters-list .chapter-item .chapter-info .count, section.home .column-updates .chapters-list .chapter-item .chapter-info .title {
+        font-family: "Londrina Solid", sans-serif; }
+      section.home .column-updates .chapters-list .chapter-item .chapter-info .count {
+        display: block; }
+        @media screen and (min-width: 768px) {
+          section.home .column-updates .chapters-list .chapter-item .chapter-info .count {
+            font-size: 18px; } }
+      section.home .column-updates .chapters-list .chapter-item .chapter-info .title {
+        font-size: 18px; }
+        @media screen and (min-width: 768px) {
+          section.home .column-updates .chapters-list .chapter-item .chapter-info .title {
+            font-size: 22px; } }
+
+section.home .column-updates .chapters-pagination {
+  display: flex; }
+  @media screen and (max-width: 768px) {
+    section.home .column-updates .chapters-pagination {
+      display: none; } }
+  section.home .column-updates .chapters-pagination a {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem; }
+    section.home .column-updates .chapters-pagination a span {
+      display: inline-block;
+      background: #1a090b;
+      border: 1px solid #fd960f;
+      border-radius: 50%;
+      color: #fd960f;
+      font-size: 1rem;
+      font-weight: bold;
+      line-height: 3rem;
+      text-align: center;
+      width: 3rem; }
+    section.home .column-updates .chapters-pagination a.active span {
+      background: #fd960f;
+      color: #1a090b; }
+
+.updates-top {
+  background-image: url("../../../image/background_updates.png");
+  margin-bottom: -2px;
+  height: 120px; }
+
+section.updates {
+  padding: 3rem 0 1rem;
+  background-image: linear-gradient(#201214, #1a090b); }
+  section.updates .container {
+    background: transparent; }
+  section.updates .updates-header {
+    font-size: 36px;
+    font-family: "Londrina Solid", sans-serif;
+    margin-bottom: 2rem; }
+  section.updates .updates-content {
+    display: flex;
+    flex-direction: column;
+    color: white; }
+    @media screen and (min-width: 960px) {
+      section.updates .updates-content {
+        flex-direction: row; } }
+    @media screen and (min-width: 960px) {
+      section.updates .updates-content div.rant {
+        width: 60%; } }
+    section.updates .updates-content div.rant .title {
+      margin-bottom: 5px; }
+    section.updates .updates-content div.rant .date {
+      font-family: "Londrina Solid", sans-serif;
+      font-style: italic;
+      font-weight: 300; }
+    @media screen and (min-width: 960px) {
+      section.updates .updates-content div.rant .description {
+        padding-right: 25px; } }
+    @media screen and (min-width: 960px) {
+      section.updates .updates-content div.recently {
+        width: 40%; } }
+    section.updates .updates-content div.recently h2 {
+      font-size: 18px;
+      font-family: "Londrina Solid", sans-serif; }
+    section.updates .updates-content div.recently ul {
+      padding: 20px 0; }
+    section.updates .updates-content div.recently li.recent-comic, section.updates .updates-content div.recently li.recent-rant {
+      padding: 10px 0;
+      border-bottom: 1px solid #444; }
+      section.updates .updates-content div.recently li.recent-comic a, section.updates .updates-content div.recently li.recent-rant a {
+        display: inline-block; }
+      section.updates .updates-content div.recently li.recent-comic .date, section.updates .updates-content div.recently li.recent-rant .date {
+        font-style: italic; }
+    section.updates .updates-content div.recently li:last-child {
+      border: none; }
+
+section.page {
+  margin-top: 1rem;
+  margin-bottom: 5rem; }
+  section.page div,
+  section.page p,
+  section.page ol,
+  section.page ul,
+  section.page pre,
+  section.page blockquote {
+    line-height: 1.5; }
+    section.page div:not(:last-child),
+    section.page p:not(:last-child),
+    section.page ol:not(:last-child),
+    section.page ul:not(:last-child),
+    section.page pre:not(:last-child),
+    section.page blockquote:not(:last-child) {
+      margin-bottom: 1rem; }
+  section.page h1 {
+    font-size: 42px; }
+  section.page h2 {
+    font-size: 36px; }
+  section.page h3 {
+    font-size: 30px; }
+  section.page h4 {
+    font-size: 24px; }
+  section.page h5 {
+    font-size: 18px; }
+  section.page h1, section.page h2, section.page h3, section.page h4, section.page h5, section.page h6 {
+    font-family: "Londrina Solid", sans-serif;
+    margin-bottom: 1rem; }
+    section.page h1:not(:first-child), section.page h2:not(:first-child), section.page h3:not(:first-child), section.page h4:not(:first-child), section.page h5:not(:first-child), section.page h6:not(:first-child) {
+      margin-top: 1rem; }
+  section.page ul {
+    padding-left: 30px;
+    list-style-type: disc; }
+  section.page ol {
+    padding-left: 30px;
+    list-style-type: decimal; }
+  @media screen and (max-width: 768px) and (min-width: 480px) {
+    section.page .characters-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 1rem; } }
+  section.page .character-row {
+    position: relative; }
+    section.page .character-row:nth-child(even) {
+      flex-direction: row-reverse; }
+    @media screen and (max-width: 480px) {
+      section.page .character-row {
+        border: 1px solid #fd960f;
+        padding-bottom: 100%; } }
+    @media screen and (max-width: 768px) {
+      section.page .character-row {
+        flex: 1 0 55%; } }
+    @media screen and (min-width: 768px) {
+      section.page .character-row {
+        display: flex; } }
+    @media screen and (min-width: 768px) {
+      section.page .character-row .character-portrait {
+        flex: 1 0 25%; } }
+    section.page .character-row .character-info {
+      padding: 1rem;
+      background-color: #1a090b; }
+      @media screen and (min-width: 768px) {
+        section.page .character-row .character-info {
+          padding: 2rem 5rem 2rem 2rem; } }
+      @media screen and (max-width: 480px) {
+        section.page .character-row .character-info {
+          position: absolute;
+          bottom: 0;
+          padding-top: 100%;
+          background: linear-gradient(0deg, #1a090b 45%, transparent 80%); } }
+
+section.rant {
+  margin-top: 1rem;
+  margin-bottom: 5rem; }
+  section.rant .title {
+    font-size: 24px;
+    font-family: "Londrina Solid", sans-serif; }
+  section.rant .description div,
+  section.rant .description p,
+  section.rant .description ol,
+  section.rant .description ul,
+  section.rant .description pre,
+  section.rant .description blockquote {
+    line-height: 1.5; }
+    section.rant .description div:not(:last-child),
+    section.rant .description p:not(:last-child),
+    section.rant .description ol:not(:last-child),
+    section.rant .description ul:not(:last-child),
+    section.rant .description pre:not(:last-child),
+    section.rant .description blockquote:not(:last-child) {
+      margin-bottom: 1rem; }
+  section.rant .description h1 {
+    font-size: 42px; }
+  section.rant .description h2 {
+    font-size: 36px; }
+  section.rant .description h3 {
+    font-size: 30px; }
+  section.rant .description h4 {
+    font-size: 24px; }
+  section.rant .description h5 {
+    font-size: 18px; }
+  section.rant .description h1, section.rant .description h2, section.rant .description h3, section.rant .description h4, section.rant .description h5, section.rant .description h6 {
+    font-family: "Londrina Solid", sans-serif;
+    margin-bottom: 1rem; }
+    section.rant .description h1:not(:first-child), section.rant .description h2:not(:first-child), section.rant .description h3:not(:first-child), section.rant .description h4:not(:first-child), section.rant .description h5:not(:first-child), section.rant .description h6:not(:first-child) {
+      margin-top: 1rem; }
+  section.rant .description ul {
+    padding-left: 30px;
+    list-style-type: disc; }
+  section.rant .description ol {
+    padding-left: 30px;
+    list-style-type: decimal; }
 
 section.rant-list .title {
   font-size: 30px;
-  font-family: "Segoe UI", sans-serif; }
+  font-family: "Londrina Solid", sans-serif; }
 
 section.rant-list ul {
   margin-top: 20px; }
@@ -523,24 +904,6 @@ section.rant-list ul {
     margin: 5px 0; }
     section.rant-list ul li .rant-title {
       font-size: 24px;
-      font-weight: bold;
-      font-family: "Segoe UI", sans-serif; }
+      font-family: "Londrina Solid", sans-serif; }
     section.rant-list ul li .rant-date {
       font-style: italic; }
-
-section.admin h2 {
-  font-size: 24px;
-  font-weight: bold;
-  font-family: "Segoe UI", sans-serif; }
-
-section.admin ul.list li {
-  padding: 5px;
-  border: 1px solid #ccc;
-  margin: 2px 0; }
-
-.socialmedia {
-  display: flex;
-  justify-content: center; }
-
-.socialmedia div {
-  padding: 15px 10px 20px; }

@@ -1,0 +1,48 @@
+@mixin button-color ($color, $background-color) {
+	color: $color;
+	background-color: $background-color;
+
+	&:hover {
+		background-color: darken($background-color, 10%);
+	}
+
+	&:active {
+		background-color: darken($background-color, 25%);
+	}
+
+}
+
+.button {
+	display: inline-block;
+	padding: 0.75rem 1.5rem;
+
+	@include button-color($brown, $orange);
+
+	text-align: center;
+	font-size: 1rem;
+	font-weight: bold;
+
+	cursor: pointer;
+
+	border-radius: 5rem;
+
+	&.is-primary {
+		@include button-color($brown, $orange);
+	}
+
+	&.is-secondary {
+		@include button-color($orange, $brown);
+		border: 1px solid $orange;
+	}
+
+	&.is-danger {
+		@include button-color($white, $dark-orange);
+	}
+
+	&.is-fullwidth {
+		width: 100%;
+	}
+
+	&:focus {
+	}
+}

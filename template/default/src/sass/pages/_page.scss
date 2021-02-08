@@ -1,0 +1,62 @@
+// ==========================================================================
+// Page
+// ==========================================================================
+
+section.page {
+	@include section-margin;
+	
+	@include content;
+
+	.characters-list {
+		@media screen and (max-width: $breakpoint-tablet) and (min-width: $breakpoint-mobile) {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-gap: 1rem;
+		}
+	}
+
+	.character-row {
+		position: relative;
+		
+		&:nth-child(even){
+			flex-direction: row-reverse;
+		}
+
+		@media screen and (max-width: $breakpoint-mobile) {
+			border: 1px solid $orange;
+			padding-bottom: 100%;
+		}
+
+		@media screen and (max-width: $breakpoint-tablet) {
+			flex: 1 0 55%;
+		}
+
+		@media screen and (min-width: $breakpoint-tablet) {
+			display: flex;
+		}
+
+		.character-portrait {
+			@media screen and (min-width: $breakpoint-tablet) {
+				flex: 1 0 25%;
+			}
+		}
+
+		.character-info {
+			padding: 1rem;
+			background-color: $brown;
+
+			@media screen and (min-width: $breakpoint-tablet) {
+				padding: 2rem 5rem 2rem 2rem;
+			}
+
+			@media screen and (max-width: $breakpoint-mobile) {
+				position: absolute;
+				bottom: 0;
+				padding-top: 100%;
+				background: linear-gradient(0deg, $brown 45%, transparent 80%);
+			}
+		}
+
+	}
+
+}

@@ -1,0 +1,136 @@
+// ==========================================================================
+// Chapter
+// ==========================================================================
+
+section.chapter {
+	@include section-margin;
+
+	div.chapter-info {
+
+		@media screen and (max-width: $breakpoint-mobile) {
+			.info-text {
+				padding: 2rem 1rem;
+			}
+
+			.button.is-primary {
+				width: 100%;
+			}
+		}
+
+		@media screen and (min-width: $breakpoint-mobile) {
+			display: grid;
+			grid-template-columns: 192px 1fr;
+
+			.info-text {
+				margin-left: 2rem;
+
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			}
+		}
+
+		.title {
+			font-size: 30px;
+			font-family: $font-title;
+
+			@media screen and (min-width: $breakpoint-tablet) {
+				font-size: 42px;
+			}
+
+			span {
+				font-size: 24px;
+				display: block;
+			}
+		}
+
+		.description {
+			margin-bottom: 20px;
+
+			@media screen and (min-width: $breakpoint-tablet) {
+				font-size: 18px;
+			}
+		}
+
+		.return {
+			margin-bottom: 0.5rem;
+		}
+	}
+
+	ul.chapter-list {
+		margin-top: 1rem;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+
+		@media screen and (min-width: 470px) {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+
+		@media screen and (min-width: 570px) {
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+		}
+
+		@media screen and (min-width: $container-width) {
+			grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+		}
+
+		li {
+
+			a {
+				display: inline-block;
+				border: 1px solid $grey;
+				border-radius: 2.5px;
+				height: 220px;
+				width: 100%;
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;				
+			}
+		}
+	}
+}
+
+// ==========================================================================
+// Chapter List
+// ==========================================================================
+
+section.chapter-list{
+
+	.title {
+		font-size: 30px;
+		font-family: $font-title;
+	}
+
+	.description {
+
+	}
+
+	ul {
+
+		margin-top: 30px;
+
+		display: flex;
+		flex-wrap: wrap;
+
+		li {
+			flex: 0 1 50%;
+			margin-bottom: 10px;
+
+			@media screen and (min-width: $breakpoint-mobile) {
+				flex: 0 1 20%;
+			}
+
+			.chapter-cover {
+				max-width: 100%;
+				padding-right: 7px;
+			}
+
+			.chapter-title h3 {
+				font-size: 18px;
+				font-family: $font-title;
+				margin: 5px 0;
+			}
+
+		}
+	}
+}

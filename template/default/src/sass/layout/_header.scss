@@ -1,0 +1,29 @@
+.header {
+	.container {
+		@media screen and (max-width: $breakpoint-container) {
+			padding: 0!important;
+		}
+	}
+
+	&-banner {
+		transition: $transition filter;
+
+		&:hover {
+			filter: brightness(110%);
+			transition: $transition filter;
+		}
+
+		&:active {
+			filter: brightness(115%);
+		}
+
+		figure.image-banner {
+
+			img {
+				display: block;
+				width: 720px;
+				margin: 0 auto;
+			}
+		}
+	}
+}

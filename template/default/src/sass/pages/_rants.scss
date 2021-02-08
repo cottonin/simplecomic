@@ -1,0 +1,56 @@
+// ==========================================================================
+// Rant
+// ==========================================================================
+
+section.rant {
+	@include section-margin;
+
+	.title {
+		font-size: 24px;
+		font-family: $font-title
+	}
+
+	.date {
+
+	}
+
+	.description {
+		@include content;
+	}
+}
+
+
+// ==========================================================================
+// Rants List
+// ==========================================================================
+
+section.rant-list {
+	.title {
+		font-size: 30px;
+		font-family: $font-title
+	}
+
+	.description {
+		
+	}
+
+	ul {
+		margin-top: 20px;
+
+		li {
+			border: 1px dotted #ccc;
+			border-radius: 5px;
+			padding: 20px;
+			margin: 5px 0;
+
+			.rant-title {
+				font-size: 24px;
+				font-family: $font-title;
+			}
+
+			.rant-date {
+				font-style: italic;
+			}
+		}
+	}
+}

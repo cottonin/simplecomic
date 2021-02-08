@@ -1,0 +1,57 @@
+@mixin section-margin {
+	margin-top: 1rem;
+	margin-bottom: 5rem;
+}
+
+@mixin content {
+	div,
+	p,
+	ol,
+	ul,
+	pre,
+	blockquote {
+		line-height: 1.5;
+		&:not(:last-child) {
+			margin-bottom: 1rem;
+		}
+	}
+
+	h1 {
+		font-size: 42px;
+	}	
+
+	h2 {
+		font-size: 36px;
+	}
+
+	h3 {
+		font-size: 30px;
+	}
+
+	h4 {
+		font-size: 24px;
+	}
+
+	h5 {
+		font-size: 18px;
+	}
+
+	h1,h2,h3,h4,h5,h6 {
+		font-family: $font-title;
+		margin-bottom: 1rem;
+
+		&:not(:first-child) {
+			margin-top: 1rem;
+		}
+	}
+
+	ul {
+		padding-left: 30px;
+		list-style-type: disc;
+	}
+
+	ol {
+		padding-left: 30px;
+		list-style-type: decimal;
+	}
+}
