@@ -14,13 +14,11 @@ if(!isset($text)) {
     <form action="" method="POST" enctype="multipart/form-data">
         <?php echo authtoken_input(); ?>
         <?php if(isset($comicid) && $comicid && $comicid != 'new') { ?>
-            <input name="comicid" value=<?php echo $comicid; ?> type="hidden" />
+            <input name="comicid" value="<?php echo $comicid; ?>" type="hidden" />
         <?php } ?>
         <div class="field">
             <label class="label">Title</label>
-            <div class="control">
-                <input id="title_field" class="input" autocomplete="off" name="title" value="<?php echo isset($title) ? $title : ''; ?>" />
-            </div>
+            <input id="title_field" class="input" autocomplete="off" name="title" value="<?php echo isset($title) ? $title : ''; ?>" />
         </div>
         <div class="field">
             <label class="label">Date</label>
@@ -31,49 +29,45 @@ if(!isset($text)) {
         </div>
         <div class="field">
             <label class="label">Slug</label>
-            <div class="control">
-                <input id="slug_field" class="input" autocomplete="off" name="slug" type="text" title="any non-completely-numeric string of basic letters, digits, and underscores" pattern="[\w\-]*" value="<?php echo isset($slug) ? $slug : ''; ?>" />
-            </div>
+            <input id="slug_field" class="input" autocomplete="off" name="slug" type="text" title="any non-completely-numeric string of basic letters, digits, and underscores" pattern="[\w\-]*" value="<?php echo isset($slug) ? $slug : ''; ?>" />
         </div>
         <div class="field">
             <label class="label">Chapter</label>
-            <div class="control">
-                <div class="select">
-                    <select name="chapterid">
-                        <?php
-                        $closed = array();
-                        foreach($chapters as $c) {
-                            if($c['status'] == STATUS_CLOSED) {
-                                $closed[] = $c;
-                                continue;
-                            }
-                            echo '<option value="', $c['chapterid'], '"';
-                            if(isset($chapterid) && $c['chapterid'] == $chapterid) {
-                                echo ' selected="selected"';
-                            }
-                            echo '>', $c['title'], '</option>', "\n";
+            <select class="select" name="chapterid">
+                <?php
+                $closed = array();
+                foreach($chapters as $c) {
+                    if($c['status'] == STATUS_CLOSED) {
+                        $closed[] = $c;
+                        continue;
+                    }
+                    echo '<option value="', $c['chapterid'], '"';
+                    if(isset($chapterid) && $c['chapterid'] == $chapterid) {
+                        echo ' selected="selected"';
+                    }
+                    echo '>', $c['title'], '</option>', "\n";
+                }
+                if($closed) {
+                    echo '<option disabled="disabled">---CLOSED---</option>';
+                    foreach($closed as $c) {
+                        echo '<option value="', $c['chapterid'], '"';
+                        if(isset($chapterid) && $c['chapterid'] == $chapterid) {
+                            echo ' selected="selected"';
                         }
-                        if($closed) {
-                            echo '<option disabled="disabled">---CLOSED---</option>';
-                            foreach($closed as $c) {
-                                echo '<option value="', $c['chapterid'], '"';
-                                if(isset($chapterid) && $c['chapterid'] == $chapterid) {
-                                    echo ' selected="selected"';
-                                }
-                                echo '>', $c['title'], '</option>', "\n";
-                            }
-                        }
-                        ?>
-                    </select>
-                </div>
-            </div>
+                        echo '>', $c['title'], '</option>', "\n";
+                    }
+                }
+                ?>
+            </select>
         </div>
         <div class="field">
             <label class="label">Filename</label>
-            <div class="control">
-                <input class="input" autocomplete="off" name="filename" value="<?php echo isset($filename) ? $filename : ''; ?>" />
-                <small>The name of a file in the <var><?php echo config('comicpath'); ?></var> directory.</small>
-            </div>
+            <input class="input" autocomplete="off" name="filename" value="<?php echo isset($filename) ? $filename : ''; ?>" />
+            <?php if (config('comicpath')): ?>
+                <small>The name of a file in the <var>/assets/comic</var> directory.</small>
+            <?php else: ?>
+                <small>The external URL of a file.</small>
+            <?php endif ?>
         </div>
         <div class="field">
             <?php if(!isset($comicid)) { ?>
@@ -85,8 +79,9 @@ if(!isset($text)) {
         </div>
         <div class="field">
             <label class="label">Description</label>
-            <div class="control">
-                <textarea class="textarea" name="description"><?php echo htmlentities($text['description']); ?></textarea>
+            <div id="description" class="control">
+                <div id="pell-editor-description"></div>
+                <textarea id="description-output" class="textarea" name="description" style="display: none;"><?php echo htmlentities($text['description']); ?></textarea>
             </div>
         </div>
         <div class="field">
@@ -95,10 +90,13 @@ if(!isset($text)) {
                 <textarea class="textarea" name="alt_text"><?php echo htmlentities($text['alt_text']); ?></textarea>
             </div>
         </div>
-        <!--
-        <label class="label">Transcript</label>
-        <textarea class="textarea" name="transcript"><?php echo htmlentities($text['transcript']); ?></textarea>
-        -->
+        <div class="field">
+            <label class="label">Transcript</label>
+            <div id="transcript" class="control">
+                <div id="pell-editor-transcript"></div>
+                <textarea id="transcript-output" class="textarea" name="transcript" style="display: none;"><?php echo htmlentities($text['transcript']); ?></textarea>
+            </div>
+        </div>
         <div class="submit-block">
             <input class="button is-primary" type="submit" name="submit" value="Save" />
             <?php if(isset($comicid) && $comicid && $comicid != 'new') { ?>
@@ -107,16 +105,4 @@ if(!isset($text)) {
         </div>
     </form>
 </section>
-<script>
-    var title = document.getElementById('title_field');
-    var slug = document.getElementById('slug_field')
-    title.addEventListener("focusout", function() {
-        var str = title.value;
-        str = str.toLowerCase()
-                .replace(/[^\w ]+/g,'')
-                .replace(/ +/g,'-');
-        slug.value = str;
-    })
-
-</script>
 <?php template('admin_foot'); ?>

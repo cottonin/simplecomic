@@ -2,46 +2,40 @@
 <?php $page->get_breadcrumbs(); ?>    
 <section class="admin">
 <div>For the purpose of publishing, the date is: <b><?php echo date('F jS, Y \a\t  H:i:s'); ?></b></div>
-<h2>Comics</h2>
-<a href="<?php echo url('admin/comic/new'); ?>" class="button">Add a new comic</a>
+<h2>Comics <a href="<?php echo url('admin/comic/new'); ?>">Add a new comic</a></h2>
 <ul class="list">
 <?php foreach ($comics as $c): ?>
     <li>
-        <a href="<?php echo url('admin/comic/'.$c['comicid']); ?>" title="Edit this page">
-            <span>
-                <?php echo $c['title'] ?> | 
-
-            </span>
-        </a>
-        <span>
+        <span class="name"><?php echo $c['title'] ?></span>
+        <span class="date">
             Posted on <?php echo date('F jS, Y', $c['pub_date']); ?>
             <?php if ($c['pub_date'] > time()): ?>
                 UNPUBLISHED
             <?php endif ?>
         </span>
+        <span class="view"><a href="<?php echo url('comic/'.$c['comicid']); ?>"  target="_blank">View</a></span>
+        <span class="edit"><a href="<?php echo url('admin/comic/'.$c['comicid']); ?>">Edit</a></span>
     </li>
 <?php endforeach ?>
 </ul>
 
-<h2>Rants</h2>
-<a href="<?php echo url('admin/rant/new'); ?>" class="button">Add a new rant</a>
+<h2>Rants <a href="<?php echo url('admin/rant/new'); ?>">Add a new rant</a></h2>
 <ul class="list">
 <?php foreach ($rants as $c): ?>
     <li>
-        <a href="<?php echo url('admin/rant/'.$c['rantid']); ?>" title="Edit this page">
-            <span>
-                <?php echo $c['title'] ?> | 
-                Posted on <?php echo date('F jS, Y', $c['pub_date']); ?>
-                <?php if ($c['pub_date'] > time()): ?>
-                    UNPUBLISHED
-                <?php endif ?>
-            </span>
-        </a>
+    	<span class="name"><?php echo $c['title'] ?></span>
+    	<span class="date">
+    		Posted on <?php echo date('F jS, Y', $c['pub_date']); ?>
+    		<?php if ($c['pub_date'] > time()): ?>
+    		    UNPUBLISHED
+    		<?php endif ?>
+    	</span>
+    	<span class="view"><a href="<?php echo url('rant/'.$c['rantid']); ?>">View</a></span>
+    	<span class="edit"><a href="<?php echo url('admin/rant/'.$c['rantid']); ?>">Edit</a></span>
     </li>
 <?php endforeach ?>
 </ul>
-<h2 id="chapters">Chapters</h2>
-<a href="<?php echo url('admin/chapter/new'); ?>" class="button">Add a new chapter</a>
+<h2 id="chapters">Chapters <a href="<?php echo url('admin/chapter/new'); ?>">Add a new chapter</a></h2>
 <ul class="chapter-list">
 <?php $num_chapters = count($chapters); ?>
 <?php foreach ($chapters as $c): ?>

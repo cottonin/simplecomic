@@ -23,9 +23,7 @@ if(isset($preview) && $preview) {
         <?php } ?>
         <div class="field">
             <label class="label">Title</label> 
-            <div class="control">
-                <input class="input" name="title" value="<?php echo isset($title) ? $title : ''; ?>" />
-            </div>
+            <input class="input" name="title" value="<?php echo isset($title) ? $title : ''; ?>" />
         </div>
         <div class="field">
             <label class="label">Date</label> 
@@ -36,8 +34,9 @@ if(isset($preview) && $preview) {
         </div>
         <div class="field">
             <label class="label">Text</label> 
-            <div class="control">
-                <textarea class="textarea" name="text"><?php echo isset($text) ? htmlentities($text) : ''; ?></textarea>
+            <div id="description" class="control">
+                <div id="pell-editor-description"></div>
+                <textarea id="description-output" class="textarea" name="text" style="display: none;"><?php echo isset($text) ? htmlentities($text) : ''; ?></textarea>
             </div>
         </div>
         <div class="submit-block">

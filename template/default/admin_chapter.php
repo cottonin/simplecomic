@@ -8,35 +8,25 @@
 	    <?php } ?>
 	    <div class="field">
 	        <label class="label">Title</label>
-	        <div class="control">
-	            <input class="input" name="title" value="<?php echo isset($title) ? $title : ''; ?>" />
-	        </div>
+            <input class="input" name="title" value="<?php echo isset($title) ? $title : ''; ?>" />
 	    </div>
 	    <div class="field">
 	        <label class="label">Slug</label>
-	        <div class="control">
-	            <input class="input" name="slug" type="text" title="any non-completely-numeric string of basic letters, digits, and underscores" pattern="[\w\-]*" value="<?php echo isset($slug) ? $slug : ''; ?>" />
-	        </div>
+            <input class="input" name="slug" type="text" title="any non-completely-numeric string of basic letters, digits, and underscores" pattern="[\w\-]*" value="<?php echo isset($slug) ? $slug : ''; ?>" />
 	    </div>
 	    <div class="field">
 	        <label class="label">Description</label>
-	        <div class="control">
-	            <textarea class="textarea" name="description"><?php echo isset($description) ? htmlentities($description) : "" ; ?></textarea>
-	        </div>
+            <textarea class="textarea" name="description"><?php echo isset($description) ? htmlentities($description) : "" ; ?></textarea>
 	    </div>
 	    <div class="field">
 	        <label class="label">Filename</label>
-	        <div class="control">
-	            <input class="input" name="filename" value="<?php echo isset($filename) ? $filename : ''; ?>" />
-	            <small>The name of a file in the <var><?php echo config('comicpath'); ?></var> directory.</small>
-	        </div>
+            <input class="input" name="filename" value="<?php echo isset($filename) ? $filename : ''; ?>" />
+            <small>The name of a file in the <var><?php echo config('comicpath'); ?></var> directory.</small>
 	    </div>
 	    <?php if(!isset($chapterid)): ?>
 	    <div class="field">
 	        <label class="label">Or: Upload file</label>
-	        <div class="control">
-	            <input class="input" name="filename" type="file" />
-	        </div>
+            <input class="input" name="filename" type="file" />
 	    </div>
 		<?php endif ?>
 	    <div class="field">
