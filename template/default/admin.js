@@ -18,3 +18,53 @@ $("button.delete").click(function(e) {
         e.preventDefault();
     }
 });
+
+// Automatically print slug field
+
+if (document.getElementById('slug_field')) {
+  var title = document.getElementById('title_field');
+  var slug = document.getElementById('slug_field')
+  title.addEventListener("focusout", function() {
+      var str = title.value;
+      str = str.toLowerCase()
+              .replace(/[^\w ]+/g,'')
+              .replace(/ +/g,'-');
+      slug.value = str;
+  });
+} 
+
+// WYSIWYG Editor
+var description = document.getElementById('description-output')
+
+if (document.getElementById('description')) {
+    var editor = window.pell.init({
+        element: document.getElementById('pell-editor-description'),
+        actions: [
+          'bold',
+          'underline',
+          'line',
+          'link',
+          'image',
+          'ulist',
+        ],
+        onChange: function (html) {
+          description.innerHTML = html;
+        }
+    });
+
+    editor.content.innerHTML = description.textContent;
+};
+
+var transcript = document.getElementById('transcript-output')
+
+if (document.getElementById('transcript')) {
+    var editor = window.pell.init({
+        element: document.getElementById('pell-editor-transcript'),
+        actions: [],
+        onChange: function (html) {
+          transcript.innerHTML = html;
+        }
+    });
+
+    editor.content.innerHTML = transcript.textContent;
+};
